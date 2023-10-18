@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="meyer-reset.css" />
     <link rel="stylesheet" href="style.css" />
-    <title>//ToDo-List</title>
+    <!-- load javascript -->
+    <script src="app.js" defer></script>
+    <title>// ToDo-List</title>
   </head>
   <body>
     <header>
@@ -27,16 +29,18 @@
         </div>
         <div id="tasks-navbar">
           <span>Tasks:</span>
-          <ul class="home-nav">
+          <ul id="tasks-nav">
             <li class="nav-item">Today</li>
             <li class="nav-item">This Week</li>
             <li class="nav-item">This Month</li>
             <li class="nav-item">This Year</li>
           </ul>
           <span>Projects:</span>
-          <ul class="projects"></ul>
+          <ul id="projects-nav"></ul>
         </div>
-        <div id="tasks-content"></div>
+
+        <!-- main content display area-->
+        <div id="content-area"></div>
       </div>
     </main>
   </body>
