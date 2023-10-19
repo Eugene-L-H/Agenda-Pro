@@ -81,11 +81,14 @@ ul.projects {
 /* Popups */
 .add-project-popup {
   display: flex;
+  flex-flow: row wrap;
   position: absolute;
   height: 400px;
   width: 300px;
   z-index: 100;
+  text-align: center;
   border: 1px solid #000;
+  background-color: #fff;
   filter: blur(0px);
 }
 
@@ -93,6 +96,15 @@ ul.projects {
   width: 100%;
   height: 10%;
   border-bottom: 1px solid #000;
+}
+
+.popup-body {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Mobile view */
