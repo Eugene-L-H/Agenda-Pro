@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="meyer-reset.css" />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="styles/meyer-reset.css" />
+    <link rel="stylesheet" href="styles/style.css" />
     <!-- load javascript -->
     <script src="app.js" defer></script>
     <title>// ToDo-List</title>
@@ -37,10 +37,16 @@
           </ul>
           <span>Projects:</span>
           <ul id="projects-nav"></ul>
+          <div id="add-project-div">
+            <span class="plus-sign">+</span
+            ><span class="add-poject-text">Add Project</span>
+          </div>
         </div>
 
         <!-- main content display area-->
-        <div id="content-area"></div>
+        <div id="content-area">
+          <ul id="task-list"></ul>
+        </div>
       </div>
     </main>
   </body>
