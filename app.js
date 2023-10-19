@@ -1,4 +1,10 @@
+// Import the popup function into the app.js file.
+import addNewProjectPopup from "/scripts/popups.js";
+
 // DOM objects
+const body = document.querySelector("body");
+
+const main = document.querySelector("main");
 
 // Unordered list that displays the nav menu for tasks.
 const tasksNavMenu = document.querySelector("#tasks-nav");
@@ -23,10 +29,16 @@ taskButtons.forEach(listItem => {
 const addNewProjectBtn = document.querySelector("#add-project-div");
 console.log("addNewProjectBtn: ", addNewProjectBtn);
 
-addNewProjectBtn.addEventListener("click", () => {
-  alert("Clicked the add new project button.");
-});
-
 // Main display area for the content.
 const contentArea = document.querySelector("#content-area");
 console.log("contentArea: ", contentArea);
+
+// Insert the popup HTML into the DOM.
+addNewProjectBtn.addEventListener("click", () => {
+  // Add the popup HTML to the DOM.
+  const popupHTML = addNewProjectPopup();
+  console.log("popupHTML: ", popupHTML);
+  // Add the popup HTML to the DOM.
+  body.insertAdjacentHTML("afterbegin", popupHTML);
+  main.classList.add("blur");
+});

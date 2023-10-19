@@ -37,7 +37,6 @@ header h1 {
   width: 100%;
 }
 
-
 /* Main app content */
 main {
   width: 100%;
@@ -58,14 +57,14 @@ main {
 #tasks-header {
   width: 100%;
   height: 10%;
-  background-color: #EEE;
+  background-color: #eee;
   border-bottom: 1px solid #000;
 }
 
 #tasks-navbar {
   width: 25%;
   height: 90%;
-  background-color: #F8F8F8;
+  background-color: #f8f8f8;
   border-right: 1px solid #000;
   border-bottom: 1px solid #000;
 }
@@ -79,8 +78,31 @@ ul.projects {
   height: 90%;
 }
 
+/* Popups */
+.add-project-popup {
+  display: flex;
+  position: absolute;
+  height: 400px;
+  width: 300px;
+  z-index: 100;
+  border: 1px solid #000;
+  filter: blur(0px);
+}
+
+.popup-header {
+  width: 100%;
+  height: 10%;
+  border-bottom: 1px solid #000;
+}
+
 /* Mobile view */
 @media (max-width: 768px) {
   .menu-toggle {
     display: flex;
   }
+}
+
+/* Applied over the entire app, popup aside, when a popup is open */
+.blur {
+  filter: blur(5px);
+}
