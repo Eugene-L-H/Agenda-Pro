@@ -1,7 +1,7 @@
 // Popup form for creating a new project.
 export function addNewProjectPopup() {
   const popupHTML = `
-    <div class="add-project-popup">
+    <div id="add-project-popup">
       <div class="popup-header">
         <span class="close-popup">&times;</span>
       </div>
@@ -23,12 +23,23 @@ export function addNewProjectPopup() {
   return popupHTML;
 }
 
-// Add functionality for the close popup button
+// Add functionality for the close popup button.
 export function closePopup(popupType) {
-  // const closeButton = document.querySelector(".close-popup");
-  // if (popupType === "add-task") {
-  //   closeButton.addEventListener("click", () => {});
-  // }
+  const closeButton = document.querySelector(".close-popup");
+
+  if (popupType === "add-task-popup") {
+    const popup = document.querySelector("#add-project-popup");
+
+    // Will remove blur from <main> element.
+    const main = document.querySelector("main");
+
+    closeButton.addEventListener("click", () => {
+      // Remove the popup, back to default view.
+      popup.remove();
+      // Remove the blur effect from the screen once popup disappears.
+      main.classList.remove("blur");
+    });
+  }
 }
 
 // export const popups = { addNewProjectPopup, closePopup };
