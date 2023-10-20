@@ -1,3 +1,22 @@
+class Project {
+  constructor(name, description, deadline, tasks) {
+    this.name = name;
+    this.description = description;
+    this.deadline = deadline;
+    this.tasks = tasks;
+  }
+}
+
+class Task {
+  constructor(name, description, dueDate, priority, project) {
+    this.name = name;
+    this.description = description;
+    this.dueDate = dueDate;
+    this.priority = priority;
+    this.project = project;
+  }
+}
+
 // Popup form for creating a new project.
 export function addNewProjectPopup() {
   const popupHTML = `
@@ -16,6 +35,7 @@ export function addNewProjectPopup() {
         ></textarea>
         <label for="project-deadline">Deadline:</label>
         <input type="date" id="project-deadline" placeholder="Deadline" />
+        <button id="submit-project">Add Project</button>
       </div>
     </div>
   `;
@@ -40,4 +60,29 @@ export function closePopup(popupType) {
       main.classList.remove("blur");
     });
   }
+}
+
+export function submitProject(ProjectClass) {
+  const submitButton = document.querySelector("#submit-project");
+
+  submitButton.addEventListener("click", () => {
+    // Get the values from the form.
+    const projectName = document.querySelector("#project-name").value;
+    const projectDescription = document.querySelector("#project-description")
+      .value;
+    let projectDeadline = document.querySelector("#project-deadline").value;
+
+    if (projectDeadline === "") projectDeadline = null;
+
+    // Create a new project.
+    const project = new Project(
+      projectName,
+      projectDescription,
+      projectDeadline,
+      []
+    );
+
+    // ToDo: Add the project to the project list.
+    alert("Project added!");
+  });
 }
