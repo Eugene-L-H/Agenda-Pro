@@ -9,11 +9,11 @@ function addNewProjectPopup() {
         <label for="project-name">Project Name:</label>
         <input type="text" id="project-name" placeholder="Project Name" />
         <label for="project-description">Description:</label>
-        <input
-          type="text-area"
+        <textarea
+          rows="4" 
           id="project-description"
           placeholder="Project Description"
-        />
+        ></textarea>
         <label for="project-deadline">Deadline:</label>
         <input type="date" id="project-deadline" placeholder="Deadline" />
       </div>

@@ -26,7 +26,7 @@ taskButtons.forEach(listItem => {
 });
 
 // Add new-project button.
-const addNewProjectBtn = document.querySelector("#add-project-div");
+const addNewProjectBtn = document.querySelector("#add-project-button");
 console.log("addNewProjectBtn: ", addNewProjectBtn);
 
 // Main display area for the content.
