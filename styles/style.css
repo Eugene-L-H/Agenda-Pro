@@ -62,6 +62,7 @@ main {
   border-bottom: 1px solid #000;
 }
 
+/* Side nav-bar */
 #tasks-navbar {
   width: 25%;
   height: 90%;
@@ -69,6 +70,12 @@ main {
   border-right: 1px solid #000;
   border-bottom: 1px solid #000;
 }
+
+#tasks-navbar > * {
+  margin-left: 10%;
+}
+
+/*---*/
 
 #add-project-button {
   cursor: pointer;

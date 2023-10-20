@@ -1,5 +1,5 @@
 // Popup form for creating a new project.
-function addNewProjectPopup() {
+export function addNewProjectPopup() {
   const popupHTML = `
     <div class="add-project-popup">
       <div class="popup-header">
@@ -23,4 +23,12 @@ function addNewProjectPopup() {
   return popupHTML;
 }
 
-export default addNewProjectPopup;
+// Add functionality for the close popup button
+export function closePopup(popupType) {
+  // const closeButton = document.querySelector(".close-popup");
+  // if (popupType === "add-task") {
+  //   closeButton.addEventListener("click", () => {});
+  // }
+}
+
+// export const popups = { addNewProjectPopup, closePopup };

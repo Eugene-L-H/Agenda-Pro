@@ -1,5 +1,4 @@
-// Import the popup function into the app.js file.
-import addNewProjectPopup from "/scripts/popups.js";
+import { addNewProjectPopup, closePopup } from "/scripts/popups.js";
 
 // DOM objects
 const body = document.querySelector("body");
@@ -7,7 +6,7 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 
 // Unordered list that displays the nav menu for tasks.
-const tasksNavMenu = document.querySelector("#tasks-nav");
+const tasksNavMenu = document.querySelector(".tasks-nav-list");
 console.log("tasksNavMenu: ", tasksNavMenu);
 
 const taskButtons = tasksNavMenu.querySelectorAll(".nav-item");
@@ -38,6 +37,7 @@ addNewProjectBtn.addEventListener("click", () => {
   // Add the popup HTML to the DOM.
   const popupHTML = addNewProjectPopup();
   console.log("popupHTML: ", popupHTML);
+
   // Add the popup HTML to the DOM.
   body.insertAdjacentHTML("afterbegin", popupHTML);
   main.classList.add("blur");
