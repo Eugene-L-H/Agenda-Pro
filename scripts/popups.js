@@ -41,5 +41,3 @@ export function closePopup(popupType) {
     });
   }
 }
-
-// export const popups = { addNewProjectPopup, closePopup };

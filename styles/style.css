@@ -1,5 +1,6 @@
 body {
   height: 100vh;
+  font-family: "Raleway", sans-serif;
 }
 
 header {
@@ -53,6 +54,7 @@ main {
   display: flex;
   flex-flow: row wrap;
   border: 1px solid #000;
+  margin-bottom: 5%;
 }
 
 #tasks-header {
@@ -77,11 +79,26 @@ main {
 /*---*/
 
 #add-project-button {
+  display: inline-block;
   cursor: pointer;
+  padding: 0.5rem;
+  /* border-radius: 25%;
+  border: 1px solid #999; */
+}
+
+#add-project-button:hover {
+  font-style: italic;
+  background-color: #eee;
 }
 
 ul.projects {
   list-style-type: circle;
+}
+
+.plus-sign {
+  padding: 1px 5px;
+  border: 1px solid #000;
+  border-radius: 50%;
 }
 
 #content-area {
