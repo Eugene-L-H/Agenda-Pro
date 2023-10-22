@@ -33,7 +33,7 @@ export function addNewProjectPopup() {
           id="project-description"
           placeholder="Project Description"
         ></textarea>
-        <label for="project-deadline">Deadline:</label>
+        <label for="project-deadline">Deadline (Optional):</label>
         <input type="date" id="project-deadline" placeholder="Deadline" />
         <button id="submit-project">Add Project</button>
       </div>
