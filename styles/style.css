@@ -159,7 +159,7 @@ ul.projects {
   margin-top: 15px;
 }
 
-.add-project-popup textarea {
+#add-project-popup textarea {
   resize: none;
 }
 

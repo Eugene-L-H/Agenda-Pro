@@ -1,9 +1,8 @@
-import { Project, Task } from "./scripts/functions.js";
 import {
   addNewProjectPopup,
   closePopup,
   submitProject
-} from "/scripts/popups.js";
+} from "/scripts/project-popup.js";
 
 // DOM objects
 const body = document.querySelector("body");
@@ -41,6 +40,6 @@ addNewProjectBtn.addEventListener("click", () => {
   main.classList.add("blur");
 
   // Add functionality to the close popup button.
-  closePopup("add-task-popup");
+  closePopup();
   submitProject();
 });
