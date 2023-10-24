@@ -9,7 +9,7 @@ export function fetchWeather() {
       console.log('raw data: ', data);
       // Get current hour.
       const currentHour = new Date().getHours();
-      const temperature = data.hourly.temperature_2m[currentHour];
+      const temperature = Math.round(data.hourly.temperature_2m[currentHour]);
       console.log('temperature: ', temperature);
       // const weatherDescription = data.current_weather.weathercode;
 
