@@ -44,19 +44,30 @@ export function fetchWeather() {
       // Fetch weather data from OpenMeteo API.
       const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode`);
       const data = await response.json();
-     
+
+      // Get the city name from the API response.
+      const locationResponse = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`);
+      const locationData = await locationResponse.json();
+    
+      const location = locationData.address.city || data.address.town || data.address.village || "Unknown location";
+      
       // Get current hour.
       const currentHour = new Date().getHours();
+      console.log('Current hour:', currentHour);
       const temperature = Math.round(data.hourly.temperature_2m[currentHour]);
       
+      // Get weather description based on weather code.
       const weatherCode = data.hourly.weathercode[currentHour];
+      console.log('Weather code:', data.hourly.weathercode);
       const weatherDescription = describeWeatherByWMOCode(weatherCode);
 
       // Update header with weather information.
-      document.querySelector('#temperature').innerText = `${temperature}°C`;
+      document.querySelector('#location').innerText = location;
+      document.querySelector('#temperature').innerText = `${temperature}°c`;
       document.querySelector('#weather-descripton').innerText = weatherDescription;
     }); 
   } else {
     console.log("Geolocation is not supported by this browser.");
+    document.querySelector('#location').innerText = "Geolocation is required to get weather information.";
   }
 }
