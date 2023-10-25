@@ -4,6 +4,8 @@ import {
   submitProject
 } from "/scripts/project-popup.js";
 
+import { fetchWeather } from "./scripts/weather.js";
+
 // DOM objects
 const body = document.querySelector("body");
 
@@ -23,6 +25,9 @@ taskButtons.forEach(listItem => {
     alert(`clicked ${listItem.textContent}`)
   );
 });
+
+// Display the weather information.
+fetchWeather();
 
 // Add new-project button.
 const addNewProjectBtn = document.querySelector("#add-project-button");
