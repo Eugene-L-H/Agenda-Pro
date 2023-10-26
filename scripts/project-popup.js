@@ -36,7 +36,7 @@ export function addNewProjectPopup() {
 }
 
 // ToDo: make close popup function work for add-task-popup as well.
-function closePopup () {
+function closePopup() {
   const popup = document.querySelector("#add-project-popup");
   const main = document.querySelector("main");
 
@@ -55,6 +55,7 @@ export function closePopupButton() {
   });
 }
 
+// Add functionality for the "Add Project" button.
 export function submitProjectButton() {
     // Create a new project.
     const project = new Project('', '', '', []);
