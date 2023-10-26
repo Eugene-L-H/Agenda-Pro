@@ -19,9 +19,6 @@ const tasksNavMenu = document.querySelector(".tasks-nav-list");
 
 const taskButtons = tasksNavMenu.querySelectorAll(".nav-item");
 
-// Unordered list that displays the nav menus for user-registered projects.
-const projectsNav = document.querySelector("#projects-nav");
-
 taskButtons.forEach(listItem => {
   // Make each list item clickable.
   listItem.addEventListener("click", () =>
