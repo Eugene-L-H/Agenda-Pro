@@ -1,10 +1,14 @@
+import { tasksArray, projectsArray } from "/scripts/state.js";
+
 import {
   addNewProjectPopup,
-  closePopup,
-  submitProject
+  closePopupButton,
+  submitProjectButton
 } from "/scripts/project-popup.js";
 
-import { fetchWeather } from "./scripts/weather.js";
+import { fetchWeather } from "/scripts/weather.js";
+
+console.log('projectsArray at start: ', projectsArray);
 
 // DOM objects
 const body = document.querySelector("body");
@@ -26,14 +30,8 @@ taskButtons.forEach(listItem => {
   );
 });
 
-// Display the weather information.
-fetchWeather();
-
 // Add new-project button.
 const addNewProjectBtn = document.querySelector("#add-project-button");
-
-// Main display area for the content.
-const contentArea = document.querySelector("#content-area");
 
 // Insert the popup HTML into the DOM.
 addNewProjectBtn.addEventListener("click", () => {
@@ -45,6 +43,18 @@ addNewProjectBtn.addEventListener("click", () => {
   main.classList.add("blur");
 
   // Add functionality to the close popup button.
-  closePopup();
-  submitProject();
+  closePopupButton();
+
+  // Add functionality to the submit project button.
+  submitProjectButton();
+
+  console.log('projectsArray', projectsArray);
 });
+
+// Main display area for the content.
+const contentArea = document.querySelector("#content-area");
+
+// Display the weather information.
+fetchWeather();
+
+
