@@ -1,3 +1,5 @@
+import { tasksArray, projectsArray } from "/scripts/state.js";
+
 class Project {
   constructor(name, description, deadline, tasks) {
     this.name = name;
@@ -34,26 +36,50 @@ export function addNewProjectPopup() {
 }
 
 // ToDo: make close popup function work for add-task-popup as well.
-
-// Add functionality for the close popup button.
-export function closePopup() {
-  const closeButton = document.querySelector(".close-popup");
+function closePopup() {
   const popup = document.querySelector("#add-project-popup");
-
-  // Will remove blur from <main> element.
   const main = document.querySelector("main");
 
+  // Remove the popup, back to default view.
+  popup.remove();
+  // Remove the blur effect from the screen once popup disappears.
+  main.classList.remove("blur");
+}
+
+// Add functionality for the close popup button.
+export function closePopupButton() {
+  const closeButton = document.querySelector(".close-popup");
+
   closeButton.addEventListener("click", () => {
-    // Remove the popup, back to default view.
-    popup.remove();
-    // Remove the blur effect from the screen once popup disappears.
-    main.classList.remove("blur");
+    closePopup();
   });
 }
 
-export function submitProject(ProjectClass) {
+export function addProjectNameToSidebar(name) {
+  // Unordered list that displays names of user-registered projects.
+  const projectsNav = document.querySelector("#projects-nav");
+
+  // Create list item dom object
+  const projectListItem = document.createElement("li");
+  projectListItem.classList.add("nav-item");
+  projectListItem.textContent = name;
+
+  // ToDo: addeventlistener to projectListItem.
+
+  // Add project title to main sidebar.
+  projectsNav.append(projectListItem);
+}
+
+// Add functionality for the "Add Project" button.
+export function submitProjectButton() {
+    // Create a new project.
+    const project = new Project('', '', '', []);
+  
   const submitButton = document.querySelector("#submit-project");
   submitButton.addEventListener("click", () => {
+    // Create a new project.
+    const project = new Project();
+
     // Get the values from the form.
     const projectName = document.querySelector("#project-name").value;
     const projectDescription = document.querySelector("#project-description")
@@ -61,16 +87,18 @@ export function submitProject(ProjectClass) {
     let projectDeadline = document.querySelector("#project-deadline").value;
     if (projectDeadline === "") projectDeadline = null;
 
-    // Create a new project.
-    const project = new Project(
-      projectName,
-      projectDescription,
-      projectDeadline,
-      []
-    );
+    
+    project.name = projectName;
+    project.description = projectDescription;
+    project.deadline = document.querySelector("#project-deadline").value;
+    project.tasks = [];
 
-    // ToDo: Add the project to the project list.
-    alert("Project added!");
+    // Add the project to the project list.
+    projectsArray.push(project);
+    localStorage.setItem("projectsArray", JSON.stringify(projectsArray));
+
+    addProjectNameToSidebar(projectName);
+
     closePopup();
   });
 }

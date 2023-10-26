@@ -52,6 +52,34 @@ main {
   align-items: center;
 }
 
+/* Weather API */
+
+#weather-info {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  font-size: 1rem;
+  font-style: italic;
+}
+
+
+#location {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+}
+
+#temperature {
+  font-size: 1.5rem;
+  color: #333;
+  font-weight: 300; 
+}
+
+#weather-descripton {
+  font-size: 1rem;
+  font-style: italic;
+  margin-left: 5px;
+}
+
 #app {
   width: 75%;
   height: 60vh;
@@ -68,8 +96,15 @@ main {
   border-bottom: 1px solid #000;
 }
 
+#tasks-header p {
+  margin-left: 2%;
+}
+
 /* Side nav-bar */
 #tasks-navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 25%;
   height: 90%;
   background-color: #f8f8f8;
@@ -80,14 +115,26 @@ main {
 #tasks-navbar > * {
   margin-left: 10%;
 }
+
+.nav-item {
+  list-style-type: disc;
+  cursor: pointer;
+}
+
+#tasks-label {
+  margin-top: -20%;
+}
+
+#projects-label {
+  margin-top: 5%;
+  margin-bottom: 2%;
+}
 /*---*/
 
 #add-project-button {
   display: inline-block;
   cursor: pointer;
   padding: 0.5rem;
-  /* border-radius: 25%;
-  border: 1px solid #999; */
 }
 
 #add-project-button:hover {
