@@ -96,8 +96,15 @@ main {
   border-bottom: 1px solid #000;
 }
 
+#tasks-header p {
+  margin-left: 2%;
+}
+
 /* Side nav-bar */
 #tasks-navbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   width: 25%;
   height: 90%;
   background-color: #f8f8f8;
@@ -111,6 +118,15 @@ main {
 
 .nav-item {
   list-style-type: disc;
+  cursor: pointer;
+}
+
+#tasks-label {
+  margin-top: -20%;
+}
+
+#projects-label {
+  margin-top: 5%;
 }
 /*---*/
 
@@ -118,8 +134,6 @@ main {
   display: inline-block;
   cursor: pointer;
   padding: 0.5rem;
-  /* border-radius: 25%;
-  border: 1px solid #999; */
 }
 
 #add-project-button:hover {
