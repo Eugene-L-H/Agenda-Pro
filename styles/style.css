@@ -108,6 +108,10 @@ main {
 #tasks-navbar > * {
   margin-left: 10%;
 }
+
+.nav-item {
+  list-style-type: disc;
+}
 /*---*/
 
 #add-project-button {
