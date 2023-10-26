@@ -53,12 +53,10 @@ export function fetchWeather() {
       
       // Get current hour.
       const currentHour = new Date().getHours();
-      console.log('Current hour:', currentHour);
       const temperature = Math.round(data.hourly.temperature_2m[currentHour]);
       
       // Get weather description based on weather code.
       const weatherCode = data.hourly.weathercode[currentHour];
-      console.log('Weather code:', data.hourly.weathercode);
       const weatherDescription = describeWeatherByWMOCode(weatherCode);
 
       // Update header with weather information.
