@@ -55,6 +55,21 @@ export function closePopupButton() {
   });
 }
 
+export function addProjectNameToSidebar(name) {
+  // Unordered list that displays names of user-registered projects.
+  const projectsNav = document.querySelector("#projects-nav");
+
+  // Create list item dom object
+  const projectListItem = document.createElement("li");
+  projectListItem.classList.add("nav-item");
+  projectListItem.textContent = name;
+
+  // ToDo: addeventlistener to projectListItem.
+
+  // Add project title to main sidebar.
+  projectsNav.append(projectListItem);
+}
+
 // Add functionality for the "Add Project" button.
 export function submitProjectButton() {
     // Create a new project.
@@ -80,6 +95,10 @@ export function submitProjectButton() {
 
     // Add the project to the project list.
     projectsArray.push(project);
+    localStorage.setItem("projectsArray", JSON.stringify(projectsArray));
+
+    addProjectNameToSidebar(projectName);
+
     closePopup();
   });
 }
