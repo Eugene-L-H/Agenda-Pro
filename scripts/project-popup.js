@@ -64,7 +64,12 @@ export function addProjectNameToSidebar(name) {
   projectListItem.classList.add("nav-item");
   projectListItem.textContent = name;
 
-  // ToDo: addeventlistener to projectListItem.
+  // Add functionality for the projectListItem.
+  projectListItem.addEventListener("click", () => {
+    const contentArea = document.querySelector("#content-area");
+    const project = projectsArray.find(project => project.name === name);
+    contentArea.innerHTML = `<p>${name}</p>`;
+  });
 
   // Add project title to main sidebar.
   projectsNav.append(projectListItem);
