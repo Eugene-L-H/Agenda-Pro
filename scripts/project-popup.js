@@ -72,9 +72,9 @@ export function addProjectNameToSidebar(name) {
 
 // Add functionality for the "Add Project" button.
 export function submitProjectButton() {
-    // Create a new project.
-    const project = new Project('', '', '', []);
-  
+  // Create a new project.
+  const project = new Project("", "", "", []);
+
   const submitButton = document.querySelector("#submit-project");
   submitButton.addEventListener("click", () => {
     // Create a new project.
@@ -87,7 +87,6 @@ export function submitProjectButton() {
     let projectDeadline = document.querySelector("#project-deadline").value;
     if (projectDeadline === "") projectDeadline = null;
 
-    
     project.name = projectName;
     project.description = projectDescription;
     project.deadline = document.querySelector("#project-deadline").value;

@@ -1,4 +1,9 @@
-import { projectsArray, tasksArray, updateProjectsArray, updateTasksArray } from "/scripts/state.js";
+import {
+  projectsArray,
+  tasksArray,
+  updateProjectsArray,
+  updateTasksArray
+} from "/scripts/state.js";
 
 import {
   addNewProjectPopup,
@@ -44,7 +49,7 @@ addNewProjectBtn.addEventListener("click", () => {
   // Add functionality to the submit project button.
   submitProjectButton();
 
-  console.log('projectsArray after submission', projectsArray);
+  console.log("projectsArray after submission", projectsArray);
 });
 
 // Main display area for the content.
@@ -54,15 +59,16 @@ const contentArea = document.querySelector("#content-area");
 fetchWeather();
 
 // Check local storage for projects. Add them to the sidebar.
-if (localStorage.getItem('projectsArray')!== null) {
-  console.log('local storage has projects: ', localStorage.getItem('projectsArray'));
-  
-  updateProjectsArray(JSON.parse(localStorage.getItem('projectsArray')));
+if (localStorage.getItem("projectsArray") !== null) {
+  console.log(
+    "local storage has projects: ",
+    localStorage.getItem("projectsArray")
+  );
+
+  updateProjectsArray(JSON.parse(localStorage.getItem("projectsArray")));
 
   for (const project of projectsArray) {
     // Create list item dom object
     addProjectNameToSidebar(project.name);
   }
 }
-
-
