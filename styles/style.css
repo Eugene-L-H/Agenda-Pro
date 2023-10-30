@@ -157,12 +157,17 @@ ul.projects {
   height: 90%;
 }
 
+.project-card {
+  margin-left: 5%;
+  margin-top: 5%;
+}
+
 /* Popups */
 #add-project-popup {
   display: flex;
   flex-flow: row wrap;
   position: absolute;
-  height: 350px;
+  height: 375px;
   width: 275px;
   z-index: 100;
   text-align: center;
@@ -209,6 +214,7 @@ ul.projects {
 #add-project-popup textarea {
   resize: none;
 }
+/*---*/
 
 /* Mobile view */
 @media (max-width: 768px) {

@@ -1,10 +1,11 @@
 import { tasksArray, projectsArray } from "/scripts/state.js";
 
 class Project {
-  constructor(name, description, deadline, tasks) {
+  constructor(name, description, deadline, priority, tasks) {
     this.name = name;
     this.description = description;
     this.deadline = deadline;
+    this.priority = priority;
     this.tasks = tasks;
   }
 }
@@ -25,6 +26,12 @@ export function addNewProjectPopup() {
           id="project-description"
           placeholder="Project Description"
         ></textarea>
+        <label for="project-priority">Priority:</label>
+        <select id="project-priority">
+          <option value="1">Low</option>
+          <option value="2">Medium</option>
+          <option value="3">High</option>
+        </select>
         <label for="project-deadline">Deadline (Optional):</label>
         <input type="date" id="project-deadline" placeholder="Deadline" />
         <button id="submit-project">Add Project</button>
@@ -33,6 +40,41 @@ export function addNewProjectPopup() {
   `;
 
   return popupHTML;
+}
+
+// HTML to display project in the main content area.
+export function displayProject(project) {
+  const tasks = project.tasks.map(task => {
+    return `<li class="task-list-item">${task}</li>`;
+  });
+  const tasksHTML = `<ul class="task-list">${tasks.join("")}</ul>`;
+
+  const projectHTML = `
+    <div class="project-card">
+      <div class="project-card-header">
+        <h3 class="project-name">${project.name}</h3>
+        <div class="project-priority">
+          <span class="project-priority-label">Priority:</span>
+          <span class="project-priority-value">${project.priority}</span>
+        </div>
+      </div>
+      <div class="project-card-body">
+        <p class="project-description">${project.description}</p>
+        <div class="project-deadline">
+          <span class="project-deadline-label">Deadline:</span>
+          <span class="project-deadline-value">${project.deadline}</span>
+        </div>
+        <div class="project-tasks">
+        <span class="project-tasks-label">Tasks:</span>
+        ${tasksHTML}
+        </div>
+      </div>
+      <div class="project-card-footer">
+        
+      </div>
+    </div>
+  `;
+  return projectHTML;
 }
 
 // ToDo: make close popup function work for add-task-popup as well.
@@ -68,7 +110,7 @@ export function addProjectNameToSidebar(name) {
   projectListItem.addEventListener("click", () => {
     const contentArea = document.querySelector("#content-area");
     const project = projectsArray.find(project => project.name === name);
-    contentArea.innerHTML = `<p>${name}</p>`;
+    contentArea.innerHTML = displayProject(project);
   });
 
   // Add project title to main sidebar.
@@ -77,9 +119,6 @@ export function addProjectNameToSidebar(name) {
 
 // Add functionality for the "Add Project" button.
 export function submitProjectButton() {
-  // Create a new project.
-  const project = new Project("", "", "", []);
-
   const submitButton = document.querySelector("#submit-project");
   submitButton.addEventListener("click", () => {
     // Create a new project.
