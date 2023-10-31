@@ -6,11 +6,12 @@ import {
 } from "/scripts/state.js";
 
 import {
-  addNewProjectPopup,
   closePopupButton,
-  addProjectNameToSidebar,
+  addNewProjectPopup,
   submitProjectButton
-} from "/scripts/project-popup.js";
+} from "/scripts/popup-helpers/popup-helpers.js";
+
+import { Project, addProjectNameToSidebar } from "/scripts/project.js";
 
 import { fetchWeather } from "/scripts/weather.js";
 
@@ -47,7 +48,7 @@ addNewProjectBtn.addEventListener("click", () => {
   closePopupButton();
 
   // Add functionality to the submit project button.
-  submitProjectButton();
+  submitProjectButton(Project);
 
   console.log("projectsArray after submission", projectsArray);
 });
