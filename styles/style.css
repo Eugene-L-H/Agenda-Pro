@@ -133,11 +133,17 @@ main {
 
 #add-project-button {
   display: inline-block;
-  cursor: pointer;
   padding: 0.5rem;
 }
 
-#add-project-button:hover {
+.add-task-button {
+  display: inline-block;
+  padding: 0.5rem;
+}
+
+#add-project-button:hover,
+.add-task-button:hover {
+  cursor: pointer;
   font-style: italic;
   background-color: #eee;
 }
@@ -162,8 +168,12 @@ ul.projects {
   margin-top: 5%;
 }
 
+.add-task-text {
+  font-size: 0.85rem;
+}
+
 /* Popups */
-#add-project-popup {
+#popup {
   display: flex;
   flex-flow: row wrap;
   position: absolute;
@@ -211,7 +221,7 @@ ul.projects {
   margin-top: 15px;
 }
 
-#add-project-popup textarea {
+#popup textarea {
   resize: none;
 }
 /*---*/
