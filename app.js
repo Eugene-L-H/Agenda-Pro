@@ -5,13 +5,15 @@ import {
   updateTasksArray
 } from "/scripts/state.js";
 
+import { Project } from "/scripts/helpers/classes.js";
+
 import {
   closePopupButton,
   addNewProjectPopup,
   submitProjectButton
-} from "/scripts/popup-helpers/popup-helpers.js";
+} from "/scripts/helpers/popup-helpers.js";
 
-import { Project, addProjectNameToSidebar } from "/scripts/project.js";
+import { addProjectNameToSidebar } from "/scripts/project.js";
 
 import { fetchWeather } from "/scripts/weather.js";
 

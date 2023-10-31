@@ -3,17 +3,9 @@ import {
   closePopupButton,
   addNewTaskPopup,
   taskPopupFunctionality
-} from "./popup-helpers/popup-helpers.js";
+} from "./helpers/popup-helpers.js";
 
-export class Project {
-  constructor(name, description, deadline, priority, tasks) {
-    this.name = name;
-    this.description = description;
-    this.deadline = deadline;
-    this.priority = priority;
-    this.tasks = tasks;
-  }
-}
+import { Task } from "./helpers/classes.js";
 
 // HTML to display project in the main content area.
 export function displayProject(project) {

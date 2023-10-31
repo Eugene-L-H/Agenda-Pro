@@ -1,3 +1,5 @@
+import { Task } from "./classes.js";
+
 // Add functionality for the close popup button.
 export function closePopupButton() {
   const closeButton = document.querySelector(".close-popup");
@@ -76,6 +78,19 @@ export function addNewTaskPopup() {
   return popupHTML;
 }
 
+function submitTaskButton(taskClass) {
+  const submitButton = document.querySelector("#submit-task");
+  submitButton.addEventListener("click", () => {
+    const name = document.querySelector("#task-name").value;
+    const description = document.querySelector("#task-description").value;
+    const dueDate = document.querySelector("#task-due-date").value;
+    const priority = document.querySelector("#task-priority").value;
+    const project = document.querySelector(".project-name").innerText;
+    const task = new taskClass(name, description, dueDate, priority, project);
+    console.log(task);
+  });
+}
+
 export function taskPopupFunctionality() {
   const addTaskButton = document.querySelector(".add-task-button");
   addTaskButton.addEventListener("click", () => {
@@ -89,6 +104,9 @@ export function taskPopupFunctionality() {
 
     // Add functionality for the close popup button, on new popup.
     closePopupButton();
+
+    // Add functionality for the "Add Task" button.
+    submitTaskButton(Task);
   });
 }
 
