@@ -1,11 +1,9 @@
-import { tasksArray, projectsArray } from "/scripts/state.js";
+import { tasksArray, projectsArray } from "/scripts/helpers/state.js";
 import {
   closePopupButton,
   addNewTaskPopup,
   taskPopupFunctionality
 } from "./helpers/popup-helpers.js";
-
-import { Task } from "./helpers/classes.js";
 
 // HTML to display project in the main content area.
 export function displayProject(project) {

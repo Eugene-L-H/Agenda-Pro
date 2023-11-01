@@ -1,4 +1,5 @@
 import { Task } from "./classes.js";
+import { projectsArray, updateTasksArray } from "./state.js";
 
 // Add functionality for the close popup button.
 export function closePopupButton() {
@@ -85,9 +86,26 @@ function submitTaskButton(taskClass) {
     const description = document.querySelector("#task-description").value;
     const dueDate = document.querySelector("#task-due-date").value;
     const priority = document.querySelector("#task-priority").value;
-    const project = document.querySelector(".project-name").innerText;
-    const task = new taskClass(name, description, dueDate, priority, project);
-    console.log(task);
+    const projectName = document.querySelector(".project-name").innerText;
+
+    // Create new task object from user info.
+    const task = new taskClass(
+      name,
+      description,
+      dueDate,
+      priority,
+      projectName
+    );
+
+    // Get project from local storage.
+    const storedProject = projectsArray.find(
+      project => project.name === projectName
+    );
+
+    // Add task to project.
+    storedProject.tasks.push(task);
+
+    console.log("storedProject in submitTaskButton: ", storedProject);
   });
 }
 

@@ -3,7 +3,7 @@ import {
   tasksArray,
   updateProjectsArray,
   updateTasksArray
-} from "/scripts/state.js";
+} from "/scripts/helpers/state.js";
 
 import { Project } from "/scripts/helpers/classes.js";
 
