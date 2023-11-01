@@ -9,11 +9,10 @@ export class Task {
 }
 
 export class Project {
-  constructor(name, description, deadline, priority, tasks) {
+  constructor(name, description, deadline, priority) {
     this.name = name;
     this.description = description;
     this.deadline = deadline;
     this.priority = priority;
-    this.tasks = tasks;
   }
 }
