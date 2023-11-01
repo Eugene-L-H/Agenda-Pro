@@ -1,18 +1,23 @@
 import { Task } from "./classes.js";
-import { projectsArray, updateTasksArray } from "./state.js";
+import { projectsArray, tasksArray, updateTasksArray } from "./state.js";
+
+// Remove popup window from the DOM.
+function closePopup() {
+  const popup = document.querySelector("#popup");
+  const main = document.querySelector("main");
+
+  // Remove the popup, back to default view.
+  popup.remove();
+  // Remove the blur effect from the screen once popup disappears.
+  main.classList.remove("blur");
+}
 
 // Add functionality for the close popup button.
 export function closePopupButton() {
   const closeButton = document.querySelector(".close-popup");
 
   closeButton.addEventListener("click", () => {
-    const popup = document.querySelector("#popup");
-    const main = document.querySelector("main");
-
-    // Remove the popup, back to default view.
-    popup.remove();
-    // Remove the blur effect from the screen once popup disappears.
-    main.classList.remove("blur");
+    closePopup();
   });
 }
 
@@ -97,15 +102,10 @@ function submitTaskButton(taskClass) {
       projectName
     );
 
-    // Get project from local storage.
-    const storedProject = projectsArray.find(
-      project => project.name === projectName
-    );
+    // Add task to the tasksArray.
+    updateTasksArray([...tasksArray, task]);
 
-    // Add task to project.
-    storedProject.tasks.push(task);
-
-    console.log("storedProject in submitTaskButton: ", storedProject);
+    closePopup();
   });
 }
 
@@ -145,7 +145,6 @@ export function submitProjectButton(projectClass) {
     project.name = projectName;
     project.description = projectDescription;
     project.deadline = document.querySelector("#project-deadline").value;
-    project.tasks = [];
 
     // Add the project to the project list.
     projectsArray.push(project);

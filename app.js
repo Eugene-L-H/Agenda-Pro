@@ -66,3 +66,13 @@ if (localStorage.getItem("projectsArray") !== null) {
     addProjectNameToSidebar(project.name);
   }
 }
+
+// Check local storage for tasks.
+if (localStorage.getItem("tasksArray") !== null) {
+  updateTasksArray(JSON.parse(localStorage.getItem("tasksArray")));
+  console.log("Tasks array on page load: ", tasksArray);
+
+  // TODO: remove this console.log
+} else {
+  console.log("No tasks found in local storage.");
+}
