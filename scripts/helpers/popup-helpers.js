@@ -145,7 +145,6 @@ export function submitProjectButton(projectClass) {
     project.name = projectName;
     project.description = projectDescription;
     project.deadline = document.querySelector("#project-deadline").value;
-    project.tasks = [];
 
     // Add the project to the project list.
     projectsArray.push(project);
