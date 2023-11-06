@@ -248,6 +248,10 @@ ul.projects {
   margin-right: 1rem;
 }
 
+.task-completed {
+  text-decoration: line-through;
+  color: #aaa;
+}
 /*---*/
 
 /* Mobile view */

@@ -6,7 +6,7 @@ function taskDOMobject(task) {
   listItem.classList.add("task-list-item");
 
   const taskHTML = `
-  <div class="task-card">
+  <div class="task-card" id="task-${task.name}">
     <div class="modify-tasks">
       <span class="edit-icon">✎</span>
       <span class="delete-icon">✖</span>
@@ -27,13 +27,34 @@ function taskDOMobject(task) {
     <input
       type="checkbox"
       class="task-checkbox"
-      id="task-checkbox-${task.name}"
+      id="task${task.name}"
     />
   </div>
   `;
 
   listItem.innerHTML = taskHTML;
   return listItem;
+}
+
+// Functionality for task cards.
+function taskCardFunctionality() {
+  const editIcon = document.querySelector(`.edit-icon`);
+  editIcon.addEventListener("click", () => {
+    // TODO
+    alert("Edit task functionality coming soon!");
+  });
+
+  const deleteIcon = document.querySelector(`.delete-icon`);
+  deleteIcon.addEventListener("click", () => {
+    // TODO
+    alert("Delete task functionality coming soon!");
+  });
+
+  const taskCheckbox = document.querySelector(`.task-checkbox`);
+  taskCheckbox.addEventListener("click", event => {
+    const taskCard = event.target.parentElement;
+    taskCard.classList.toggle("task-completed");
+  });
 }
 
 // Display today's tasks in the main content area.
@@ -64,4 +85,7 @@ export function displayTasks(dateRange) {
       );
     }
   });
+
+  // Add functionality to task cards.
+  taskCardFunctionality();
 }
