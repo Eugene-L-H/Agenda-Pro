@@ -1,3 +1,4 @@
+// Global state variables, and helper functions
 import {
   projectsArray,
   tasksArray,
@@ -5,8 +6,15 @@ import {
   updateTasksArray
 } from "/scripts/helpers/state.js";
 
+// Dark mode toggle.
+import { darkMode } from "/scripts/helpers/dark-mode.js";
+
+// For populating content area with tasks.
+import { displayTasks } from "/scripts/tasks.js";
+
 import { Project } from "/scripts/helpers/classes.js";
 
+// Functions for handling the popups.
 import {
   closePopupButton,
   addNewProjectPopup,
@@ -21,6 +29,9 @@ import { fetchWeather } from "/scripts/weather.js";
 const body = document.querySelector("body");
 
 const main = document.querySelector("main");
+
+// Dark mode functionality.
+darkMode();
 
 // Unordered list that displays the nav menu for tasks.
 const tasksNavMenu = document.querySelector(".tasks-nav-list");
@@ -71,8 +82,5 @@ if (localStorage.getItem("projectsArray") !== null) {
 if (localStorage.getItem("tasksArray") !== null) {
   updateTasksArray(JSON.parse(localStorage.getItem("tasksArray")));
   console.log("Tasks array on page load: ", tasksArray);
-
-  // TODO: remove this console.log
-} else {
-  console.log("No tasks found in local storage.");
+  displayTasks("today");
 }
