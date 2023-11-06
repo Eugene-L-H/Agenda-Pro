@@ -6,6 +6,9 @@ import {
   updateTasksArray
 } from "/scripts/helpers/state.js";
 
+// Dark mode toggle.
+import { darkMode } from "/scripts/helpers/dark-mode.js";
+
 // For populating content area with tasks.
 import { displayTasks } from "/scripts/tasks.js";
 
@@ -26,6 +29,9 @@ import { fetchWeather } from "/scripts/weather.js";
 const body = document.querySelector("body");
 
 const main = document.querySelector("main");
+
+// Dark mode functionality.
+darkMode();
 
 // Unordered list that displays the nav menu for tasks.
 const tasksNavMenu = document.querySelector(".tasks-nav-list");
