@@ -1,3 +1,4 @@
+// Global state variables, and helper functions
 import {
   projectsArray,
   tasksArray,
@@ -5,8 +6,12 @@ import {
   updateTasksArray
 } from "/scripts/helpers/state.js";
 
+// For populating content area with tasks.
+import { displayTasks } from "/scripts/tasks.js";
+
 import { Project } from "/scripts/helpers/classes.js";
 
+// Functions for handling the popups.
 import {
   closePopupButton,
   addNewProjectPopup,
@@ -71,8 +76,5 @@ if (localStorage.getItem("projectsArray") !== null) {
 if (localStorage.getItem("tasksArray") !== null) {
   updateTasksArray(JSON.parse(localStorage.getItem("tasksArray")));
   console.log("Tasks array on page load: ", tasksArray);
-
-  // TODO: remove this console.log
-} else {
-  console.log("No tasks found in local storage.");
+  displayTasks("today");
 }

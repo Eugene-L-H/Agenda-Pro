@@ -226,6 +226,30 @@ ul.projects {
 }
 /*---*/
 
+/* Task cards */
+
+.task-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 60%;
+}
+
+.modify-tasks {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 1.5rem;
+  width: 100%;
+  cursor: pointer;
+}
+
+.modify-tasks > * {
+  margin-right: 1rem;
+}
+
+/*---*/
+
 /* Mobile view */
 @media (max-width: 768px) {
   .menu-toggle {
