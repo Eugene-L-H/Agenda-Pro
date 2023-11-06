@@ -5,7 +5,7 @@ body {
   align-items: center;
   height: 100vh;
   font-family: "Raleway", sans-serif;
-  transition: filter 0.3s ease;
+  transition: filter 0.2s ease;
 }
 
 header {
@@ -47,6 +47,11 @@ header h1 {
 #dark-mode-icon {
   cursor: pointer;
   user-select: none;
+  transition: transform 0.2s ease;
+}
+
+#dark-mode-icon:hover {
+  transform: scale(1.2);
 }
 
 .dark-mode {
@@ -173,6 +178,10 @@ ul.projects {
 #content-area {
   width: 75%;
   height: 90%;
+}
+
+.list-range-title {
+  text-align: center;
 }
 
 .project-card {

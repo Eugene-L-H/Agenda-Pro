@@ -65,7 +65,9 @@ export function displayTasks(dateRange) {
   // Display what span of tasks are being displayed.
   const title = document.createElement("h2");
   title.classList.add("list-range-title");
-  title.textContent = dateRange;
+  const titleTextContent =
+    dateRange[0].toUpperCase() + dateRange.slice(1, dateRange.length);
+  title.textContent = `Tasks for: ${titleTextContent}`;
   contentArea.prepend(title);
 
   let today = new Date();
