@@ -1,4 +1,4 @@
-import { tasksArray } from "./helpers/state.js";
+import { tasksArray, updateTasksArray } from "./helpers/state.js";
 
 // Task DOM object
 function taskDOMobject(task) {
@@ -8,8 +8,8 @@ function taskDOMobject(task) {
   const taskHTML = `
   <div class="task-card" id="task-${task.name}">
     <div class="modify-tasks">
-      <span class="edit-icon">✎</span>
-      <span class="delete-icon">✖</span>
+      <span class="edit-icon" data-info="${task.name}">✎</span>
+      <span class="delete-icon" data-info="${task.name}">✖</span>
     </div>
     <div class="task-card-content">
       <h3 class="task-name">${task.name}</h3>
@@ -36,24 +36,83 @@ function taskDOMobject(task) {
   return listItem;
 }
 
+function deleteTask(taskName) {
+  // Go into local storage, and delete the task from the array.
+  // const tasks = JSON.parse(localStorage.getItem("tasksArray"));
+
+  // // Find index of task in array.
+  // const taskIndex = tasks.findIndex(task => task.name === taskName);
+
+  // // Remove task from array.
+  // tasks.splice(taskIndex, 1);
+
+  // // Save updated array to local storage.
+  // localStorage.setItem("tasksArray", JSON.stringify(tasks));
+
+  // updateTasksArray(tasks);
+
+  //************************** */
+
+  // Retrieve the task array from localStorage
+  const tasks = JSON.parse(localStorage.getItem("tasksArray"));
+
+  // Check if tasks array is not null and is an array
+  if (Array.isArray(tasks)) {
+    // Find the index of the task with the given name
+    const taskIndex = tasks.findIndex(task => task.name === taskName);
+
+    // If the task is found, remove it from the array
+    if (taskIndex !== -1) {
+      tasks.splice(taskIndex, 1);
+
+      // Save the updated array back to localStorage
+      localStorage.setItem("tasksArray", JSON.stringify(tasks));
+    } else {
+      console.log("Task not found");
+    }
+  } else {
+    console.log("No tasks found in localStorage");
+  }
+}
+
 // Functionality for task cards.
 function taskCardFunctionality() {
-  const editIcon = document.querySelector(`.edit-icon`);
-  editIcon.addEventListener("click", () => {
-    // TODO
-    alert("Edit task functionality coming soon!");
+  const editIcons = document.querySelectorAll(`.edit-icon`);
+  editIcons.forEach(icon => {
+    icon.addEventListener("click", event => {
+      alert("edit functionality currently in development");
+    });
   });
 
-  const deleteIcon = document.querySelector(`.delete-icon`);
-  deleteIcon.addEventListener("click", () => {
-    // TODO
-    alert("Delete task functionality coming soon!");
+  // Add functionality to the task delete icons.
+  const deleteIcons = document.querySelectorAll(`.delete-icon`);
+  deleteIcons.forEach(icon => {
+    icon.addEventListener("click", event => {
+      // Retrieve name of task to be deleted.
+      const taskName = event.target.getAttribute("data-info");
+
+      // Confirm user wants to delete task.
+      if (confirm(`Are you sure you want to delete task "${taskName}"?`)) {
+        deleteTask(taskName);
+
+        // Remove task from DOM.
+        const taskCard = document.querySelector(`#task-${taskName}`);
+        taskCard.remove();
+      } else {
+        console.log(`User cancelled deletion of task "${taskName}".`);
+      }
+    });
   });
 
-  const taskCheckbox = document.querySelector(`.task-checkbox`);
-  taskCheckbox.addEventListener("click", event => {
-    const taskCard = event.target.parentElement;
-    taskCard.classList.toggle("task-completed");
+  // Add functionality to the task checkboxes.
+  const taskCheckboxes = document.querySelectorAll(`.task-checkbox`);
+  taskCheckboxes.forEach(taskCheckbox => {
+    taskCheckbox.addEventListener("click", event => {
+      const taskCard = event.target.closest(".task-card");
+      if (taskCard) {
+        taskCard.classList.toggle("task-completed");
+      }
+    });
   });
 }
 
@@ -74,9 +133,13 @@ export function displayTasks(dateRange) {
   // Convert date to ISO format so that it matches stored task deadlines.
   today = today.toISOString().split("T")[0];
 
+  // Flag to see if a task matches the date range.
+  let match = false;
+  // Loop through tasksArray and display tasks that match date range.
   tasksArray.forEach(task => {
     if (task.dueDate === today) {
       taskList.appendChild(taskDOMobject(task));
+      match = true;
     } else {
       // Debugging.
       console.log(
@@ -89,5 +152,5 @@ export function displayTasks(dateRange) {
   });
 
   // Add functionality to task cards.
-  taskCardFunctionality();
+  if (match) taskCardFunctionality();
 }
