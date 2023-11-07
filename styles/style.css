@@ -198,7 +198,7 @@ ul.projects {
   display: flex;
   flex-flow: row wrap;
   position: absolute;
-  height: 375px;
+  height: 400px;
   width: 275px;
   z-index: 100;
   text-align: center;
