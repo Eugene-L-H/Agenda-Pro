@@ -1,4 +1,5 @@
 import { tasksArray, updateTasksArray } from "./helpers/state.js";
+import { Task } from "./helpers/classes.js";
 
 // Task DOM object
 function taskDOMobject(task) {
@@ -36,6 +37,37 @@ function taskDOMobject(task) {
   return listItem;
 }
 
+// Popup form for creating a new task.
+export function addNewTaskPopup() {
+  const popupHTML = `
+    <div id="popup">
+      <div class="popup-header">
+        <span class="close-popup">&times;</span>
+      </div>
+      <div class="popup-body">
+        <label for="task-name">Task Name:</label>
+        <input type="text" id="task-name" placeholder="Task Name" />
+        <label for="task-description">Description:</label>
+        <textarea
+          rows="4"
+          id="task-description"
+          placeholder="Task Description"
+        ></textarea>
+        <label for="task-priority">Priority:</label>
+        <select id="task-priority">
+          <option value="1">Low</option>
+          <option value="2">Medium</option>
+          <option value="3">High</option>
+        </select>
+        <label for="task-due-date">Due Date (Optional):</label>
+        <input type="date" id="task-due-date" placeholder="Due Date" />
+        <button id="submit-task" class="new-post-button">Add Task</button>
+      </div>
+    </div>
+  `;
+  return popupHTML;
+}
+
 function deleteTask(taskName) {
   // Retrieve the task array from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
@@ -51,12 +83,44 @@ function deleteTask(taskName) {
 
       // Save the updated array back to localStorage
       localStorage.setItem("tasksArray", JSON.stringify(tasks));
+      // Update the tasks array in the state
+      updateTasksArray(tasks);
     } else {
       console.log("Task not found");
     }
   } else {
     console.log("No tasks found in localStorage");
   }
+}
+
+function submitTaskButton(taskClass, locationCall) {
+  const submitButton = document.querySelector("#submit-task");
+  submitButton.addEventListener("click", () => {
+    const name = document.querySelector("#task-name").value;
+    const description = document.querySelector("#task-description").value;
+    const dueDate = document.querySelector("#task-due-date").value;
+    const priority = document.querySelector("#task-priority").value;
+
+    // Project name is empty if the popup is from the sidebar.
+    const projectName = "";
+    if (locationCall === "project") {
+      projectName = document.querySelector(".project-name").innerText;
+    }
+
+    // Create new task object from user info.
+    const task = new taskClass(
+      name,
+      description,
+      dueDate,
+      priority,
+      projectName
+    );
+
+    // Add task to the tasksArray.
+    updateTasksArray([...tasksArray, task]);
+
+    closePopup();
+  });
 }
 
 // Functionality for task cards.
@@ -143,4 +207,23 @@ export function displayTasks(dateRange) {
 
   // Add functionality to task cards.
   if (match) taskCardFunctionality();
+}
+
+export function taskPopupFunctionality(locationCall) {
+  const addTaskButton = document.querySelector(".add-task-button");
+  addTaskButton.addEventListener("click", () => {
+    const body = document.querySelector("body");
+    const main = document.querySelector("main");
+    const popupHTML = addNewTaskPopup();
+
+    // Add the popup HTML to the DOM.
+    body.insertAdjacentHTML("afterbegin", popupHTML);
+    main.classList.add("blur");
+
+    // Add functionality for the close popup button, on new popup.
+    closePopupButton();
+
+    // Add functionality for the "Add Task" button.
+    submitTaskButton(Task, locationCall);
+  });
 }

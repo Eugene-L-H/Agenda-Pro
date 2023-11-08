@@ -10,20 +10,23 @@ import {
 import { darkMode } from "/scripts/helpers/dark-mode.js";
 
 // For populating content area with tasks.
-import { displayTasks } from "/scripts/tasks.js";
+import {
+  displayTasks,
+  taskPopupFunctionality,
+  addNewTaskPopup
+} from "/scripts/tasks.js";
+
+import {
+  addProjectNameToSidebar,
+  addNewProjectPopup
+} from "/scripts/project.js";
 
 import { Project } from "/scripts/helpers/classes.js";
 
 // Functions for handling the popups.
-import {
-  closePopupButton,
-  addNewProjectPopup,
-  submitProjectButton
-} from "/scripts/helpers/popup-helpers.js";
+import { closePopupButton } from "/scripts/helpers/popup.js";
 
-import { addProjectNameToSidebar } from "/scripts/project.js";
-
-import { fetchWeather } from "/scripts/weather.js";
+import { fetchWeather } from "/scripts/helpers/weather.js";
 
 // DOM objects
 const body = document.querySelector("body");
@@ -32,6 +35,9 @@ const main = document.querySelector("main");
 
 // Dark mode functionality.
 darkMode();
+
+// Display the weather information.
+fetchWeather();
 
 // Unordered list that displays the nav menu for tasks.
 const tasksNavMenu = document.querySelector(".tasks-nav-list");
@@ -45,10 +51,11 @@ taskButtons.forEach(listItem => {
   );
 });
 
-// Add new-project button.
-const addNewProjectBtn = document.querySelector("#add-project-button");
+// Add functionality to the Add Task button in the sidebar.
+taskPopupFunctionality();
 
-// Insert the popup HTML into the DOM.
+// Add functionality to the Add Project button.
+const addNewProjectBtn = document.querySelector("#add-project-button");
 addNewProjectBtn.addEventListener("click", () => {
   // Add the popup HTML to the DOM.
   const popupHTML = addNewProjectPopup();
@@ -62,12 +69,7 @@ addNewProjectBtn.addEventListener("click", () => {
 
   // Add functionality to the submit project button.
   submitProjectButton(Project);
-
-  console.log("projectsArray after submission", projectsArray);
 });
-
-// Display the weather information.
-fetchWeather();
 
 // Check local storage for projects. Add them to the sidebar.
 if (localStorage.getItem("projectsArray") !== null) {

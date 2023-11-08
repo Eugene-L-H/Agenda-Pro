@@ -1,12 +1,45 @@
 import { projectsArray } from "/scripts/helpers/state.js";
-import { taskPopupFunctionality } from "./helpers/popup-helpers.js";
+import { taskPopupFunctionality } from "./tasks.js";
+import { closePopup } from "./helpers/popup.js";
+
+// Popup form for creating a new project.
+export function addNewProjectPopup() {
+  const popupHTML = `
+    <div id="popup">
+      <div class="popup-header">
+        <span class="close-popup">&times;</span>
+      </div>
+      <div class="popup-body">
+        <label for="project-name">Project Name:</label>
+        <input type="text" id="project-name" placeholder="Project Name" />
+        <label for="project-description">Description:</label>
+        <textarea
+          rows="4" 
+          id="project-description"
+          placeholder="Project Description"
+        ></textarea>
+        <label for="project-priority">Priority:</label>
+        <select id="project-priority">
+          <option value="1">Low</option>
+          <option value="2">Medium</option>
+          <option value="3">High</option>
+        </select>
+        <label for="project-deadline">Deadline (Optional):</label>
+        <input type="date" id="project-deadline" placeholder="Deadline" />
+        <button id="submit-project">Add Project</button>
+      </div>
+    </div>
+  `;
+
+  return popupHTML;
+}
 
 // HTML to display project in the main content area.
 export function displayProject(project) {
-  const tasks = project.tasks.map(task => {
-    return `<li class="task-list-item">${task}</li>`;
-  });
-  const tasksHTML = `<ul class="task-list">${tasks.join("")}</ul>`;
+  // const tasks = project.tasks.map(task => {
+  //   return `<li class="task-list-item">${task}</li>`;
+  // });
+  // const tasksHTML = `<ul class="task-list">${tasks.join("")}</ul>`;
 
   const projectHTML = `
     <div class="project-card">
@@ -25,7 +58,6 @@ export function displayProject(project) {
         </div>
         <div class="project-tasks">
         <span class="project-tasks-label">Tasks:</span>
-        ${tasksHTML}
         <div class="add-task-button">
           <span class="plus-sign">+</span>
           <span class="add-task-text">Add New Task</span>
@@ -36,6 +68,7 @@ export function displayProject(project) {
       </div>
     </div>
   `;
+
   return projectHTML;
 }
 
@@ -55,9 +88,37 @@ export function addProjectNameToSidebar(name) {
     contentArea.innerHTML = displayProject(project);
 
     // Add functionality for the "Add Task" button.
-    taskPopupFunctionality();
+    taskPopupFunctionality("project");
   });
 
   // Add project title to main sidebar.
   projectsNav.append(projectListItem);
+}
+
+// Add functionality for the "Add Project" button.
+export function submitProjectButton(projectClass) {
+  const submitButton = document.querySelector("#submit-project");
+  submitButton.addEventListener("click", () => {
+    // Create a new project.
+    const project = new projectClass();
+
+    // Get the values from the form.
+    const projectName = document.querySelector("#project-name").value;
+    const projectDescription = document.querySelector("#project-description")
+      .value;
+    let projectDeadline = document.querySelector("#project-deadline").value;
+    if (projectDeadline === "") projectDeadline = null;
+
+    project.name = projectName;
+    project.description = projectDescription;
+    project.deadline = document.querySelector("#project-deadline").value;
+
+    // Add the project to the project list.
+    projectsArray.push(project);
+    localStorage.setItem("projectsArray", JSON.stringify(projectsArray));
+
+    addProjectNameToSidebar(projectName);
+
+    closePopup();
+  });
 }
