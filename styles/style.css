@@ -285,4 +285,5 @@ ul.projects {
 /* Applied over the entire app, popup aside, when a popup is open */
 .blur {
   filter: blur(5px);
+  pointer-events: none;
 }

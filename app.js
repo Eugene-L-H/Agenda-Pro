@@ -41,7 +41,7 @@ addNewProjectBtn.addEventListener("click", () => {
   FUN.closePopupButton();
 
   // Add functionality to the submit project button.
-  FUN.submitProjectButton(Project);
+  FUN.submitProjectButton(FUN.Project);
 });
 
 // Check local storage for projects. Add them to the sidebar.

@@ -57,11 +57,10 @@ export function displayProject(project) {
           <span class="project-deadline-value">${project.deadline}</span>
         </div>
         <div class="project-tasks">
-        <span class="project-tasks-label">Tasks:</span>
-        <div class="add-task-button">
-          <span class="plus-sign">+</span>
-          <span class="add-task-text">Add New Task</span>
+          <span class="project-tasks-label">Tasks:</span>
         </div>
+        <div id="add-task-project" class="new-post-button add-task-button">
+          <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
         </div>
       </div>
       <div class="project-card-footer">
