@@ -59,7 +59,7 @@ export function displayProject(project) {
         <div class="project-tasks">
           <span class="project-tasks-label">Tasks:</span>
         </div>
-        <div id="add-task-button" class="new-post-button add-task-button">
+        <div id="add-task-project" class="new-post-button add-task-button">
           <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
         </div>
       </div>

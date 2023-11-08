@@ -94,6 +94,7 @@ function deleteTask(taskName) {
   }
 }
 
+// *Used in taskPopupFunctionality()*
 function submitTaskButton(taskClass, locationCall) {
   const submitButton = document.querySelector("#submit-task");
   submitButton.addEventListener("click", () => {
@@ -124,7 +125,7 @@ function submitTaskButton(taskClass, locationCall) {
   });
 }
 
-// Functionality for task cards.
+// Functionality for task cards. *Used in the displayTasks() function*.
 function taskCardFunctionality() {
   const editIcons = document.querySelectorAll(`.edit-icon`);
   editIcons.forEach(icon => {
@@ -211,7 +212,13 @@ export function displayTasks(dateRange) {
 }
 
 export function taskPopupFunctionality(locationCall) {
-  const addTaskButton = document.querySelector(".add-task-button");
+  let addTaskButton;
+  if (locationCall === "project") {
+    addTaskButton = document.querySelector("#add-task-project");
+  } else {
+    addTaskButton = document.querySelector("#add-task-sidebar");
+  }
+
   addTaskButton.addEventListener("click", () => {
     const body = document.querySelector("body");
     const main = document.querySelector("main");
