@@ -12,22 +12,21 @@ import { darkMode } from "/scripts/helpers/dark-mode.js";
 // For populating content area with tasks.
 import {
   displayTasks,
-  taskPopupFunctionality
-} from "/scripts/helpers/tasks.js";
+  taskPopupFunctionality,
+  addNewTaskPopup
+} from "/scripts/tasks.js";
+
+import {
+  addProjectNameToSidebar,
+  addNewProjectPopup
+} from "/scripts/project.js";
 
 import { Project } from "/scripts/helpers/classes.js";
 
 // Functions for handling the popups.
-import {
-  closePopupButton,
-  addNewProjectPopup,
-  submitProjectButton,
-  addNewTaskPopup
-} from "/scripts/popup.js";
+import { closePopupButton } from "/scripts/helpers/popup.js";
 
-import { addProjectNameToSidebar } from "/scripts/helpers/project.js";
-
-import { fetchWeather } from "/scripts/weather.js";
+import { fetchWeather } from "/scripts/helpers/weather.js";
 
 // DOM objects
 const body = document.querySelector("body");

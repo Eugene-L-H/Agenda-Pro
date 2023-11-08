@@ -1,28 +1,6 @@
-import {
-  projectsArray,
-  tasksArray,
-  updateTasksArray
-} from "./helpers/state.js";
-
-// Remove popup window from the DOM.
-function closePopup() {
-  const popup = document.querySelector("#popup");
-  const main = document.querySelector("main");
-
-  // Remove the popup, back to default view.
-  popup.remove();
-  // Remove the blur effect from the screen once popup disappears.
-  main.classList.remove("blur");
-}
-
-// Add functionality for the close popup button.
-export function closePopupButton() {
-  const closeButton = document.querySelector(".close-popup");
-
-  closeButton.addEventListener("click", () => {
-    closePopup();
-  });
-}
+import { projectsArray } from "/scripts/helpers/state.js";
+import { taskPopupFunctionality } from "./tasks.js";
+import { closePopup } from "./helpers/popup.js";
 
 // Popup form for creating a new project.
 export function addNewProjectPopup() {
@@ -56,68 +34,45 @@ export function addNewProjectPopup() {
   return popupHTML;
 }
 
-// Popup form for creating a new task.
-export function addNewTaskPopup() {
-  const popupHTML = `
-    <div id="popup">
-      <div class="popup-header">
-        <span class="close-popup">&times;</span>
+// HTML to display project in the main content area.
+export function displayProject(project) {
+  // const tasks = project.tasks.map(task => {
+  //   return `<li class="task-list-item">${task}</li>`;
+  // });
+  // const tasksHTML = `<ul class="task-list">${tasks.join("")}</ul>`;
+
+  const projectHTML = `
+    <div class="project-card">
+      <div class="project-card-header">
+        <h3 class="project-name">${project.name}</h3>
+        <div class="project-priority">
+          <span class="project-priority-label">Priority:</span>
+          <span class="project-priority-value">${project.priority}</span>
+        </div>
       </div>
-      <div class="popup-body">
-        <label for="task-name">Task Name:</label>
-        <input type="text" id="task-name" placeholder="Task Name" />
-        <label for="task-description">Description:</label>
-        <textarea
-          rows="4"
-          id="task-description"
-          placeholder="Task Description"
-        ></textarea>
-        <label for="task-priority">Priority:</label>
-        <select id="task-priority">
-          <option value="1">Low</option>
-          <option value="2">Medium</option>
-          <option value="3">High</option>
-        </select>
-        <label for="task-due-date">Due Date (Optional):</label>
-        <input type="date" id="task-due-date" placeholder="Due Date" />
-        <button id="submit-task">Add Task</button>
+      <div class="project-card-body">
+        <p class="project-description">${project.description}</p>
+        <div class="project-deadline">
+          <span class="project-deadline-label">Deadline:</span>
+          <span class="project-deadline-value">${project.deadline}</span>
+        </div>
+        <div class="project-tasks">
+        <span class="project-tasks-label">Tasks:</span>
+        <div class="add-task-button">
+          <span class="plus-sign">+</span>
+          <span class="add-task-text">Add New Task</span>
+        </div>
+        </div>
+      </div>
+      <div class="project-card-footer">
       </div>
     </div>
   `;
-  return popupHTML;
+
+  return projectHTML;
 }
 
-function submitTaskButton(taskClass, locationCall) {
-  const submitButton = document.querySelector("#submit-task");
-  submitButton.addEventListener("click", () => {
-    const name = document.querySelector("#task-name").value;
-    const description = document.querySelector("#task-description").value;
-    const dueDate = document.querySelector("#task-due-date").value;
-    const priority = document.querySelector("#task-priority").value;
-
-    // Project name is empty if the popup is from the sidebar.
-    const projectName = "";
-    if (locationCall === "project") {
-      projectName = document.querySelector(".project-name").innerText;
-    }
-
-    // Create new task object from user info.
-    const task = new taskClass(
-      name,
-      description,
-      dueDate,
-      priority,
-      projectName
-    );
-
-    // Add task to the tasksArray.
-    updateTasksArray([...tasksArray, task]);
-
-    closePopup();
-  });
-}
-
-function addProjectNameToSidebar(name) {
+export function addProjectNameToSidebar(name) {
   // Unordered list that displays names of user-registered projects.
   const projectsNav = document.querySelector("#projects-nav");
 
