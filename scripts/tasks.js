@@ -1,5 +1,6 @@
 import { tasksArray, updateTasksArray } from "./helpers/state.js";
 import { Task } from "./helpers/classes.js";
+import { closePopup, closePopupButton } from "./helpers/popup.js";
 
 // Task DOM object
 function taskDOMobject(task) {
