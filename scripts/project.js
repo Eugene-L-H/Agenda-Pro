@@ -1,6 +1,7 @@
 import { projectsArray } from "/scripts/helpers/state.js";
 import { taskPopupFunctionality } from "./tasks.js";
 import { closePopup } from "./helpers/popup.js";
+import { tasksArray } from "./imports.js";
 
 // Popup form for creating a new project.
 export function addNewProjectPopup() {
@@ -58,6 +59,7 @@ export function displayProject(project) {
         </div>
         <div class="project-tasks">
           <span class="project-tasks-label">Tasks:</span>
+          <ul class="project-tasks"></ul>
         </div>
         <div id="add-task-project" class="new-post-button add-task-button">
           <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
@@ -69,6 +71,21 @@ export function displayProject(project) {
   `;
 
   return projectHTML;
+}
+
+// In the project card, displays tasks that match that project.
+function projectDisplayTasks(projectName, tasks) {
+  const taskListHTML = document.querySelector(".project-tasks");
+
+  tasks.forEach(task => {
+    console.log("task.project: ", task.project);
+    if ((projectName = task.project)) {
+      const taskListItem = document.createElement("li");
+      taskListItem.classList.add("task-list-item");
+      taskListItem.textContent = task.name;
+      taskListHTML.appendChild(taskListItem);
+    }
+  });
 }
 
 export function addProjectNameToSidebar(name) {
@@ -85,6 +102,9 @@ export function addProjectNameToSidebar(name) {
     const contentArea = document.querySelector("#content-area");
     const project = projectsArray.find(project => project.name === name);
     contentArea.innerHTML = displayProject(project);
+
+    // Display tasks for that project.
+    projectDisplayTasks(project, tasksArray);
 
     // Add functionality for the "Add Task" button.
     taskPopupFunctionality("project");
