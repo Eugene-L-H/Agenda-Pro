@@ -1,5 +1,8 @@
-import { Task } from "./classes.js";
-import { projectsArray, tasksArray, updateTasksArray } from "./state.js";
+import {
+  projectsArray,
+  tasksArray,
+  updateTasksArray
+} from "./helpers/state.js";
 
 // Remove popup window from the DOM.
 function closePopup() {
@@ -84,14 +87,19 @@ export function addNewTaskPopup() {
   return popupHTML;
 }
 
-function submitTaskButton(taskClass) {
+function submitTaskButton(taskClass, locationCall) {
   const submitButton = document.querySelector("#submit-task");
   submitButton.addEventListener("click", () => {
     const name = document.querySelector("#task-name").value;
     const description = document.querySelector("#task-description").value;
     const dueDate = document.querySelector("#task-due-date").value;
     const priority = document.querySelector("#task-priority").value;
-    const projectName = document.querySelector(".project-name").innerText;
+
+    // Project name is empty if the popup is from the sidebar.
+    const projectName = "";
+    if (locationCall === "project") {
+      projectName = document.querySelector(".project-name").innerText;
+    }
 
     // Create new task object from user info.
     const task = new taskClass(
@@ -109,23 +117,27 @@ function submitTaskButton(taskClass) {
   });
 }
 
-export function taskPopupFunctionality() {
-  const addTaskButton = document.querySelector(".add-task-button");
-  addTaskButton.addEventListener("click", () => {
-    const body = document.querySelector("body");
-    const main = document.querySelector("main");
-    const popupHTML = addNewTaskPopup();
+function addProjectNameToSidebar(name) {
+  // Unordered list that displays names of user-registered projects.
+  const projectsNav = document.querySelector("#projects-nav");
 
-    // Add the popup HTML to the DOM.
-    body.insertAdjacentHTML("afterbegin", popupHTML);
-    main.classList.add("blur");
+  // Create list item dom object
+  const projectListItem = document.createElement("li");
+  projectListItem.classList.add("nav-item");
+  projectListItem.textContent = name;
 
-    // Add functionality for the close popup button, on new popup.
-    closePopupButton();
+  // Add functionality for the projectListItem.
+  projectListItem.addEventListener("click", () => {
+    const contentArea = document.querySelector("#content-area");
+    const project = projectsArray.find(project => project.name === name);
+    contentArea.innerHTML = displayProject(project);
 
     // Add functionality for the "Add Task" button.
-    submitTaskButton(Task);
+    taskPopupFunctionality("project");
   });
+
+  // Add project title to main sidebar.
+  projectsNav.append(projectListItem);
 }
 
 // Add functionality for the "Add Project" button.

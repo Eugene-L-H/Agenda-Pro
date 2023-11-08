@@ -1,4 +1,5 @@
-import { tasksArray, updateTasksArray } from "./helpers/state.js";
+import { tasksArray, updateTasksArray } from "./state.js";
+import { Task } from "./classes.js";
 
 // Task DOM object
 function taskDOMobject(task) {
@@ -51,6 +52,8 @@ function deleteTask(taskName) {
 
       // Save the updated array back to localStorage
       localStorage.setItem("tasksArray", JSON.stringify(tasks));
+      // Update the tasks array in the state
+      updateTasksArray(tasks);
     } else {
       console.log("Task not found");
     }
@@ -143,4 +146,23 @@ export function displayTasks(dateRange) {
 
   // Add functionality to task cards.
   if (match) taskCardFunctionality();
+}
+
+export function taskPopupFunctionality(locationCall) {
+  const addTaskButton = document.querySelector(".add-task-button");
+  addTaskButton.addEventListener("click", () => {
+    const body = document.querySelector("body");
+    const main = document.querySelector("main");
+    const popupHTML = addNewTaskPopup();
+
+    // Add the popup HTML to the DOM.
+    body.insertAdjacentHTML("afterbegin", popupHTML);
+    main.classList.add("blur");
+
+    // Add functionality for the close popup button, on new popup.
+    closePopupButton();
+
+    // Add functionality for the "Add Task" button.
+    submitTaskButton(Task, locationCall);
+  });
 }

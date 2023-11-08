@@ -10,7 +10,10 @@ import {
 import { darkMode } from "/scripts/helpers/dark-mode.js";
 
 // For populating content area with tasks.
-import { displayTasks } from "/scripts/tasks.js";
+import {
+  displayTasks,
+  taskPopupFunctionality
+} from "/scripts/helpers/tasks.js";
 
 import { Project } from "/scripts/helpers/classes.js";
 
@@ -20,9 +23,9 @@ import {
   addNewProjectPopup,
   submitProjectButton,
   addNewTaskPopup
-} from "/scripts/helpers/popup-helpers.js";
+} from "/scripts/popup.js";
 
-import { addProjectNameToSidebar } from "/scripts/project.js";
+import { addProjectNameToSidebar } from "/scripts/helpers/project.js";
 
 import { fetchWeather } from "/scripts/weather.js";
 
@@ -50,21 +53,7 @@ taskButtons.forEach(listItem => {
 });
 
 // Add functionality to the Add Task button in the sidebar.
-const addTaskBtn = document.querySelector("#add-task-button");
-addTaskBtn.addEventListener("click", () => {
-  // Add the popup HTML to the DOM.
-  const popupHTML = addNewTaskPopup();
-
-  // Add the popup HTML to the DOM.
-  body.insertAdjacentHTML("afterbegin", popupHTML);
-  main.classList.add("blur");
-
-  // Add functionality to the close popup button.
-  closePopupButton();
-
-  // Add functionality to the submit task button.
-  submitTaskButton(Task);
-});
+taskPopupFunctionality();
 
 // Add functionality to the Add Project button.
 const addNewProjectBtn = document.querySelector("#add-project-button");

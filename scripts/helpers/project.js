@@ -1,12 +1,12 @@
 import { projectsArray } from "/scripts/helpers/state.js";
-import { taskPopupFunctionality } from "./helpers/popup-helpers.js";
+import { taskPopupFunctionality } from "./tasks.js";
 
 // HTML to display project in the main content area.
 export function displayProject(project) {
-  const tasks = project.tasks.map(task => {
-    return `<li class="task-list-item">${task}</li>`;
-  });
-  const tasksHTML = `<ul class="task-list">${tasks.join("")}</ul>`;
+  // const tasks = project.tasks.map(task => {
+  //   return `<li class="task-list-item">${task}</li>`;
+  // });
+  // const tasksHTML = `<ul class="task-list">${tasks.join("")}</ul>`;
 
   const projectHTML = `
     <div class="project-card">
@@ -25,7 +25,6 @@ export function displayProject(project) {
         </div>
         <div class="project-tasks">
         <span class="project-tasks-label">Tasks:</span>
-        ${tasksHTML}
         <div class="add-task-button">
           <span class="plus-sign">+</span>
           <span class="add-task-text">Add New Task</span>
@@ -55,7 +54,7 @@ export function addProjectNameToSidebar(name) {
     contentArea.innerHTML = displayProject(project);
 
     // Add functionality for the "Add Task" button.
-    taskPopupFunctionality();
+    taskPopupFunctionality("project");
   });
 
   // Add project title to main sidebar.
