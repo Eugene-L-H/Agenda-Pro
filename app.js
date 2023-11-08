@@ -18,7 +18,8 @@ import { Project } from "/scripts/helpers/classes.js";
 import {
   closePopupButton,
   addNewProjectPopup,
-  submitProjectButton
+  submitProjectButton,
+  addNewTaskPopup
 } from "/scripts/helpers/popup-helpers.js";
 
 import { addProjectNameToSidebar } from "/scripts/project.js";
@@ -33,6 +34,9 @@ const main = document.querySelector("main");
 // Dark mode functionality.
 darkMode();
 
+// Display the weather information.
+fetchWeather();
+
 // Unordered list that displays the nav menu for tasks.
 const tasksNavMenu = document.querySelector(".tasks-nav-list");
 
@@ -45,10 +49,25 @@ taskButtons.forEach(listItem => {
   );
 });
 
-// Add new-project button.
-const addNewProjectBtn = document.querySelector("#add-project-button");
+// Add functionality to the Add Task button in the sidebar.
+const addTaskBtn = document.querySelector("#add-task-button");
+addTaskBtn.addEventListener("click", () => {
+  // Add the popup HTML to the DOM.
+  const popupHTML = addNewTaskPopup();
 
-// Insert the popup HTML into the DOM.
+  // Add the popup HTML to the DOM.
+  body.insertAdjacentHTML("afterbegin", popupHTML);
+  main.classList.add("blur");
+
+  // Add functionality to the close popup button.
+  closePopupButton();
+
+  // Add functionality to the submit task button.
+  submitTaskButton(Task);
+});
+
+// Add functionality to the Add Project button.
+const addNewProjectBtn = document.querySelector("#add-project-button");
 addNewProjectBtn.addEventListener("click", () => {
   // Add the popup HTML to the DOM.
   const popupHTML = addNewProjectPopup();
@@ -62,12 +81,7 @@ addNewProjectBtn.addEventListener("click", () => {
 
   // Add functionality to the submit project button.
   submitProjectButton(Project);
-
-  console.log("projectsArray after submission", projectsArray);
 });
-
-// Display the weather information.
-fetchWeather();
 
 // Check local storage for projects. Add them to the sidebar.
 if (localStorage.getItem("projectsArray") !== null) {
