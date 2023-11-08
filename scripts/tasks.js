@@ -37,22 +37,6 @@ function taskDOMobject(task) {
 }
 
 function deleteTask(taskName) {
-  // Go into local storage, and delete the task from the array.
-  // const tasks = JSON.parse(localStorage.getItem("tasksArray"));
-
-  // // Find index of task in array.
-  // const taskIndex = tasks.findIndex(task => task.name === taskName);
-
-  // // Remove task from array.
-  // tasks.splice(taskIndex, 1);
-
-  // // Save updated array to local storage.
-  // localStorage.setItem("tasksArray", JSON.stringify(tasks));
-
-  // updateTasksArray(tasks);
-
-  //************************** */
-
   // Retrieve the task array from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
 
@@ -131,7 +115,13 @@ export function displayTasks(dateRange) {
 
   let today = new Date();
   // Convert date to ISO format so that it matches stored task deadlines.
-  today = today.toISOString().split("T")[0];
+  today = today
+    .toLocaleDateString("en-CA", {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    })
+    .replace(/\//g, "-");
 
   // Flag to see if a task matches the date range.
   let match = false;
