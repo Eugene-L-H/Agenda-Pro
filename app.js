@@ -1,32 +1,5 @@
 // Global state variables, and helper functions
-import {
-  projectsArray,
-  tasksArray,
-  updateProjectsArray,
-  updateTasksArray
-} from "/scripts/helpers/state.js";
-
-// Dark mode toggle.
-import { darkMode } from "/scripts/helpers/dark-mode.js";
-
-// For populating content area with tasks.
-import {
-  displayTasks,
-  taskPopupFunctionality,
-  addNewTaskPopup
-} from "/scripts/tasks.js";
-
-import {
-  addProjectNameToSidebar,
-  addNewProjectPopup
-} from "/scripts/project.js";
-
-import { Project } from "/scripts/helpers/classes.js";
-
-// Functions for handling the popups.
-import { closePopupButton } from "/scripts/helpers/popup.js";
-
-import { fetchWeather } from "/scripts/helpers/weather.js";
+import * as FUN from "/scripts/imports.js";
 
 // DOM objects
 const body = document.querySelector("body");
@@ -34,10 +7,10 @@ const body = document.querySelector("body");
 const main = document.querySelector("main");
 
 // Dark mode functionality.
-darkMode();
+FUN.darkMode();
 
 // Display the weather information.
-fetchWeather();
+FUN.fetchWeather();
 
 // Unordered list that displays the nav menu for tasks.
 const tasksNavMenu = document.querySelector(".tasks-nav-list");
@@ -52,37 +25,37 @@ taskButtons.forEach(listItem => {
 });
 
 // Add functionality to the Add Task button in the sidebar.
-taskPopupFunctionality();
+FUN.taskPopupFunctionality();
 
 // Add functionality to the Add Project button.
 const addNewProjectBtn = document.querySelector("#add-project-button");
 addNewProjectBtn.addEventListener("click", () => {
   // Add the popup HTML to the DOM.
-  const popupHTML = addNewProjectPopup();
+  const popupHTML = FUN.addNewProjectPopup();
 
   // Add the popup HTML to the DOM.
   body.insertAdjacentHTML("afterbegin", popupHTML);
   main.classList.add("blur");
 
   // Add functionality to the close popup button.
-  closePopupButton();
+  FUN.closePopupButton();
 
   // Add functionality to the submit project button.
-  submitProjectButton(Project);
+  FUN.submitProjectButton(Project);
 });
 
 // Check local storage for projects. Add them to the sidebar.
 if (localStorage.getItem("projectsArray") !== null) {
-  updateProjectsArray(JSON.parse(localStorage.getItem("projectsArray")));
-  for (const project of projectsArray) {
+  FUN.updateProjectsArray(JSON.parse(localStorage.getItem("projectsArray")));
+  for (const project of FUN.projectsArray) {
     // Create list item dom object
-    addProjectNameToSidebar(project.name);
+    FUN.addProjectNameToSidebar(project.name);
   }
 }
 
 // Check local storage for tasks.
 if (localStorage.getItem("tasksArray") !== null) {
-  updateTasksArray(JSON.parse(localStorage.getItem("tasksArray")));
-  console.log("Tasks array on page load: ", tasksArray);
-  displayTasks("today");
+  FUN.updateTasksArray(JSON.parse(localStorage.getItem("tasksArray")));
+  console.log("Tasks array on page load: ", FUN.tasksArray);
+  FUN.displayTasks("today");
 }
