@@ -3,7 +3,7 @@ import { Task } from "./helpers/classes.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
 
 // Task DOM object
-function taskDOMobject(task) {
+export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
 
@@ -28,6 +28,7 @@ function taskDOMobject(task) {
     </div>
     <input
       type="checkbox"
+      class="task-checkbox"
       id="task-checkbox-task${task.name}"
     />
   </div>
@@ -68,6 +69,7 @@ export function addNewTaskPopup() {
   return popupHTML;
 }
 
+// Delete task from localStorage and state using X on the task card.
 function deleteTask(taskName) {
   // Retrieve the task array from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
@@ -127,7 +129,7 @@ function submitTaskButton(taskClass, locationCall) {
 }
 
 // Functionality for task cards. *Used in the displayTasks() function*.
-function taskCardFunctionality() {
+export function taskCardFunctionality() {
   const editIcons = document.querySelectorAll(`.edit-icon`);
   editIcons.forEach(icon => {
     icon.addEventListener("click", event => {

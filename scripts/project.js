@@ -1,5 +1,9 @@
 import { projectsArray } from "/scripts/helpers/state.js";
-import { taskPopupFunctionality } from "./tasks.js";
+import {
+  taskPopupFunctionality,
+  taskDOMobject,
+  taskCardFunctionality
+} from "./tasks.js";
 import { closePopup } from "./helpers/popup.js";
 import { tasksArray } from "./imports.js";
 
@@ -57,10 +61,10 @@ export function displayProject(project) {
         </div>
         <div class="project-tasks">
           <span class="project-tasks-label">Tasks:</span>
-          <ul class="project-tasks"></ul>
-        </div>
-        <div id="add-task-project" class="new-post-button add-task-button">
+          <div id="add-task-project" class="new-post-button add-task-button">
           <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
+        </div>
+          <ul class="project-task-list"></ul>
         </div>
       </div>
       <div class="project-card-footer">
@@ -73,16 +77,36 @@ export function displayProject(project) {
 
 // In the project card, displays tasks that match that project.
 function projectDisplayTasks(projectName, tasks) {
-  const taskListHTML = document.querySelector(".project-tasks");
+  const taskListHTML = document.querySelector(".project-task-list");
 
+  let tasksFound = false; // Flag to check if tasks were found.
+
+  // Loop through tasksArray and find tasks that match the project name.
   tasks.forEach(task => {
     if (projectName.name === task.project) {
       const taskListItem = document.createElement("li");
       taskListItem.classList.add("task-list-item");
-      taskListItem.textContent = task.name;
+
+      taskListItem.appendChild(taskDOMobject(task));
       taskListHTML.appendChild(taskListItem);
+
+      // Set flag to true.
+      tasksFound = true;
     }
   });
+
+  // If no tasks were found, display message.
+  if (!tasksFound) {
+    const noTasksHTML = `
+      <li class="task-list-item">
+        <p class="no-tasks">No tasks found for this project.</p>
+      </li>
+    `;
+    taskListHTML.innerHTML = noTasksHTML;
+  } else {
+    // Add functionality to task cards.
+    taskCardFunctionality();
+  }
 }
 
 export function addProjectNameToSidebar(name, array) {
