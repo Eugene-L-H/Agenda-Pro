@@ -255,8 +255,12 @@ ul.projects {
   margin-top: 15px;
 }
 
-#popup textarea {
+.popup textarea {
   resize: none;
+}
+
+/* Task list for projects */
+.project-task-list {
 }
 
 /* Container that displays list of tasks*/

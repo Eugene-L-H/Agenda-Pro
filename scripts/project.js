@@ -15,8 +15,8 @@ export function addNewProjectPopup() {
         <span class="close-popup">&times;</span>
       </div>
       <div class="popup-body">
-        <label for="project-name">Project Name:</label>
-        <input type="text" id="project-name" placeholder="Project Name" />
+        <label for="project-name-popup">Project Name:</label>
+        <input type="text" id="project-name-popup" placeholder="Project Name" />
         <label for="project-description">Description:</label>
         <textarea
           rows="4" 
