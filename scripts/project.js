@@ -67,8 +67,6 @@ export function displayProject(project) {
           <ul class="project-task-list"></ul>
         </div>
       </div>
-      <div class="project-card-footer">
-      </div>
     </div>
   `;
 
@@ -84,12 +82,7 @@ function projectDisplayTasks(projectName, tasks) {
   // Loop through tasksArray and find tasks that match the project name.
   tasks.forEach(task => {
     if (projectName.name === task.project) {
-      const taskListItem = document.createElement("li");
-      taskListItem.classList.add("task-list-item");
-
-      taskListItem.appendChild(taskDOMobject(task));
-      taskListHTML.appendChild(taskListItem);
-
+      taskListHTML.appendChild(taskDOMobject(task));
       // Set flag to true.
       tasksFound = true;
     }
