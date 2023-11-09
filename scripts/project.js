@@ -40,7 +40,7 @@ export function displayProject(project) {
   const projectHTML = `
     <div class="project-card">
       <div class="project-card-header">
-        <h3 class="project-name">
+        <h3 id="project-name" data-info="${project.name}">
         <span class="project-name-prefix">Project:&nbsp;</span>
           ${project.name}
         </h3>

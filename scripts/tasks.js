@@ -28,7 +28,7 @@ function taskDOMobject(task) {
     </div>
     <input
       type="checkbox"
-      class="task-checkbox task${task.name}"
+      id="task-checkbox-task${task.name}"
     />
   </div>
   `;
@@ -46,22 +46,22 @@ export function addNewTaskPopup() {
       </div>
       <div class="popup-body">
         <label for="task-name">Task Name:</label>
-        <input type="text" class="task-name" placeholder="Task Name" />
+        <input type="text" id="task-name" placeholder="Task Name" />
         <label for="task-description">Description:</label>
         <textarea
           rows="4"
-          class="task-description"
+          id="task-description"
           placeholder="Task Description"
         ></textarea>
         <label for="task-priority">Priority:</label>
-        <select class="task-priority">
+        <select id="task-priority">
           <option value="1">Low</option>
           <option value="2">Medium</option>
           <option value="3">High</option>
         </select>
         <label for="task-due-date">Due Date (Optional):</label>
-        <input type="date" class="task-due-date" placeholder="Due Date" />
-        <button class="submit-task" class="new-post-button">Add Task</button>
+        <input type="date" id="task-due-date" placeholder="Due Date" />
+        <button id="submit-task" class="new-post-button">Add Task</button>
       </div>
     </div>
   `;
@@ -95,17 +95,19 @@ function deleteTask(taskName) {
 
 // *Used in taskPopupFunctionality()*
 function submitTaskButton(taskClass, locationCall) {
-  const submitButton = document.querySelector(".submit-task");
+  const submitButton = document.querySelector("#submit-task");
   submitButton.addEventListener("click", () => {
-    const name = document.querySelector(".task-name").value;
-    const description = document.querySelector(".task-description").value;
-    const dueDate = document.querySelector(".task-due-date").value;
-    const priority = document.querySelector(".task-priority").value;
+    const name = document.querySelector("#task-name").value;
+    const description = document.querySelector("#task-description").value;
+    const dueDate = document.querySelector("#task-due-date").value;
+    const priority = document.querySelector("#task-priority").value;
 
     // Project name is empty if the popup is from the sidebar.
     let projectName = "";
     if (locationCall === "project") {
-      projectName = document.querySelector(".project-name").innerText;
+      projectName = document
+        .querySelector("#project-name")
+        .getAttribute("data-info");
     }
 
     // Create new task object from user info.

@@ -197,7 +197,7 @@ ul.projects {
   margin-top: 5%;
 }
 
-.project-name {
+#project-name {
   text-align: center;
   width: 100%;
 }
