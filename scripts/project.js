@@ -6,7 +6,7 @@ import { tasksArray } from "./imports.js";
 // Popup form for creating a new project.
 export function addNewProjectPopup() {
   const popupHTML = `
-    <div id="popup">
+    <div class="popup">
       <div class="popup-header">
         <span class="close-popup">&times;</span>
       </div>
@@ -40,7 +40,10 @@ export function displayProject(project) {
   const projectHTML = `
     <div class="project-card">
       <div class="project-card-header">
-        <h3 class="project-name">${project.name}</h3>
+        <h3 class="project-name">
+        <span class="project-name-prefix">Project:&nbsp;</span>
+          ${project.name}
+        </h3>
         <div class="project-priority">
           <span class="project-priority-label">Priority:</span>
           <span class="project-priority-value">${project.priority}</span>

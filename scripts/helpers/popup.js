@@ -1,6 +1,6 @@
 // Remove popup window from the DOM.
 export function closePopup() {
-  const popup = document.querySelector("#popup");
+  const popup = document.querySelector(".popup");
   const main = document.querySelector("main");
 
   // Remove the popup, back to default view.
