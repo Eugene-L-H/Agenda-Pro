@@ -109,7 +109,7 @@ function projectDisplayTasks(projectName, tasks) {
   }
 }
 
-export function addProjectNameToSidebar(name, array) {
+export function addProjectNameToSidebar(name) {
   // Unordered list that displays names of user-registered projects.
   const projectsNav = document.querySelector("#projects-nav");
 
@@ -122,7 +122,7 @@ export function addProjectNameToSidebar(name, array) {
   projectListItem.addEventListener("click", event => {
     const name = event.target.textContent;
     const contentArea = document.querySelector("#content-area");
-    const project = array.find(project => project.name === name);
+    const project = projectsArray.find(project => project.name === name);
     contentArea.innerHTML = displayProject(project);
 
     // Display tasks for that project.
