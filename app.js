@@ -49,7 +49,7 @@ if (localStorage.getItem("projectsArray") !== null) {
   FUN.updateProjectsArray(JSON.parse(localStorage.getItem("projectsArray")));
   for (const project of FUN.projectsArray) {
     // Create list item dom object
-    FUN.addProjectNameToSidebar(project.name);
+    FUN.addProjectNameToSidebar(project.name, FUN.projectsArray);
   }
 }
 

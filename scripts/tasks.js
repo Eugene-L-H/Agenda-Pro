@@ -104,7 +104,7 @@ function submitTaskButton(taskClass, locationCall) {
     const priority = document.querySelector("#task-priority").value;
 
     // Project name is empty if the popup is from the sidebar.
-    const projectName = "";
+    let projectName = "";
     if (locationCall === "project") {
       projectName = document.querySelector(".project-name").innerText;
     }
@@ -198,12 +198,12 @@ export function displayTasks(dateRange) {
       match = true;
     } else {
       // Debugging.
-      console.log(
-        "No match for date. task.dueDate:",
-        task.dueDate,
-        "vs today: ",
-        today
-      );
+      // console.log(
+      //   "No match for date. task.dueDate:",
+      //   task.dueDate,
+      //   "vs today: ",
+      //   today
+      // );
     }
   });
 

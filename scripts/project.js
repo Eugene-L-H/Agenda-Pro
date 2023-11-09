@@ -37,11 +37,6 @@ export function addNewProjectPopup() {
 
 // HTML to display project in the main content area.
 export function displayProject(project) {
-  // const tasks = project.tasks.map(task => {
-  //   return `<li class="task-list-item">${task}</li>`;
-  // });
-  // const tasksHTML = `<ul class="task-list">${tasks.join("")}</ul>`;
-
   const projectHTML = `
     <div class="project-card">
       <div class="project-card-header">
@@ -78,8 +73,7 @@ function projectDisplayTasks(projectName, tasks) {
   const taskListHTML = document.querySelector(".project-tasks");
 
   tasks.forEach(task => {
-    console.log("task.project: ", task.project);
-    if ((projectName = task.project)) {
+    if (projectName.name === task.project) {
       const taskListItem = document.createElement("li");
       taskListItem.classList.add("task-list-item");
       taskListItem.textContent = task.name;
@@ -88,7 +82,7 @@ function projectDisplayTasks(projectName, tasks) {
   });
 }
 
-export function addProjectNameToSidebar(name) {
+export function addProjectNameToSidebar(name, array) {
   // Unordered list that displays names of user-registered projects.
   const projectsNav = document.querySelector("#projects-nav");
 
@@ -98,9 +92,10 @@ export function addProjectNameToSidebar(name) {
   projectListItem.textContent = name;
 
   // Add functionality for the projectListItem.
-  projectListItem.addEventListener("click", () => {
+  projectListItem.addEventListener("click", event => {
+    const name = event.target.textContent;
     const contentArea = document.querySelector("#content-area");
-    const project = projectsArray.find(project => project.name === name);
+    const project = array.find(project => project.name === name);
     contentArea.innerHTML = displayProject(project);
 
     // Display tasks for that project.

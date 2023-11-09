@@ -46,7 +46,6 @@ export function fetchWeather() {
         `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode&forecast_days=1`
       );
       const data = await response.json();
-      console.log("data: ", data);
 
       // Get the city name from the API response.
       const locationResponse = await fetch(
