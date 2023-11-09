@@ -168,7 +168,14 @@ function taskCardFunctionality() {
 // Display today's tasks in the main content area.
 export function displayTasks(dateRange) {
   const contentArea = document.querySelector("#content-area");
-  const taskList = document.querySelector("#task-list");
+
+  // Create a container to hold the tasks.
+  const tasksContainer = document.createElement("div");
+  tasksContainer.classList.add("tasks-container");
+
+  // Create a list to hold the tasks.
+  const taskList = document.createElement("ul");
+  taskList.classList.add("task-list");
 
   // Display what span of tasks that will be displayed.
   const title = document.createElement("h2");
@@ -176,7 +183,7 @@ export function displayTasks(dateRange) {
   const titleTextContent =
     dateRange[0].toUpperCase() + dateRange.slice(1, dateRange.length);
   title.textContent = `Tasks for: ${titleTextContent}`;
-  contentArea.prepend(title);
+  tasksContainer.prepend(title);
 
   let today = new Date();
   // Convert date to ISO format so that it matches stored task deadlines.
@@ -190,6 +197,7 @@ export function displayTasks(dateRange) {
 
   // Flag to see if a task matches the date range.
   let match = false;
+
   // Loop through tasksArray and display tasks that match date range.
   tasksArray.forEach(task => {
     if (task.dueDate === today) {
@@ -206,8 +214,14 @@ export function displayTasks(dateRange) {
     }
   });
 
-  // Add functionality to task cards.
-  if (match) taskCardFunctionality();
+  // If there are tasks that match the date range, display them.
+  if (match) {
+    tasksContainer.appendChild(taskList); // Add tasks to container.
+    contentArea.appendChild(tasksContainer); // Add container to DOM.
+
+    // Add functionality to the task cards.
+    taskCardFunctionality();
+  }
 }
 
 export function taskPopupFunctionality(locationCall) {
