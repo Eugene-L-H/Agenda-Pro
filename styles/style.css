@@ -4,14 +4,15 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  max-width: 100vw;
+  max-width: 100%;
   font-family: "Raleway", sans-serif;
   transition: filter 0.2s ease;
+  overflow: hidden;
 }
 
 header {
   width: 100%;
-  height: 10vh;
+  height: 10%;
   display: flex;
   color: #000;
   justify-content: space-around;
@@ -118,13 +119,22 @@ main {
   margin-left: 2%;
 }
 
+/* Container for sidebar, and display-area */
+
+#app-content {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 90%;
+}
+
 /* Side nav-bar */
 #tasks-navbar {
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 24%;
-  height: 89.9%;
+  height: 100%;
   background-color: #f8f8f8;
   border-right: 1px solid #000;
   border-bottom: 1px solid #000;
@@ -178,18 +188,7 @@ ul.projects {
 
 #content-area {
   width: 75.5%;
-  height: 90%;
-}
-
-.task-list {
-  height: 88%;
-  width: 97.5%;
-  overflow-y: scroll;
-}
-
-.list-range-title {
-  text-align: center;
-  border-bottom: 1px solid #000;
+  height: 100%;
 }
 
 /* Project cards */
@@ -199,7 +198,6 @@ ul.projects {
 }
 
 .project-name {
-  position: fixed;
   text-align: center;
   width: 100%;
 }
@@ -262,14 +260,34 @@ ul.projects {
 }
 
 /* Container that displays list of tasks*/
+
 .tasks-container {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   width: 100%;
   height: 100%;
+  margin: 0;
   /* overflow: hidden; */
+}
+
+.list-range-title {
+  text-align: center;
+  width: 100%;
+  border-bottom: 1px solid #000;
+  margin: 0;
+  padding: 10px 0;
+}
+
+.task-list {
+  height: 100%;
+  width: 96.5%;
+  margin: 0;
+  margin-bottom: 3px;
+  overflow-y: scroll;
+}
+
+.task-list-item {
+  margin-top: 5%;
 }
 
 /* Task cards */
