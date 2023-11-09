@@ -9,7 +9,7 @@
     <script type="module" src="app.js" defer></script>
     <title>// ToDo-List</title>
   </head>
-  <body>
+  <body class="dark-mode">
     <header>
       <h1>ToDo-List</h1>
       <span id="dark-mode-icon">☀</span>
@@ -31,31 +31,31 @@
 
     <!-- main application content -->
     <main>
-      <div id="app" class="hidden">
+      <div id="app"">
         <div id="tasks-header">
           <p>// To Do:</p>
         </div>
-        <div id="tasks-navbar">
-          <span id="tasks-label">Tasks:</span>
-          <div id="add-task-sidebar" class="new-post-button add-task-button">
-            <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
+        <div id="app-content">
+          <div id="tasks-navbar">
+            <span id="tasks-label">Tasks:</span>
+            <div id="add-task-sidebar" class="new-post-button add-task-button">
+              <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
+            </div>
+            <ul class="tasks-nav-list">
+              <li class="nav-item">Today</li>
+              <li class="nav-item">This Week</li>
+              <li class="nav-item">This Month</li>
+              <li class="nav-item">This Year</li>
+            </ul>
+            <span id="projects-label">Projects:</span>
+            <div id="add-project-button" class="new-post-button">
+              <span class="plus-sign">+</span><span>&nbsp;Add Project</span>
+            </div>
+            <ul id="projects-nav"></ul>
           </div>
-          <ul class="tasks-nav-list">
-            <li class="nav-item">Today</li>
-            <li class="nav-item">This Week</li>
-            <li class="nav-item">This Month</li>
-            <li class="nav-item">This Year</li>
-          </ul>
-          <span id="projects-label">Projects:</span>
-          <div id="add-project-button" class="new-post-button">
-            <span class="plus-sign">+</span><span>&nbsp;Add Project</span>
-          </div>
-          <ul id="projects-nav"></ul>
-        </div>
-
-        <!-- main content display area-->
-        <div id="content-area">
-          <ul id="task-list"></ul>
+          
+          <!-- main content display area-->
+          <div id="content-area"></div>
         </div>
       </div>
     </main>

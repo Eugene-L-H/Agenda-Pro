@@ -1,17 +1,22 @@
 import { projectsArray } from "/scripts/helpers/state.js";
-import { taskPopupFunctionality } from "./tasks.js";
+import {
+  taskPopupFunctionality,
+  taskDOMobject,
+  taskCardFunctionality
+} from "./tasks.js";
 import { closePopup } from "./helpers/popup.js";
+import { tasksArray } from "./imports.js";
 
 // Popup form for creating a new project.
 export function addNewProjectPopup() {
   const popupHTML = `
-    <div id="popup">
+    <div class="popup">
       <div class="popup-header">
         <span class="close-popup">&times;</span>
       </div>
       <div class="popup-body">
-        <label for="project-name">Project Name:</label>
-        <input type="text" id="project-name" placeholder="Project Name" />
+        <label for="project-name-popup">Project Name:</label>
+        <input type="text" id="project-name-popup" placeholder="Project Name" />
         <label for="project-description">Description:</label>
         <textarea
           rows="4" 
@@ -36,15 +41,13 @@ export function addNewProjectPopup() {
 
 // HTML to display project in the main content area.
 export function displayProject(project) {
-  // const tasks = project.tasks.map(task => {
-  //   return `<li class="task-list-item">${task}</li>`;
-  // });
-  // const tasksHTML = `<ul class="task-list">${tasks.join("")}</ul>`;
-
   const projectHTML = `
     <div class="project-card">
       <div class="project-card-header">
-        <h3 class="project-name">${project.name}</h3>
+        <h3 id="project-name" data-info="${project.name}">
+        <span class="project-name-prefix">Project:&nbsp;</span>
+          ${project.name}
+        </h3>
         <div class="project-priority">
           <span class="project-priority-label">Priority:</span>
           <span class="project-priority-value">${project.priority}</span>
@@ -58,17 +61,45 @@ export function displayProject(project) {
         </div>
         <div class="project-tasks">
           <span class="project-tasks-label">Tasks:</span>
-        </div>
-        <div id="add-task-project" class="new-post-button add-task-button">
+          <div id="add-task-project" class="new-post-button add-task-button">
           <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
         </div>
-      </div>
-      <div class="project-card-footer">
+          <ul class="project-task-list"></ul>
+        </div>
       </div>
     </div>
   `;
 
   return projectHTML;
+}
+
+// In the project card, displays tasks that match that project.
+function projectDisplayTasks(projectName, tasks) {
+  const taskListHTML = document.querySelector(".project-task-list");
+
+  let tasksFound = false; // Flag to check if tasks were found.
+
+  // Loop through tasksArray and find tasks that match the project name.
+  tasks.forEach(task => {
+    if (projectName.name === task.project) {
+      taskListHTML.appendChild(taskDOMobject(task));
+      // Set flag to true.
+      tasksFound = true;
+    }
+  });
+
+  // If no tasks were found, display message.
+  if (!tasksFound) {
+    const noTasksHTML = `
+      <li class="task-list-item">
+        <p class="no-tasks">No tasks found for this project.</p>
+      </li>
+    `;
+    taskListHTML.innerHTML = noTasksHTML;
+  } else {
+    // Add functionality to task cards.
+    taskCardFunctionality();
+  }
 }
 
 export function addProjectNameToSidebar(name) {
@@ -81,10 +112,14 @@ export function addProjectNameToSidebar(name) {
   projectListItem.textContent = name;
 
   // Add functionality for the projectListItem.
-  projectListItem.addEventListener("click", () => {
+  projectListItem.addEventListener("click", event => {
+    const name = event.target.textContent;
     const contentArea = document.querySelector("#content-area");
     const project = projectsArray.find(project => project.name === name);
     contentArea.innerHTML = displayProject(project);
+
+    // Display tasks for that project.
+    projectDisplayTasks(project, tasksArray);
 
     // Add functionality for the "Add Task" button.
     taskPopupFunctionality("project");

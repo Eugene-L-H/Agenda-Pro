@@ -3,7 +3,7 @@ import { Task } from "./helpers/classes.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
 
 // Task DOM object
-function taskDOMobject(task) {
+export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
 
@@ -29,7 +29,7 @@ function taskDOMobject(task) {
     <input
       type="checkbox"
       class="task-checkbox"
-      id="task${task.name}"
+      id="task-checkbox-task${task.name}"
     />
   </div>
   `;
@@ -41,7 +41,7 @@ function taskDOMobject(task) {
 // Popup form for creating a new task.
 export function addNewTaskPopup() {
   const popupHTML = `
-    <div id="popup">
+    <div class="popup">
       <div class="popup-header">
         <span class="close-popup">&times;</span>
       </div>
@@ -69,6 +69,7 @@ export function addNewTaskPopup() {
   return popupHTML;
 }
 
+// Delete task from localStorage and state using X on the task card.
 function deleteTask(taskName) {
   // Retrieve the task array from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
@@ -104,9 +105,11 @@ function submitTaskButton(taskClass, locationCall) {
     const priority = document.querySelector("#task-priority").value;
 
     // Project name is empty if the popup is from the sidebar.
-    const projectName = "";
+    let projectName = "";
     if (locationCall === "project") {
-      projectName = document.querySelector(".project-name").innerText;
+      projectName = document
+        .querySelector("#project-name")
+        .getAttribute("data-info");
     }
 
     // Create new task object from user info.
@@ -126,7 +129,7 @@ function submitTaskButton(taskClass, locationCall) {
 }
 
 // Functionality for task cards. *Used in the displayTasks() function*.
-function taskCardFunctionality() {
+export function taskCardFunctionality() {
   const editIcons = document.querySelectorAll(`.edit-icon`);
   editIcons.forEach(icon => {
     icon.addEventListener("click", event => {
@@ -146,7 +149,7 @@ function taskCardFunctionality() {
         deleteTask(taskName);
 
         // Remove task from DOM.
-        const taskCard = document.querySelector(`#task-${taskName}`);
+        const taskCard = document.querySelector(`.task-${taskName}`);
         taskCard.remove();
       } else {
         console.log(`User cancelled deletion of task "${taskName}".`);
@@ -169,15 +172,22 @@ function taskCardFunctionality() {
 // Display today's tasks in the main content area.
 export function displayTasks(dateRange) {
   const contentArea = document.querySelector("#content-area");
-  const taskList = document.querySelector("#task-list");
 
-  // Display what span of tasks are being displayed.
+  // Create a container to hold the tasks.
+  const tasksContainer = document.createElement("div");
+  tasksContainer.classList.add("tasks-container");
+
+  // Create a list to hold the tasks.
+  const taskList = document.createElement("ul");
+  taskList.classList.add("task-list");
+
+  // Display what span of tasks that will be displayed.
   const title = document.createElement("h2");
   title.classList.add("list-range-title");
   const titleTextContent =
     dateRange[0].toUpperCase() + dateRange.slice(1, dateRange.length);
   title.textContent = `Tasks for: ${titleTextContent}`;
-  contentArea.prepend(title);
+  tasksContainer.prepend(title);
 
   let today = new Date();
   // Convert date to ISO format so that it matches stored task deadlines.
@@ -191,6 +201,7 @@ export function displayTasks(dateRange) {
 
   // Flag to see if a task matches the date range.
   let match = false;
+
   // Loop through tasksArray and display tasks that match date range.
   tasksArray.forEach(task => {
     if (task.dueDate === today) {
@@ -198,17 +209,23 @@ export function displayTasks(dateRange) {
       match = true;
     } else {
       // Debugging.
-      console.log(
-        "No match for date. task.dueDate:",
-        task.dueDate,
-        "vs today: ",
-        today
-      );
+      // console.log(
+      //   "No match for date. task.dueDate:",
+      //   task.dueDate,
+      //   "vs today: ",
+      //   today
+      // );
     }
   });
 
-  // Add functionality to task cards.
-  if (match) taskCardFunctionality();
+  // If there are tasks that match the date range, display them.
+  if (match) {
+    tasksContainer.appendChild(taskList); // Add tasks to container.
+    contentArea.appendChild(tasksContainer); // Add container to DOM.
+
+    // Add functionality to the task cards.
+    taskCardFunctionality();
+  }
 }
 
 export function taskPopupFunctionality(locationCall) {
