@@ -193,6 +193,8 @@ ul.projects {
 
 /* Project cards */
 .project-card {
+  display: flex;
+  flex-direction: column;
   margin-left: 5%;
   margin-top: 5%;
 }
@@ -206,6 +208,23 @@ ul.projects {
   font-size: 0.85rem;
 }
 
+.project-tasks {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+}
+
+.project-task-list {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  overflow-y: scroll;
+}
+
+.no-tasks {
+  font-style: italic;
+  overflow: auto;
+}
 /* Popups */
 .popup {
   display: flex;
@@ -257,10 +276,6 @@ ul.projects {
 
 .popup textarea {
   resize: none;
-}
-
-/* Task list for projects */
-.project-task-list {
 }
 
 /* Container that displays list of tasks*/
