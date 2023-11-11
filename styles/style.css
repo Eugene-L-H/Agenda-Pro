@@ -217,7 +217,7 @@ ul.projects {
 .project-task-list {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 320px;
   overflow-y: scroll;
 }
 
