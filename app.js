@@ -24,6 +24,9 @@ taskButtons.forEach(listItem => {
   );
 });
 
+// Add functionality to the task date buttons.
+FUN.displayTasksByDate();
+
 // Add functionality to the Add Task button in the sidebar.
 FUN.taskPopupFunctionality();
 

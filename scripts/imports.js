@@ -24,6 +24,8 @@ import { closePopupButton } from "/scripts/helpers/popup.js";
 
 import { fetchWeather } from "/scripts/helpers/weather.js";
 
+import { displayTasksByDate } from "./helpers/task-date-display.js";
+
 export {
   projectsArray,
   tasksArray,
@@ -37,5 +39,6 @@ export {
   submitProjectButton,
   Project,
   closePopupButton,
-  fetchWeather
+  fetchWeather,
+  displayTasksByDate
 };
