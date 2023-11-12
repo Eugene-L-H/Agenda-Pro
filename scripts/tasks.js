@@ -1,6 +1,7 @@
 import { tasksArray, updateTasksArray } from "./helpers/state.js";
 import { Task } from "./helpers/classes.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
+import { thisWeek, thisMonth, thisYear } from "./helpers/compare-dates.js";
 
 // Task DOM object
 export function taskDOMobject(task) {
@@ -172,7 +173,6 @@ export function taskCardFunctionality() {
 // Display today's tasks in the main content area.
 export function displayTasks(dateRange) {
   const contentArea = document.querySelector("#content-area");
-
   // Clear the content area.
   contentArea.innerHTML = "";
 
