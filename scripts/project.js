@@ -42,32 +42,33 @@ export function addNewProjectPopup() {
 // HTML to display project in the main content area.
 export function displayProject(project) {
   const projectHTML = `
-    <div class="project-card">
-      <div class="project-card-header">
-        <h3 id="project-name" data-info="${project.name}">
-        <span class="project-name-prefix">Project:&nbsp;</span>
-          ${project.name}
-        </h3>
-        <div class="project-priority">
+  <div class="project-card">
+    <div class="project-card-header">
+      <h3 id="project-name" data-info="${project.name}">
+      <span class="project-name-prefix">Project:&nbsp;</span>
+        ${project.name}
+      </h3>
+      <div class="project-priority">
+        <p>
           <span class="project-priority-label">Priority:</span>
           <span class="project-priority-value">${project.priority}</span>
-        </div>
-      </div>
-      <div class="project-card-body">
-        <p class="project-description">${project.description}</p>
-        <div class="project-deadline">
-          <span class="project-deadline-label">Deadline:</span>
-          <span class="project-deadline-value">${project.deadline}</span>
-        </div>
-        <div class="project-tasks">
-          <span class="project-tasks-label">Tasks:</span>
-          <div id="add-task-project" class="new-post-button add-task-button">
-          <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
-        </div>
-          <ul class="project-task-list"></ul>
-        </div>
+        </p>
       </div>
     </div>
+    <div class="project-card-body">
+      <p class="project-description"><span>Description:&nbsp;</span>${project.description}</p>
+      <div class="project-deadline">
+        <span class="project-deadline-label">Deadline:</span>
+        <span class="project-deadline-value">${project.deadline}</span>
+      </div>
+    <div id="project-tasks">
+      <span class="project-tasks-label">Tasks:</span>
+      <div id="add-task-project" class="new-post-button add-task-button">
+        <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
+      </div>
+      <ul id="project-task-list"></ul>
+    </div>
+  </div>
   `;
 
   return projectHTML;
@@ -75,7 +76,7 @@ export function displayProject(project) {
 
 // In the project card, displays tasks that match that project.
 function projectDisplayTasks(projectName, tasks) {
-  const taskListHTML = document.querySelector(".project-task-list");
+  const taskListHTML = document.querySelector("#project-task-list");
 
   let tasksFound = false; // Flag to check if tasks were found.
 
@@ -96,6 +97,7 @@ function projectDisplayTasks(projectName, tasks) {
       </li>
     `;
     taskListHTML.innerHTML = noTasksHTML;
+    taskListHTML.classList.add("no-tasks");
   } else {
     // Add functionality to task cards.
     taskCardFunctionality();

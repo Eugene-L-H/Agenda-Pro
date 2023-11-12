@@ -195,8 +195,24 @@ ul.projects {
 .project-card {
   display: flex;
   flex-direction: column;
-  margin-left: 5%;
-  margin-top: 5%;
+  height: 100%;
+}
+
+.project-card-header {
+  height: 10%;
+}
+
+.project-card-body {
+  height: 89.5%;
+}
+
+.project-description {
+  height: 5%;
+  margin-t
+}
+
+.project-deadline {
+  height: 5%;
 }
 
 #project-name {
@@ -208,16 +224,16 @@ ul.projects {
   font-size: 0.85rem;
 }
 
-.project-tasks {
+#project-tasks {
   display: flex;
   flex-direction: column;
-  height: 50%;
+  height: 87%;
 }
 
-.project-task-list {
+#project-task-list {
   display: flex;
   flex-direction: column;
-  height: 320px;
+  height: 100%;
   overflow-y: scroll;
 }
 
@@ -334,6 +350,7 @@ ul.projects {
 .task-completed {
   text-decoration: line-through;
   color: #aaa;
+  
 }
 /*---*/
 
