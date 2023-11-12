@@ -173,6 +173,9 @@ export function taskCardFunctionality() {
 export function displayTasks(dateRange) {
   const contentArea = document.querySelector("#content-area");
 
+  // Clear the content area.
+  contentArea.innerHTML = "";
+
   // Create a container to hold the tasks.
   const tasksContainer = document.createElement("div");
   tasksContainer.classList.add("tasks-container");
@@ -226,6 +229,20 @@ export function displayTasks(dateRange) {
     // Add functionality to the task cards.
     taskCardFunctionality();
   }
+}
+
+// Event listener for the date range buttons.
+export function taskDateButtons() {
+  // Get date buttons from sidebar
+  const dateButtons = document.querySelectorAll(".date-button");
+
+  dateButtons.forEach(dateButton => {
+    dateButton.addEventListener("click", () => {
+      // Get the date from the date button
+      const dateRange = dateButton.getAttribute("data-date");
+      displayTasks(dateRange);
+    });
+  });
 }
 
 export function taskPopupFunctionality(locationCall) {

@@ -144,7 +144,7 @@ main {
   margin-left: 10%;
 }
 
-.date-button {
+.nav-item {
   list-style-type: disc;
   cursor: pointer;
 }

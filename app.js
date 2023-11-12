@@ -12,20 +12,8 @@ FUN.darkMode();
 // Display the weather information.
 FUN.fetchWeather();
 
-// Unordered list that displays the nav menu for tasks.
-const tasksNavMenu = document.querySelector(".tasks-nav-list");
-
-const taskButtons = tasksNavMenu.querySelectorAll(".nav-item");
-
-taskButtons.forEach(listItem => {
-  // Make each list item clickable.
-  listItem.addEventListener("click", () =>
-    alert(`clicked ${listItem.textContent}`)
-  );
-});
-
 // Add functionality to the task date buttons.
-FUN.displayTasksByDate();
+FUN.taskDateButtons();
 
 // Add functionality to the Add Task button in the sidebar.
 FUN.taskPopupFunctionality();
