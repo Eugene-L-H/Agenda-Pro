@@ -1,70 +1,56 @@
 /**
- * Determines if a given date falls within the same week as a reference date.
- * The week is considered to start on Sunday and end on Saturday.
+ * Determines if a task's due date falls within a specified time frame.
+ * The time frames can be 'today', 'week', 'month', or 'year'.
  *
- * @param {string} today - The reference date in YYYY-MM-DD format.
- * @param {string} targetDate - The date to compare, in YYYY-MM-DD format.
- * @returns {boolean} True if 'targetDate' is within the same week as 'today', otherwise false.
+ * @param {string} dueDate - The due date of the task in YYYY-MM-DD format.
+ * @param {string} timeFrame - The time frame to check against ('today', 'week', 'month', 'year').
+ * @returns {boolean} True if the due date falls within the specified time frame, otherwise false.
  */
-export function thisWeek(today, targetDate) {
-  // Convert 'today' to a Date object
-  let currentDate = new Date(today);
+export function isDueInTimeFrame(dueDate, timeFrame) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Remove time component
+  const due = new Date(dueDate);
+  due.setHours(0, 0, 0, 0); // Remove time component
 
-  // Adjust to the start of the week (Sunday)
-  let firstDayOfWeek = new Date(
-    currentDate.setDate(currentDate.getDate() - currentDate.getDay())
-  );
+  switch (timeFrame) {
+    case "today":
+      return isToday(due, today);
+    case "week":
+      return isThisWeek(due, today);
+    case "month":
+      return isThisMonth(due, today);
+    case "year":
+      return isThisYear(due, today);
+    default:
+      return false; // Return false for unknown time frames
+  }
+}
 
-  // Calculate the last day of the week (Saturday)
-  let lastDayOfWeek = new Date(firstDayOfWeek);
-  lastDayOfWeek.setDate(lastDayOfWeek.getDate() + 6);
+function isToday(due, today) {
+  console.log("isToday, due: ", due, "today ", today);
 
-  // Ensure that times are set to 0:00:00 for accurate comparison
-  firstDayOfWeek.setHours(0, 0, 0, 0);
-  lastDayOfWeek.setHours(23, 59, 59, 999);
+  return due.toDateString() === today.toDateString();
+}
 
-  // Convert 'targetDate' to a Date object for comparison
-  let formattedTargetDate = new Date(targetDate);
-  formattedTargetDate.setHours(0, 0, 0, 0);
+function isThisWeek(due, today) {
+  const startOfWeek = new Date(today);
+  startOfWeek.setDate(today.getDate() - today.getDay()); // Set to the previous Sunday
+  startOfWeek.setHours(0, 0, 0, 0); // Remove time component
 
-  // Compare dates
+  const endOfWeek = new Date(startOfWeek);
+  endOfWeek.setDate(startOfWeek.getDate() + 6); // Set to the next Saturday
+  endOfWeek.setHours(23, 59, 59, 999); // Include the entire end day
+
+  return due >= startOfWeek && due <= endOfWeek;
+}
+
+function isThisMonth(due, today) {
   return (
-    formattedTargetDate >= firstDayOfWeek &&
-    formattedTargetDate <= lastDayOfWeek
+    due.getMonth() === today.getMonth() &&
+    due.getFullYear() === today.getFullYear()
   );
 }
 
-/**
- * Determines if a given date is in the same month and year as a reference date.
- *
- * @param {string} today - The reference date in YYYY-MM-DD format.
- * @param {string} targetDate - The date to compare, in YYYY-MM-DD format.
- * @returns {boolean} True if 'targetDate' is in the same month and year as 'today', otherwise false.
- */
-export function thisMonth(today, targetDate) {
-  const referenceDate = new Date(today);
-  const comparisonDate = new Date(targetDate);
-
-  return (
-    referenceDate.getMonth() === comparisonDate.getMonth() &&
-    referenceDate.getFullYear() === comparisonDate.getFullYear()
-  );
-}
-
-/**
- * Determines if a given date is in the same year as a reference date.
- *
- * @param {string} today - The reference date in YYYY-MM-DD format.
- * @param {string} targetDate - The date to compare, in YYYY-MM-DD format.
- * @returns {boolean} True if 'targetDate' is in the same year as 'today', otherwise false.
- * */
-export function thisYear(today, targetDate) {
-  // Convert 'today' to a Date object
-  const referenceDate = new Date(today);
-
-  // Convert 'targetDate' to a Date object for comparison
-  const comparisonDate = new Date(targetDate);
-
-  // Compare years
-  return referenceDate.getFullYear() === comparisonDate.getFullYear();
+function isThisYear(due, today) {
+  return due.getFullYear() === today.getFullYear();
 }

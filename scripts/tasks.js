@@ -1,9 +1,8 @@
 import { tasksArray, updateTasksArray } from "./helpers/state.js";
 import { Task } from "./helpers/classes.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
-import { thisWeek, thisMonth, thisYear } from "./helpers/compare-dates.js";
+import { isDueInTimeFrame } from "./helpers/compare-dates.js";
 
-// Task DOM object
 export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
@@ -207,17 +206,9 @@ export function displayTasks(dateRange) {
 
   // Loop through tasksArray and display tasks that match date range.
   tasksArray.forEach(task => {
-    if (task.dueDate === today) {
+    if (isDueInTimeFrame(task.dueDate, dateRange)) {
       taskList.appendChild(taskDOMobject(task));
       match = true;
-    } else {
-      // Debugging.
-      // console.log(
-      //   "No match for date. task.dueDate:",
-      //   task.dueDate,
-      //   "vs today: ",
-      //   today
-      // );
     }
   });
 
