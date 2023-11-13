@@ -9,7 +9,11 @@ import {
 import { darkMode } from "/scripts/helpers/dark-mode.js";
 
 // For populating content area with tasks.
-import { displayTasks, taskPopupFunctionality } from "/scripts/tasks.js";
+import {
+  displayTasks,
+  taskDateButtons,
+  taskPopupFunctionality
+} from "/scripts/tasks.js";
 
 import {
   addProjectNameToSidebar,
@@ -37,5 +41,6 @@ export {
   submitProjectButton,
   Project,
   closePopupButton,
-  fetchWeather
+  fetchWeather,
+  taskDateButtons
 };

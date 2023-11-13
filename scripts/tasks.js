@@ -1,14 +1,14 @@
 import { tasksArray, updateTasksArray } from "./helpers/state.js";
 import { Task } from "./helpers/classes.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
+import { isDueInTimeFrame } from "./helpers/compare-dates.js";
 
-// Task DOM object
 export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
 
   const taskHTML = `
-  <div class="task-card" id="task-${task.name}">
+  <div class="task-card">
     <div class="modify-tasks">
       <span class="edit-icon" data-info="${task.name}">✎</span>
       <span class="delete-icon" data-info="${task.name}">✖</span>
@@ -172,6 +172,8 @@ export function taskCardFunctionality() {
 // Display today's tasks in the main content area.
 export function displayTasks(dateRange) {
   const contentArea = document.querySelector("#content-area");
+  // Clear the content area.
+  contentArea.innerHTML = "";
 
   // Create a container to hold the tasks.
   const tasksContainer = document.createElement("div");
@@ -204,17 +206,9 @@ export function displayTasks(dateRange) {
 
   // Loop through tasksArray and display tasks that match date range.
   tasksArray.forEach(task => {
-    if (task.dueDate === today) {
+    if (isDueInTimeFrame(task.dueDate, dateRange)) {
       taskList.appendChild(taskDOMobject(task));
       match = true;
-    } else {
-      // Debugging.
-      // console.log(
-      //   "No match for date. task.dueDate:",
-      //   task.dueDate,
-      //   "vs today: ",
-      //   today
-      // );
     }
   });
 
@@ -226,6 +220,20 @@ export function displayTasks(dateRange) {
     // Add functionality to the task cards.
     taskCardFunctionality();
   }
+}
+
+// Event listener for the date range buttons.
+export function taskDateButtons() {
+  // Get date buttons from sidebar
+  const dateButtons = document.querySelectorAll(".date-button");
+
+  dateButtons.forEach(dateButton => {
+    dateButton.addEventListener("click", () => {
+      // Get the date from the date button
+      const dateRange = dateButton.getAttribute("data-date");
+      displayTasks(dateRange);
+    });
+  });
 }
 
 export function taskPopupFunctionality(locationCall) {
