@@ -9,7 +9,11 @@
 export function isDueInTimeFrame(dueDate, timeFrame) {
   const today = new Date();
   today.setHours(0, 0, 0, 0); // Remove time component
-  const due = new Date(dueDate);
+
+  // Split dueDate into year, month, and day integers.
+  const [year, month, day] = dueDate.split("-");
+  const due = new Date();
+  due.setFullYear(year, month - 1, day);
   due.setHours(0, 0, 0, 0); // Remove time component
 
   switch (timeFrame) {
@@ -27,8 +31,6 @@ export function isDueInTimeFrame(dueDate, timeFrame) {
 }
 
 function isToday(due, today) {
-  console.log("isToday, due: ", due, "today ", today);
-
   return due.toDateString() === today.toDateString();
 }
 

@@ -8,7 +8,7 @@ export function taskDOMobject(task) {
   listItem.classList.add("task-list-item");
 
   const taskHTML = `
-  <div class="task-card" id="task-${task.name}">
+  <div class="task-card">
     <div class="modify-tasks">
       <span class="edit-icon" data-info="${task.name}">✎</span>
       <span class="delete-icon" data-info="${task.name}">✖</span>
