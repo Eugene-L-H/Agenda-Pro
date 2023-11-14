@@ -14,7 +14,6 @@ export function taskDOMobject(task) {
       priority = "High";
       break;
     case "2":
-      console.log("medium");
       priority = "Medium";
       break;
     default:
@@ -22,7 +21,9 @@ export function taskDOMobject(task) {
   }
 
   const taskHTML = `
-  <div class="task-card" id="${task.id}">
+  <div class="task-card ${task.checked ? "task-completed" : ""}" id="${
+    task.id
+  }">
     <div class="task-card-content">
       <h3 class="task-name">${task.name}</h3>
       <p class="task-description">${task.description}</p>
@@ -40,10 +41,14 @@ export function taskDOMobject(task) {
       <input
         type="checkbox"
         class="task-checkbox"
-        id="${task.id}"
+        ${task.checked ? "checked='true'" : ""}"'}"
       />
-      <span class="edit-icon" data-id="${task.id}" data-name="${task.name}">✎</span>
-      <span class="delete-icon" data-id="${task.id}" data-name="${task.name}">✖</span>
+      <span class="edit-icon" data-id="${task.id}" data-name="${
+    task.name
+  }">✎</span>
+      <span class="delete-icon" data-id="${task.id}" data-name="${
+    task.name
+  }">✖</span>
     </div>
   </div>
   `;
@@ -85,7 +90,6 @@ export function addNewTaskPopup() {
 
 // Delete task from localStorage and state using X on the task card.
 function deleteTask(taskId) {
-  console.log(typeof taskId);
   // Retrieve the task array from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
 
@@ -108,6 +112,20 @@ function deleteTask(taskId) {
   } else {
     console.log("No tasks found in localStorage");
   }
+}
+
+function checkTask(taskId) {
+  // Retrieve task from localStorage
+  const tasks = JSON.parse(localStorage.getItem("tasksArray"));
+  console.log("tasks: ", tasks);
+  tasks.forEach(task => {
+    if (task.id === Number(taskId)) {
+      // Update the task's completed status
+      task.checked === false ? (task.checked = true) : (task.checked = false);
+    }
+  });
+  localStorage.setItem("tasksArray", JSON.stringify(tasks));
+  updateTasksArray(tasks);
 }
 
 // *Used in taskPopupFunctionality()*
@@ -183,6 +201,12 @@ export function taskCardFunctionality() {
       const taskCard = event.target.closest(".task-card");
       if (taskCard) {
         taskCard.classList.toggle("task-completed");
+
+        // Retrieve the task id.
+        const taskId = taskCard.getAttribute("id");
+
+        // Change tasks "checked" status in localStorage.
+        checkTask(taskId);
       }
     });
   });

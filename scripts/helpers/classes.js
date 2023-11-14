@@ -6,6 +6,7 @@ export class Task {
     this.dueDate = dueDate;
     this.priority = priority;
     this.project = project;
+    this.checked = false;
   }
 }
 
