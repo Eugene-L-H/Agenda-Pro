@@ -140,7 +140,7 @@ export function submitProjectButton(projectClass) {
 
     // Get the values from the form.
     const id = Date.now();
-    const projectName = document.querySelector("#project-name").value;
+    const projectName = document.querySelector("#project-name-popup").value;
     const projectDescription = document.querySelector("#project-description")
       .value;
     let projectDeadline = document.querySelector("#project-deadline").value;

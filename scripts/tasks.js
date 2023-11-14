@@ -9,10 +9,6 @@ export function taskDOMobject(task) {
 
   const taskHTML = `
   <div class="task-card" id="${task.id}">
-    <div class="modify-tasks">
-      <span class="edit-icon" data-id="${task.id}" data-name="${task.name}">✎</span>
-      <span class="delete-icon" data-id="${task.id}" data-name="${task.name}">✖</span>
-    </div>
     <div class="task-card-content">
       <h3 class="task-name">${task.name}</h3>
       <h4 class="task-project-name">Project: ${task.project}</h4>
@@ -26,11 +22,15 @@ export function taskDOMobject(task) {
         <span class="task-priority-value">${task.priority}</span>
       </div>
     </div>
-    <input
-      type="checkbox"
-      class="task-checkbox"
-      id="${task.id}"
-    />
+    <div class="modify-tasks">
+      <input
+        type="checkbox"
+        class="task-checkbox"
+        id="${task.id}"
+      />
+      <span class="edit-icon" data-id="${task.id}" data-name="${task.name}">✎</span>
+      <span class="delete-icon" data-id="${task.id}" data-name="${task.name}">✖</span>
+    </div>
   </div>
   `;
 
