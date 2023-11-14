@@ -8,10 +8,10 @@ export function taskDOMobject(task) {
   listItem.classList.add("task-list-item");
 
   const taskHTML = `
-  <div class="task-card">
+  <div class="task-card" id="${task.id}">
     <div class="modify-tasks">
-      <span class="edit-icon" data-info="${task.name}">✎</span>
-      <span class="delete-icon" data-info="${task.name}">✖</span>
+      <span class="edit-icon" data-id="${task.id}" data-name="${task.name}">✎</span>
+      <span class="delete-icon" data-id="${task.id}" data-name="${task.name}">✖</span>
     </div>
     <div class="task-card-content">
       <h3 class="task-name">${task.name}</h3>
@@ -29,7 +29,7 @@ export function taskDOMobject(task) {
     <input
       type="checkbox"
       class="task-checkbox"
-      id="task-checkbox-task${task.name}"
+      id="${task.id}"
     />
   </div>
   `;
@@ -70,14 +70,15 @@ export function addNewTaskPopup() {
 }
 
 // Delete task from localStorage and state using X on the task card.
-function deleteTask(taskName) {
+function deleteTask(taskId) {
+  console.log(typeof taskId);
   // Retrieve the task array from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
 
   // Check if tasks array is not null and is an array
   if (Array.isArray(tasks)) {
-    // Find the index of the task with the given name
-    const taskIndex = tasks.findIndex(task => task.name === taskName);
+    // Find task with the matching id.
+    const taskIndex = tasks.findIndex(task => task.id === Number(taskId));
 
     // If the task is found, remove it from the array
     if (taskIndex !== -1) {
@@ -99,13 +100,14 @@ function deleteTask(taskName) {
 function submitTaskButton(taskClass, locationCall) {
   const submitButton = document.querySelector("#submit-task");
   submitButton.addEventListener("click", () => {
+    const id = Date.now(); // Generate a unique id for the task.
     const name = document.querySelector("#task-name").value;
     const description = document.querySelector("#task-description").value;
     const dueDate = document.querySelector("#task-due-date").value;
     const priority = document.querySelector("#task-priority").value;
 
     // Project name is empty if the popup is from the sidebar.
-    let projectName = "";
+    let projectName = "None";
     if (locationCall === "project") {
       projectName = document
         .querySelector("#project-name")
@@ -114,6 +116,7 @@ function submitTaskButton(taskClass, locationCall) {
 
     // Create new task object from user info.
     const task = new taskClass(
+      id,
       name,
       description,
       dueDate,
@@ -141,15 +144,17 @@ export function taskCardFunctionality() {
   const deleteIcons = document.querySelectorAll(`.delete-icon`);
   deleteIcons.forEach(icon => {
     icon.addEventListener("click", event => {
-      // Retrieve name of task to be deleted.
-      const taskName = event.target.getAttribute("data-info");
+      // Retrieve name, and id, of task to be deleted.
+      const taskName = event.target.getAttribute("data-name");
+      const taskId = event.target.getAttribute("data-id");
+      console.log("TaskName, taskId: ", taskName, taskId);
 
       // Confirm user wants to delete task.
       if (confirm(`Are you sure you want to delete task "${taskName}"?`)) {
-        deleteTask(taskName);
+        deleteTask(taskId);
 
         // Remove task from DOM.
-        const taskCard = document.querySelector(`.task-${taskName}`);
+        const taskCard = document.getElementById(`${taskId}`);
         taskCard.remove();
       } else {
         console.log(`User cancelled deletion of task "${taskName}".`);
@@ -206,6 +211,7 @@ export function displayTasks(dateRange) {
 
   // Loop through tasksArray and display tasks that match date range.
   tasksArray.forEach(task => {
+    // Display task in DOM if task's due date is in the date range.
     if (isDueInTimeFrame(task.dueDate, dateRange)) {
       taskList.appendChild(taskDOMobject(task));
       match = true;
