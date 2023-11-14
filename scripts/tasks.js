@@ -7,19 +7,33 @@ export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
 
+  // Convert the priority number to a description of priority.
+  let priority = "Low";
+  switch (task.priority) {
+    case "3":
+      priority = "High";
+      break;
+    case "2":
+      console.log("medium");
+      priority = "Medium";
+      break;
+    default:
+      break;
+  }
+
   const taskHTML = `
   <div class="task-card" id="${task.id}">
     <div class="task-card-content">
       <h3 class="task-name">${task.name}</h3>
-      <h4 class="task-project-name">Project: ${task.project}</h4>
       <p class="task-description">${task.description}</p>
+      <span class="task-project-name">Project: ${task.project}</span>
+      <div class="task-priority">
+      <span class="task-priority-label">Priority:</span>
+      <span class="task-priority-value">${priority}</span>
+      </div>
       <div class="task-deadline">
         <span class="task-deadline-label">Deadline:</span>
         <span class="task-deadline-value">${task.dueDate}</span>
-      </div>
-      <div class="task-priority">
-        <span class="task-priority-label">Priority:</span>
-        <span class="task-priority-value">${task.priority}</span>
       </div>
     </div>
     <div class="modify-tasks">
