@@ -224,6 +224,11 @@ ul.projects {
   font-size: 0.85rem;
 }
 
+#add-task-project {
+  display: flex;
+  align-self: center;
+}
+
 #project-tasks {
   display: flex;
   flex-direction: column;
@@ -232,7 +237,8 @@ ul.projects {
 
 #project-task-list {
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
+  justify-content: space-around;
   height: 100%;
   overflow-y: scroll;
 }
@@ -306,7 +312,7 @@ ul.projects {
 }
 
 .list-range-title {
-  text-align: center;
+  /* text-align: center; */
   width: 100%;
   border-bottom: 1px solid #000;
   margin: 0;
@@ -314,14 +320,21 @@ ul.projects {
 }
 
 .task-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
   height: 100%;
   width: 96.5%;
   margin: 0;
   margin-bottom: 3px;
+  padding: 0 1.75%;
   overflow-y: scroll;
 }
 
 .task-list-item {
+  display: flex;
+  width: 24%;
+  max-height: 250px;
   margin-top: 5%;
 }
 
@@ -331,16 +344,31 @@ ul.projects {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 60%;
+  width: 90%;
+  border: 1px solid #000;
+  padding: 0.25rem 0.75rem;
+}
+
+.task-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 100%;
+  height: 100%;
+}
+
+.task-name {
+  text-decoration: underline;
 }
 
 .modify-tasks {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  cursor: pointer;
   font-size: 1.5rem;
   width: 100%;
-  cursor: pointer;
+  margin-top: auto;
 }
 
 .modify-tasks > * {
