@@ -117,7 +117,6 @@ function deleteTask(taskId) {
 function checkTask(taskId) {
   // Retrieve task from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
-  console.log("tasks: ", tasks);
   tasks.forEach(task => {
     if (task.id === Number(taskId)) {
       // Update the task's completed status
