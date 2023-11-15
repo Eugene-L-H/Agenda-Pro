@@ -1,4 +1,4 @@
-import { projectsArray } from "/scripts/helpers/state.js";
+import { projectsArray } from "./helpers/state.js";
 import {
   taskPopupFunctionality,
   taskDOMobject,
