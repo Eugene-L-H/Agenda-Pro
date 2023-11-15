@@ -3,30 +3,30 @@ import {
   tasksArray,
   updateProjectsArray,
   updateTasksArray
-} from "./scripts/helpers/state.js";
+} from "./helpers/state.js";
 
 // Dark mode toggle.
-import { darkMode } from "./scripts/helpers/dark-mode.js";
+import { darkMode } from "./helpers/dark-mode.js";
 
 // For populating content area with tasks.
 import {
   displayTasks,
   taskDateButtons,
   taskPopupFunctionality
-} from "./scripts/tasks.js";
+} from "./tasks.js";
 
 import {
   addProjectNameToSidebar,
   addNewProjectPopup,
   submitProjectButton
-} from "./scripts/project.js";
+} from "./project.js";
 
-import { Project } from "./scripts/helpers/classes.js";
+import { Project } from "./helpers/classes.js";
 
 // Functions for handling the popups.
-import { closePopupButton } from "./scripts/helpers/popup.js";
+import { closePopupButton } from "./helpers/popup.js";
 
-import { fetchWeather } from "./scripts/helpers/weather.js";
+import { fetchWeather } from "./helpers/weather.js";
 
 export {
   projectsArray,
