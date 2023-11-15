@@ -1,5 +1,5 @@
 // Global state variables, and helper functions
-import * as FUN from "/scripts/imports.js";
+import * as FUN from "./scripts/imports.js";
 
 // DOM objects
 const body = document.querySelector("body");
