@@ -179,7 +179,6 @@ export function taskCardFunctionality() {
       // Retrieve name, and id, of task to be deleted.
       const taskName = event.target.getAttribute("data-name");
       const taskId = event.target.getAttribute("data-id");
-      console.log("TaskName, taskId: ", taskName, taskId);
 
       // Confirm user wants to delete task.
       if (confirm(`Are you sure you want to delete task "${taskName}"?`)) {
@@ -267,6 +266,16 @@ export function displayTasks(dateRange) {
 
     // Add functionality to the task cards.
     taskCardFunctionality();
+  } else {
+    // If there are no tasks that match the date range, display a message.
+    const noTasksMessage = document.createElement("h2");
+    noTasksMessage.classList.add("no-tasks-message");
+    if (dateRange === "today") {
+      noTasksMessage.textContent = `No tasks for ${dateRange}.`;
+    } else {
+      noTasksMessage.textContent = `No tasks for this ${dateRange}.`;
+    }
+    contentArea.appendChild(noTasksMessage);
   }
 }
 
