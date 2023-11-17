@@ -159,6 +159,9 @@ function submitTaskButton(taskClass, locationCall) {
     updateTasksArray([...tasksArray, task]);
 
     closePopup();
+
+    // Update window to display new task.
+    location.reload();
   });
 }
 
