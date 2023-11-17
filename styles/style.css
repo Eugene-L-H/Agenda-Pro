@@ -101,11 +101,10 @@ main {
 
 #app {
   width: 75%;
-  height: 60vh;
+  height: 65vh;
   display: flex;
   flex-flow: row wrap;
   border: 1px solid #000;
-  margin-bottom: 5%;
 }
 
 #tasks-header {
@@ -240,7 +239,7 @@ ul.projects {
   flex-flow: row wrap;
   justify-content: space-around;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .no-tasks {
@@ -334,8 +333,8 @@ ul.projects {
 .task-list-item {
   display: flex;
   width: 24%;
-  max-height: 250px;
-  margin-top: 5%;
+  height: 250px;
+  margin-top: 1.25%;
 }
 
 /* Task cards */
