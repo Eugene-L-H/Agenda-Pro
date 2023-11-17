@@ -359,6 +359,7 @@ ul.projects {
 
 .task-name {
   text-decoration: underline;
+  margin-bottom: 0;
 }
 
 .modify-tasks {
@@ -378,8 +379,20 @@ ul.projects {
 .task-completed {
   text-decoration: line-through;
   color: #aaa;
-  
+  pointer-events: none;
+  cursor: arrow;
 }
+
+.task-checkbox {
+  pointer-events: auto;
+}
+
+.delete-icon {
+  display: inline-block;
+  pointer-events: auto;
+  cursor: pointer;
+}
+
 /*---*/
 
 /* Mobile view */

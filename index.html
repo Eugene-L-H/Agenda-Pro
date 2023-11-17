@@ -1,63 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles/meyer-reset.css" />
-    <link rel="stylesheet" href="styles/style.css" />
-    <!-- load javascript -->
-    <script type="module" src="app.js" defer></script>
-    <title>// ToDo-List</title>
-  </head>
-  <body class="dark-mode">
-    <header>
-      <h1>ToDo-List</h1>
-      <span id="dark-mode-icon">☀</span>
-      <div id="weather-info">
-        <span id="location"></span>
-        <div>
-          <span id="temperature"></span>
-          <span id="weather-description">Fetching weather data...</span>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="styles/meyer-reset.css" />
+  <link rel="stylesheet" href="styles/style.css" />
+  <!-- load javascript -->
+  <script type="module" src="app.js" defer></script>
+  <title>// ToDo-List</title>
+</head>
+
+<body class="dark-mode">
+  <header>
+    <h1>ToDo-List</h1>
+    <span id="dark-mode-icon">☀</span>
+    <div id="weather-info">
+      <span id="location"></span>
+      <div>
+        <span id="temperature"></span>
+        <span id="weather-description">Fetching weather data...</span>
+      </div>
+    </div>
+
+    <!-- mobile menu -->
+    <div class="menu-toggle" id="mobile-menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </div>
+  </header>
+
+  <!-- main application content -->
+  <main>
+    <div id="app"">
+        <div id=" tasks-header">
+      <p>// To Do:</p>
+    </div>
+    <div id="app-content">
+      <div id="tasks-navbar">
+        <span id="tasks-label">Tasks:</span>
+        <div id="add-task-sidebar" class="new-post-button add-task-button">
+          <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
         </div>
+        <ul class="tasks-nav-list">
+          <li class="nav-item date-button" data-date="today">Today</li>
+          <li class="nav-item date-button" data-date="week">This Week</li>
+          <li class="nav-item date-button" data-date="month">This Month</li>
+          <li class="nav-item date-button" data-date="year">This Year</li>
+        </ul>
+        <span id="projects-label">Projects:</span>
+        <div id="add-project-button" class="new-post-button">
+          <span class="plus-sign">+</span><span>&nbsp;Add Project</span>
+        </div>
+        <ul id="projects-nav"></ul>
       </div>
 
-      <!-- mobile menu -->
-      <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-    </header>
+      <!-- main content display area-->
+      <div id="content-area"></div>
+    </div>
+    </div>
+  </main>
+</body>
 
-    <!-- main application content -->
-    <main>
-      <div id="app"">
-        <div id="tasks-header">
-          <p>// To Do:</p>
-        </div>
-        <div id="app-content">
-          <div id="tasks-navbar">
-            <span id="tasks-label">Tasks:</span>
-            <div id="add-task-sidebar" class="new-post-button add-task-button">
-              <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
-            </div>
-            <ul class="tasks-nav-list">
-              <li class="nav-item date-button" data-date="today">Today</li>
-              <li class="nav-item date-button" data-date="week">This Week</li>
-              <li class="nav-item date-button" data-date="month">This Month</li>
-              <li class="nav-item date-button" data-date="year">This Year</li>
-            </ul>
-            <span id="projects-label">Projects:</span>
-            <div id="add-project-button" class="new-post-button">
-              <span class="plus-sign">+</span><span>&nbsp;Add Project</span>
-            </div>
-            <ul id="projects-nav"></ul>
-          </div>
-          
-          <!-- main content display area-->
-          <div id="content-area"></div>
-        </div>
-      </div>
-    </main>
-  </body>
 </html>

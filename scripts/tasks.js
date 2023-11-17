@@ -21,10 +21,8 @@ export function taskDOMobject(task) {
   }
 
   const taskHTML = `
-  <div class="task-card ${task.checked ? "task-completed" : ""}" id="${
-    task.id
-  }">
-    <div class="task-card-content">
+  <div class="task-card" id="${task.id}">
+    <div class="task-card-content ${task.checked ? "task-completed" : ""}">
       <h3 class="task-name">${task.name}</h3>
       <p class="task-description">${task.description}</p>
       <span class="task-project-name">Project: ${task.project}</span>
@@ -43,9 +41,9 @@ export function taskDOMobject(task) {
         class="task-checkbox"
         ${task.checked ? "checked='true'" : ""}"'}"
       />
-      <span class="edit-icon" data-id="${task.id}" data-name="${
-    task.name
-  }">✎</span>
+      <span class="edit-icon ${
+        task.checked ? "task-completed" : ""
+      }" data-id="${task.id}" data-name="${task.name}">✎</span>
       <span class="delete-icon" data-id="${task.id}" data-name="${
     task.name
   }">✖</span>
@@ -202,7 +200,11 @@ export function taskCardFunctionality() {
     taskCheckbox.addEventListener("click", event => {
       const taskCard = event.target.closest(".task-card");
       if (taskCard) {
-        taskCard.classList.toggle("task-completed");
+        taskCard
+          .querySelector(".task-card-content")
+          .classList.toggle("task-completed");
+
+        taskCard.querySelector(".edit-icon").classList.toggle("task-completed");
 
         // Retrieve the task id.
         const taskId = taskCard.getAttribute("id");
