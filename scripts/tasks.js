@@ -2,10 +2,14 @@ import { tasksArray, updateTasksArray } from "./helpers/state.js";
 import { Task } from "./helpers/classes.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
 import { isDueInTimeFrame } from "./helpers/compare-dates.js";
+import { getFormattedDate } from "./helpers/compare-dates.js";
 
 export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
+
+  const overdue = task.dueDate < getFormattedDate();
+  console.log("Overdue: ", overdue);
 
   // Convert the priority number to a description of priority.
   let priority = "Low";
@@ -21,7 +25,7 @@ export function taskDOMobject(task) {
   }
 
   const taskHTML = `
-  <div class="task-card" id="${task.id}">
+  <div class="task-card ${overdue ? "overdue" : ""}" id="${task.id}">
     <div class="task-card-content ${task.checked ? "task-completed" : ""}">
       <h3 class="task-name">${task.name}</h3>
       <p class="task-description">${task.description}</p>

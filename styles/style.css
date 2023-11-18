@@ -412,6 +412,10 @@ ul.projects {
 
 /*---*/
 
+.overdue {
+  background: lightsalmon;
+}
+
 /* Mobile view */
 @media (max-width: 768px) {
   .menu-toggle {
