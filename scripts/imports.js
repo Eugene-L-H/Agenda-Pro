@@ -28,6 +28,9 @@ import { closePopupButton } from "./helpers/popup.js";
 
 import { fetchWeather } from "./helpers/weather.js";
 
+// Functions for sorting arrays by due date, and priority.
+import { sortArrayByDate, sortArrayByPriority } from "./helpers/sortArrays.js";
+
 export {
   projectsArray,
   tasksArray,
@@ -35,6 +38,7 @@ export {
   updateTasksArray,
   darkMode,
   displayTasks,
+  taskDateButtons,
   taskPopupFunctionality,
   addProjectNameToSidebar,
   addNewProjectPopup,
@@ -42,5 +46,6 @@ export {
   Project,
   closePopupButton,
   fetchWeather,
-  taskDateButtons
+  sortArrayByDate,
+  sortArrayByPriority
 };
