@@ -8,8 +8,8 @@ export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
 
+  // Is task's dueDate in the past?
   const overdue = task.dueDate < getFormattedDate();
-  console.log("Overdue: ", overdue);
 
   // Convert the priority number to a description of priority.
   let priority = "Low";
@@ -25,8 +25,10 @@ export function taskDOMobject(task) {
   }
 
   const taskHTML = `
-  <div class="task-card ${overdue ? "overdue" : ""}" id="${task.id}">
-    <div class="task-card-content ${task.checked ? "task-completed" : ""}">
+  <div class="task-card${task.checked ? " task-completed" : ""}${
+    overdue ? " overdue" : ""
+  }" id="${task.id}">
+    <div class="task-card-content">
       <h3 class="task-name">${task.name}</h3>
       <p class="task-description">${task.description}</p>
       <span class="task-project-name">Project: ${task.project}</span>
@@ -204,9 +206,7 @@ export function taskCardFunctionality() {
       const taskCard = event.target.closest(".task-card");
       if (taskCard) {
         // Toggle the task's completed status.
-        taskCard
-          .querySelector(".task-card-content")
-          .classList.toggle("task-completed");
+        taskCard.classList.toggle("task-completed");
 
         taskCard.querySelector(".edit-icon").classList.toggle("task-completed");
 

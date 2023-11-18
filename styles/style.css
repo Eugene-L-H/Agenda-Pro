@@ -405,6 +405,7 @@ ul.projects {
 
 .task-completed {
   text-decoration: line-through;
+  background: #eee !important;
   color: #aaa;
   pointer-events: none;
   cursor: default;
