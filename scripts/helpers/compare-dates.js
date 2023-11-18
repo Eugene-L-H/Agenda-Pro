@@ -30,6 +30,20 @@ export function isDueInTimeFrame(dueDate, timeFrame) {
   }
 }
 
+// Allows comparison of dates in YYYY-MM-DD format, matching dueDate property.
+export function getFormattedDate() {
+  const today = new Date();
+  const year = today.getFullYear();
+  const month = today.getMonth() + 1; // Adding 1 because months are zero-indexed
+  const day = today.getDate();
+
+  // Ensuring month and day are in 'MM' or 'DD' format
+  const formattedMonth = month < 10 ? `0${month}` : month;
+  const formattedDay = day < 10 ? `0${day}` : day;
+
+  return `${year}-${formattedMonth}-${formattedDay}`;
+}
+
 function isToday(due, today) {
   return due.toDateString() === today.toDateString();
 }

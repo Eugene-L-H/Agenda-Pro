@@ -46,7 +46,11 @@ if (localStorage.getItem("projectsArray") !== null) {
 
 // Check local storage for tasks.
 if (localStorage.getItem("tasksArray") !== null) {
-  FUN.updateTasksArray(JSON.parse(localStorage.getItem("tasksArray")));
+  let array = FUN.sortArrayByPriority(
+    JSON.parse(localStorage.getItem("tasksArray"))
+  );
+  array = FUN.sortArrayByDate(array);
+  FUN.updateTasksArray(array);
   console.log("Tasks array on page load: ", FUN.tasksArray);
   FUN.displayTasks("today");
 }
