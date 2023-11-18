@@ -199,6 +199,7 @@ export function taskCardFunctionality() {
     taskCheckbox.addEventListener("click", event => {
       const taskCard = event.target.closest(".task-card");
       if (taskCard) {
+        // Toggle the task's completed status.
         taskCard
           .querySelector(".task-card-content")
           .classList.toggle("task-completed");
