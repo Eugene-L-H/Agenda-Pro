@@ -66,7 +66,7 @@ export function displayProject(project) {
       <div id="add-task-project" class="new-post-button add-task-button">
         <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
       </div>
-      <ul id="project-task-list"></ul>
+      <ul id="task-list"></ul>
     </div>
   </div>
   `;
@@ -76,7 +76,7 @@ export function displayProject(project) {
 
 // In the project card, displays tasks that match that project.
 function projectDisplayTasks(projectName, tasks) {
-  const taskListHTML = document.querySelector("#project-task-list");
+  const taskListHTML = document.querySelector("#task-list");
 
   let tasksFound = false; // Flag to check if tasks were found.
 

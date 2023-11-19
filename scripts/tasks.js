@@ -47,12 +47,8 @@ export function taskDOMobject(task) {
         class="task-checkbox"
         ${task.checked ? "checked='true'" : ""}"'}"
       />
-      <span class="edit-icon ${
-        task.checked ? "task-completed" : ""
-      }" data-id="${task.id}" data-name="${task.name}">✎</span>
-      <span class="delete-icon" data-id="${task.id}" data-name="${
-    task.name
-  }">✖</span>
+      <span class="edit-icon ${task.checked ? "task-completed" : ""}"">✎</span>
+      <span class="delete-icon">✖</span>
     </div>
   </div>
   `;
@@ -164,8 +160,10 @@ function submitTaskButton(taskClass, locationCall) {
 
     closePopup();
 
-    // Update window to display new task.
-    location.reload();
+    // Display new task in the task list.
+    const taskCard = taskDOMobject(task);
+    const taskList = document.querySelector("#task-list");
+    taskList.appendChild(taskCard);
   });
 }
 
@@ -193,6 +191,8 @@ export function taskCardFunctionality() {
         // Remove task from DOM.
         const taskCard = document.getElementById(`${taskId}`);
         taskCard.remove();
+
+        // Update window if there are no more tasks for that dateRange.
       } else {
         console.log(`User cancelled deletion of task "${taskName}".`);
       }
@@ -232,7 +232,7 @@ export function displayTasks(dateRange) {
 
   // Create a list to hold the tasks.
   const taskList = document.createElement("ul");
-  taskList.classList.add("task-list");
+  taskList.id = "task-list";
 
   // Display what span of tasks that will be displayed.
   const title = document.createElement("h2");
