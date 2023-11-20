@@ -41,6 +41,19 @@ export function addNewProjectPopup() {
 
 // HTML to display project in the main content area.
 export function displayProject(project) {
+  // Get the priority of the project.
+  let priority = "Low";
+  switch (project.priority) {
+    case "3":
+      priority = "High";
+      break;
+    case "2":
+      priority = "Medium";
+      break;
+    default:
+      break;
+  }
+
   const projectHTML = `
   <div class="project-card">
     <div class="project-card-header">
@@ -48,18 +61,18 @@ export function displayProject(project) {
       <span class="project-name-prefix">Project:&nbsp;</span>
         ${project.name}
       </h3>
+      </div>
+      <div class="project-card-body">
+      <p class="project-description"><span>Description:&nbsp;</span>${project.description}</p>
+      <div class="project-deadline">
+      <span class="project-deadline-label">Deadline:</span>
+      <span class="project-deadline-value">${project.deadline}</span>
+      </div>
       <div class="project-priority">
         <p>
           <span class="project-priority-label">Priority:</span>
-          <span class="project-priority-value">${project.priority}</span>
+          <span class="project-priority-value">${priority}</span>
         </p>
-      </div>
-    </div>
-    <div class="project-card-body">
-      <p class="project-description"><span>Description:&nbsp;</span>${project.description}</p>
-      <div class="project-deadline">
-        <span class="project-deadline-label">Deadline:</span>
-        <span class="project-deadline-value">${project.deadline}</span>
       </div>
     <div id="project-tasks">
       <span class="project-tasks-label">Tasks:</span>
@@ -143,12 +156,14 @@ export function submitProjectButton(projectClass) {
     const projectName = document.querySelector("#project-name-popup").value;
     const projectDescription = document.querySelector("#project-description")
       .value;
+    const projectPriority = document.querySelector("#project-priority").value;
     let projectDeadline = document.querySelector("#project-deadline").value;
     if (projectDeadline === "") projectDeadline = null;
 
     project.id = id;
     project.name = projectName;
     project.description = projectDescription;
+    project.priority = projectPriority;
     project.deadline = document.querySelector("#project-deadline").value;
 
     // Add the project to the project list.
