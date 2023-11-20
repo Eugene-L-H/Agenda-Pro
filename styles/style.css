@@ -234,14 +234,6 @@ ul.projects {
   height: 87%;
 }
 
-#project-task-list {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
-  height: 100%;
-  overflow-y: auto;
-}
-
 .no-tasks {
   font-style: italic;
   overflow: auto;
@@ -318,7 +310,7 @@ ul.projects {
   padding: 10px 0;
 }
 
-.task-list {
+#task-list {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -327,7 +319,7 @@ ul.projects {
   margin: 0;
   margin-bottom: 3px;
   padding: 0 1.75%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 .task-list-item {
