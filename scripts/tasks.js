@@ -1,4 +1,9 @@
-import { tasksArray, updateTasksArray } from "./helpers/state.js";
+import {
+  tasksArray,
+  updateTasksArray,
+  projectsArray,
+  updateProjectsArray
+} from "./helpers/state.js";
 import { Task } from "./helpers/classes.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
 import { isDueInTimeFrame } from "./helpers/compare-dates.js";
@@ -30,7 +35,7 @@ export function taskDOMobject(task) {
   }" id="${task.id}">
     <div class="task-card-content">
       <h3 class="task-name">${task.name}</h3>
-      <p class="task-description">${task.description}</p>
+      <span class="task-description">${task.description}</span>
       <span class="task-project-name">Project: ${task.project}</span>
       <div class="task-priority">
       <span class="task-priority-label">Priority:</span>
@@ -48,7 +53,9 @@ export function taskDOMobject(task) {
         ${task.checked ? "checked='true'" : ""}"'}"
       />
       <span class="edit-icon ${task.checked ? "task-completed" : ""}"">✎</span>
-      <span class="delete-icon">✖</span>
+      <span class="delete-icon" data-name="${task.name}" data-id="${
+    task.id
+  }">✖</span>
     </div>
   </div>
   `;
@@ -88,29 +95,53 @@ export function addNewTaskPopup() {
   return popupHTML;
 }
 
-// Delete task from localStorage and state using X on the task card.
-function deleteTask(taskId) {
+// Delete project, and tasks from localStorage and state using X on the task card.
+function deleteTaskorProject(cardId, project) {
+  console.log("HELLO FROM WITHIN");
+  // Check if the cardId is from a task or a project
+  let cardType = "";
+  cardType = project === "project" ? "project" : "task";
+  console.log("cardType: ", cardType);
+
   // Retrieve the task array from localStorage
-  const tasks = JSON.parse(localStorage.getItem("tasksArray"));
+  const array = JSON.parse(localStorage.getItem(`${cardType}sArray`));
 
-  // Check if tasks array is not null and is an array
-  if (Array.isArray(tasks)) {
+  // Check if array is not null and is an array
+  if (Array.isArray(array)) {
     // Find task with the matching id.
-    const taskIndex = tasks.findIndex(task => task.id === Number(taskId));
+    const cardIndex = array.findIndex(
+      cardType => cardType.id === Number(cardId)
+    );
 
-    // If the task is found, remove it from the array
-    if (taskIndex !== -1) {
-      tasks.splice(taskIndex, 1);
+    // If project is being deleted, delete tasks associated with the project.
+    if (cardType === "project") {
+      // Retrieve project name with matching id from projectsArray
+      const projectName = array[cardIndex].name;
+
+      tasksArray.forEach(task => {
+        if (task.project === projectName) {
+          // Delete the task from the tasksArray
+          deleteTaskorProject(task.id, "task");
+        }
+      });
+    }
+
+    // If the project, or Task is found, remove it from the array
+    if (cardIndex !== -1) {
+      array.splice(cardIndex, 1);
 
       // Save the updated array back to localStorage
-      localStorage.setItem("tasksArray", JSON.stringify(tasks));
-      // Update the tasks array in the state
-      updateTasksArray(tasks);
+      localStorage.setItem(`${cardType}Array`, JSON.stringify(array));
+
+      // Update the array in the state
+      cardType === "project"
+        ? updateProjectsArray(array)
+        : updateTasksArray(array);
     } else {
-      console.log("Task not found");
+      console.log(`${cardType} not found`);
     }
   } else {
-    console.log("No tasks found in localStorage");
+    console.log(`No ${cardType}s found in localStorage`);
   }
 }
 
@@ -176,25 +207,41 @@ export function taskCardFunctionality() {
     });
   });
 
-  // Add functionality to the task delete icons.
+  // Add functionality to the delete icons. THIS ALSO CONTROLS THE DELETE ICON ON PROJECT CARDS.
   const deleteIcons = document.querySelectorAll(`.delete-icon`);
   deleteIcons.forEach(icon => {
     icon.addEventListener("click", event => {
       // Retrieve name, and id, of task to be deleted.
-      const taskName = event.target.getAttribute("data-name");
-      const taskId = event.target.getAttribute("data-id");
+      const cardName = event.target.getAttribute("data-name");
+      const cardId = event.target.getAttribute("data-id");
+
+      // Check if task is from a project.
+      const fromProject = event.target.getAttribute("data-project");
+
+      // If task is from a project, set type to 'project'.
+      const type = fromProject === "project" ? "project" : "task";
 
       // Confirm user wants to delete task.
-      if (confirm(`Are you sure you want to delete task "${taskName}"?`)) {
-        deleteTask(taskId);
+      if (
+        confirm(
+          `Are you sure you want to delete ${type} "${cardName}"? This action cannot be undone.`
+        )
+      ) {
+        // Delete project, or task, from localStorage and state.
+        deleteTaskorProject(cardId, type);
 
         // Remove task from DOM.
-        const taskCard = document.getElementById(`${taskId}`);
-        taskCard.remove();
+        if (fromProject === "project") {
+          // location.reload();
+          console.log("PAGE RELOAD ACTIVATED!!!");
+        } else {
+          const taskCard = document.getElementById(`${cardId}`);
+          taskCard.remove();
+        }
 
         // Update window if there are no more tasks for that dateRange.
       } else {
-        console.log(`User cancelled deletion of task "${taskName}".`);
+        console.log(`User cancelled deletion of ${type} "${cardName}".`);
       }
     });
   });
@@ -239,7 +286,13 @@ export function displayTasks(dateRange) {
   title.classList.add("list-range-title");
   const titleTextContent =
     dateRange[0].toUpperCase() + dateRange.slice(1, dateRange.length);
-  title.textContent = `Tasks for: ${titleTextContent}`;
+
+  // Display 'Tasks for Today', or 'Tasks for This Week', or 'Tasks for This Month'.
+  title.textContent =
+    dateRange === "today"
+      ? `Tasks for: Today`
+      : `Tasks for: This ${titleTextContent}`;
+
   tasksContainer.prepend(title);
 
   let today = new Date();

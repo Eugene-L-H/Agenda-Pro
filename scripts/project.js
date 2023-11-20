@@ -58,10 +58,11 @@ export function displayProject(project) {
     <div class="project-card">
       <div class="project-info">
           <div class="project-card-header">
-              <h3 id="project-name" data-info="${project.name}">
+              <h3 id="project-name">
                   <span class="project-name-prefix">Project:&nbsp;</span>
                   ${project.name}
               </h3>
+              <span class="delete-icon" data-name="${project.name}" data-id="${project.id}" data-project="project">✖</span>
           </div>
           <div class="project-card-body">
               <p class="project-description">
@@ -72,11 +73,9 @@ export function displayProject(project) {
                   <span class="project-deadline-label">Deadline:</span>
                   <span class="project-deadline-value">${project.deadline}</span>
               </div>
-              <div class="project-priority">
-                  <p>
-                      <span class="project-priority-label">Priority:</span>
-                      <span class="project-priority-value">${priority}</span>
-                  </p>
+              <div class="project-priority">                
+                <span class="project-priority-label">Priority:</span>
+                <span class="project-priority-value">${priority}</span>
               </div>
           </div>
       </div>
