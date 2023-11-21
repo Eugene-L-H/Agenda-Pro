@@ -1,4 +1,4 @@
-import { projectsArray } from "./helpers/state.js";
+import { deleteIconFunctionality, projectsArray } from "./helpers/state.js";
 import {
   taskPopupFunctionality,
   taskDOMobject,
@@ -55,32 +55,42 @@ export function displayProject(project) {
   }
 
   const projectHTML = `
-  <div class="project-card">
-    <div class="project-card-header">
-      <h3 id="project-name" data-info="${project.name}">
-      <span class="project-name-prefix">Project:&nbsp;</span>
-        ${project.name}
-      </h3>
+    <div class="project-card">
+      <div class="project-info">
+          <div class="project-card-header">
+              <h3 id="project-name" data-name="${project.name}">
+                  <span class="project-name-prefix">Project:&nbsp;</span>
+                  ${project.name}
+              </h3>
+              <span class="delete-icon" data-name="${project.name}" data-id="${project.id}" data-project="project">✖</span>
+          </div>
+          <div class="project-card-body">
+              <p class="project-description">
+                  <span>Description:&nbsp;</span>
+                  ${project.description}
+              </p>
+              <div class="project-deadline">
+                  <span class="project-deadline-label">Deadline:</span>
+                  <span class="project-deadline-value">${project.deadline}</span>
+              </div>
+              <div class="project-priority">                
+                <span class="project-priority-label">Priority:</span>
+                <span class="project-priority-value">&nbsp;${priority}</span>
+              </div>
+          </div>
       </div>
-      <div class="project-card-body">
-      <p class="project-description"><span>Description:&nbsp;</span>${project.description}</p>
-      <div class="project-deadline">
-      <span class="project-deadline-label">Deadline:</span>
-      <span class="project-deadline-value">${project.deadline}</span>
+
+      <div id="project-tasks">
+          <div class="project-task-label-line">
+            <span class="project-tasks-label">Tasks:</span>
+            <div id="add-task-project" class="new-post-button add-task-button">
+                <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
+            </div>
+          </div>
+          <div class="tasks-container tasks-container-project">
+              <ul id="task-list"></ul>
+          </div>
       </div>
-      <div class="project-priority">
-        <p>
-          <span class="project-priority-label">Priority:</span>
-          <span class="project-priority-value">${priority}</span>
-        </p>
-      </div>
-    <div id="project-tasks">
-      <span class="project-tasks-label">Tasks:</span>
-      <div id="add-task-project" class="new-post-button add-task-button">
-        <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
-      </div>
-      <ul id="task-list"></ul>
-    </div>
   </div>
   `;
 
@@ -111,6 +121,9 @@ function projectDisplayTasks(projectName, tasks) {
     `;
     taskListHTML.innerHTML = noTasksHTML;
     taskListHTML.classList.add("no-tasks");
+
+    // Add functionality to the delete icon for the project card.
+    deleteIconFunctionality();
   } else {
     // Add functionality to task cards.
     taskCardFunctionality();
