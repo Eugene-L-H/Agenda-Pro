@@ -1,4 +1,4 @@
-import { projectsArray } from "./helpers/state.js";
+import { deleteIconFunctionality, projectsArray } from "./helpers/state.js";
 import {
   taskPopupFunctionality,
   taskDOMobject,
@@ -121,6 +121,9 @@ function projectDisplayTasks(projectName, tasks) {
     `;
     taskListHTML.innerHTML = noTasksHTML;
     taskListHTML.classList.add("no-tasks");
+
+    // Add functionality to the delete icon for the project card.
+    deleteIconFunctionality();
   } else {
     // Add functionality to task cards.
     taskCardFunctionality();
