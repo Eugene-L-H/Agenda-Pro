@@ -109,7 +109,6 @@ function checkTask(taskId) {
 
 // *Used in taskPopupFunctionality()*
 function submitTaskButton(taskClass, locationCall) {
-  console.log("submitTask location call: ", locationCall);
   const submitButton = document.querySelector("#submit-task");
   submitButton.addEventListener("click", () => {
     const id = Date.now(); // Generate a unique id for the task.
@@ -117,18 +116,6 @@ function submitTaskButton(taskClass, locationCall) {
     const description = document.querySelector("#task-description").value;
     const dueDate = document.querySelector("#task-due-date").value;
     const priority = document.querySelector("#task-priority").value;
-    console.log(
-      "id: ",
-      id,
-      ", name: ",
-      name,
-      ", description: ",
-      description,
-      ", dueDate: ",
-      dueDate,
-      ", priority: ",
-      priority
-    );
 
     // Project name is empty if the popup is from the sidebar.
     let projectName = "None";
@@ -147,8 +134,6 @@ function submitTaskButton(taskClass, locationCall) {
       priority,
       projectName
     );
-
-    console.log("task: ", task);
 
     // Add task to the tasksArray.
     updateTasksArray([...tasksArray, task]);
@@ -280,7 +265,6 @@ export function taskDateButtons() {
 }
 
 export function taskPopupFunctionality(locationCall) {
-  console.log("location call: ", locationCall);
   let addTaskButton;
   if (locationCall === "project") {
     addTaskButton = document.querySelector("#add-task-project");
@@ -303,6 +287,4 @@ export function taskPopupFunctionality(locationCall) {
     // Add functionality for the "Add Task" button.
     submitTaskButton(Task, locationCall);
   });
-
-  console.log("addTaskButton: ", addTaskButton);
 }
