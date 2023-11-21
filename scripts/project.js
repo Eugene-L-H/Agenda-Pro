@@ -58,7 +58,7 @@ export function displayProject(project) {
     <div class="project-card">
       <div class="project-info">
           <div class="project-card-header">
-              <h3 id="project-name">
+              <h3 id="project-name" data-name="${project.name}">
                   <span class="project-name-prefix">Project:&nbsp;</span>
                   ${project.name}
               </h3>

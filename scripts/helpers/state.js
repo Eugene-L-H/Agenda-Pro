@@ -48,7 +48,7 @@ export function updateProjectsArray(array) {
  *
  * If the item to be deleted is not found, or if the localStorage does not contain the expected array, appropriate messages are logged to the console.
  */
-export function deleteTaskOrProject(cardId, project) {
+function deleteTaskOrProject(cardId, project) {
   // Check if the cardId is from a task or a project
   let cardType = "";
   cardType = project === "project" ? "project" : "task";
@@ -93,4 +93,56 @@ export function deleteTaskOrProject(cardId, project) {
   } else {
     console.log(`No ${cardType}s found in localStorage`);
   }
+}
+
+/**
+ * Adds click event listeners to delete icons for tasks and projects.
+ *
+ * This function selects all elements with the 'delete-icon' class and attaches a click event listener to each.
+ * When a delete icon is clicked, it prompts the user to confirm the deletion.
+ * If confirmed, it deletes the corresponding task or project from localStorage and updates the UI accordingly.
+ *
+ * For tasks within a project, it identifies the task's type and handles the deletion process based on whether it's a standalone task or part of a project.
+ * Upon deleting a project, the window is reloaded to reflect the changes. For tasks, the corresponding DOM element is removed.
+ * If the user cancels the deletion, a console message is logged.
+ */
+export function deleteIconFunctionality() {
+  const deleteIcons = document.querySelectorAll(`.delete-icon`);
+  deleteIcons.forEach(icon => {
+    icon.addEventListener("click", event => {
+      // Retrieve name, and id, of task to be deleted.
+      const cardName = event.target.getAttribute("data-name");
+      const cardId = event.target.getAttribute("data-id");
+
+      // Check if task is from a project.
+      const fromProject = event.target.getAttribute("data-project");
+
+      // If task is from a project, set type to 'project'.
+      const type = fromProject === "project" ? "project" : "task";
+
+      // Confirm user wants to delete task.
+      if (
+        confirm(
+          `Are you sure you want to delete ${type} "${cardName}"? This action cannot be undone.`
+        )
+      ) {
+        // Delete project, or task, from localStorage and state.
+        deleteTaskOrProject(cardId, type);
+
+        // Reload window after deleting project.
+        if (fromProject === "project") {
+          location.reload();
+
+          // Remove task from DOM.
+        } else {
+          const taskCard = document.getElementById(`${cardId}`);
+          taskCard.remove();
+        }
+
+        // Update window if there are no more tasks for that dateRange.
+      } else {
+        console.log(`User cancelled deletion of ${type} "${cardName}".`);
+      }
+    });
+  });
 }

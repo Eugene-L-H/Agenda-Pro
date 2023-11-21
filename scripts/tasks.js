@@ -1,11 +1,9 @@
 import {
   tasksArray,
   updateTasksArray,
-  projectsArray,
-  updateProjectsArray
+  deleteIconFunctionality
 } from "./helpers/state.js";
 import { Task } from "./helpers/classes.js";
-import { deleteTaskOrProject } from "./helpers/state.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
 import { isDueInTimeFrame } from "./helpers/compare-dates.js";
 import { getFormattedDate } from "./helpers/compare-dates.js";
@@ -111,6 +109,7 @@ function checkTask(taskId) {
 
 // *Used in taskPopupFunctionality()*
 function submitTaskButton(taskClass, locationCall) {
+  console.log("submitTask location call: ", locationCall);
   const submitButton = document.querySelector("#submit-task");
   submitButton.addEventListener("click", () => {
     const id = Date.now(); // Generate a unique id for the task.
@@ -118,13 +117,25 @@ function submitTaskButton(taskClass, locationCall) {
     const description = document.querySelector("#task-description").value;
     const dueDate = document.querySelector("#task-due-date").value;
     const priority = document.querySelector("#task-priority").value;
+    console.log(
+      "id: ",
+      id,
+      ", name: ",
+      name,
+      ", description: ",
+      description,
+      ", dueDate: ",
+      dueDate,
+      ", priority: ",
+      priority
+    );
 
     // Project name is empty if the popup is from the sidebar.
     let projectName = "None";
     if (locationCall === "project") {
       projectName = document
         .querySelector("#project-name")
-        .getAttribute("data-info");
+        .getAttribute("data-name");
     }
 
     // Create new task object from user info.
@@ -136,6 +147,8 @@ function submitTaskButton(taskClass, locationCall) {
       priority,
       projectName
     );
+
+    console.log("task: ", task);
 
     // Add task to the tasksArray.
     updateTasksArray([...tasksArray, task]);
@@ -158,45 +171,8 @@ export function taskCardFunctionality() {
     });
   });
 
-  // Add functionality to the delete icons. THIS ALSO CONTROLS THE DELETE ICON ON PROJECT CARDS.
-  const deleteIcons = document.querySelectorAll(`.delete-icon`);
-  deleteIcons.forEach(icon => {
-    icon.addEventListener("click", event => {
-      // Retrieve name, and id, of task to be deleted.
-      const cardName = event.target.getAttribute("data-name");
-      const cardId = event.target.getAttribute("data-id");
-
-      // Check if task is from a project.
-      const fromProject = event.target.getAttribute("data-project");
-
-      // If task is from a project, set type to 'project'.
-      const type = fromProject === "project" ? "project" : "task";
-
-      // Confirm user wants to delete task.
-      if (
-        confirm(
-          `Are you sure you want to delete ${type} "${cardName}"? This action cannot be undone.`
-        )
-      ) {
-        // Delete project, or task, from localStorage and state.
-        deleteTaskOrProject(cardId, type);
-
-        // Reload window after deleting project.
-        if (fromProject === "project") {
-          location.reload();
-
-          // Remove task from DOM.
-        } else {
-          const taskCard = document.getElementById(`${cardId}`);
-          taskCard.remove();
-        }
-
-        // Update window if there are no more tasks for that dateRange.
-      } else {
-        console.log(`User cancelled deletion of ${type} "${cardName}".`);
-      }
-    });
-  });
+  // Add functionality to the delete icons.
+  deleteIconFunctionality();
 
   // Add functionality to the task checkboxes.
   const taskCheckboxes = document.querySelectorAll(`.task-checkbox`);
@@ -304,6 +280,7 @@ export function taskDateButtons() {
 }
 
 export function taskPopupFunctionality(locationCall) {
+  console.log("location call: ", locationCall);
   let addTaskButton;
   if (locationCall === "project") {
     addTaskButton = document.querySelector("#add-task-project");
@@ -326,4 +303,6 @@ export function taskPopupFunctionality(locationCall) {
     // Add functionality for the "Add Task" button.
     submitTaskButton(Task, locationCall);
   });
+
+  console.log("addTaskButton: ", addTaskButton);
 }
