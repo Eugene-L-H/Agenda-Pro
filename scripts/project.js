@@ -75,7 +75,7 @@ export function displayProject(project) {
               </div>
               <div class="project-priority">                
                 <span class="project-priority-label">Priority:</span>
-                <span class="project-priority-value">${priority}</span>
+                <span class="project-priority-value">&nbsp;${priority}</span>
               </div>
           </div>
       </div>

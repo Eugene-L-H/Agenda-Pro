@@ -5,6 +5,7 @@ import {
   updateProjectsArray
 } from "./helpers/state.js";
 import { Task } from "./helpers/classes.js";
+import { deleteTaskOrProject } from "./helpers/state.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
 import { isDueInTimeFrame } from "./helpers/compare-dates.js";
 import { getFormattedDate } from "./helpers/compare-dates.js";
@@ -95,56 +96,6 @@ export function addNewTaskPopup() {
   return popupHTML;
 }
 
-// Delete project, and tasks from localStorage and state using X on the task card.
-function deleteTaskorProject(cardId, project) {
-  console.log("HELLO FROM WITHIN");
-  // Check if the cardId is from a task or a project
-  let cardType = "";
-  cardType = project === "project" ? "project" : "task";
-  console.log("cardType: ", cardType);
-
-  // Retrieve the task array from localStorage
-  const array = JSON.parse(localStorage.getItem(`${cardType}sArray`));
-
-  // Check if array is not null and is an array
-  if (Array.isArray(array)) {
-    // Find task with the matching id.
-    const cardIndex = array.findIndex(
-      cardType => cardType.id === Number(cardId)
-    );
-
-    // If project is being deleted, delete tasks associated with the project.
-    if (cardType === "project") {
-      // Retrieve project name with matching id from projectsArray
-      const projectName = array[cardIndex].name;
-
-      tasksArray.forEach(task => {
-        if (task.project === projectName) {
-          // Delete the task from the tasksArray
-          deleteTaskorProject(task.id, "task");
-        }
-      });
-    }
-
-    // If the project, or Task is found, remove it from the array
-    if (cardIndex !== -1) {
-      array.splice(cardIndex, 1);
-
-      // Save the updated array back to localStorage
-      localStorage.setItem(`${cardType}Array`, JSON.stringify(array));
-
-      // Update the array in the state
-      cardType === "project"
-        ? updateProjectsArray(array)
-        : updateTasksArray(array);
-    } else {
-      console.log(`${cardType} not found`);
-    }
-  } else {
-    console.log(`No ${cardType}s found in localStorage`);
-  }
-}
-
 function checkTask(taskId) {
   // Retrieve task from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
@@ -228,12 +179,13 @@ export function taskCardFunctionality() {
         )
       ) {
         // Delete project, or task, from localStorage and state.
-        deleteTaskorProject(cardId, type);
+        deleteTaskOrProject(cardId, type);
 
-        // Remove task from DOM.
+        // Reload window after deleting project.
         if (fromProject === "project") {
-          // location.reload();
-          console.log("PAGE RELOAD ACTIVATED!!!");
+          location.reload();
+
+          // Remove task from DOM.
         } else {
           const taskCard = document.getElementById(`${cardId}`);
           taskCard.remove();
