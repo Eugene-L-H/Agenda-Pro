@@ -30,6 +30,7 @@ header h1 {
 #dark-mode-icon {
   cursor: pointer;
   transition: transform 0.2s ease;
+  color: red;
 }
 
 #dark-mode-icon:hover {
