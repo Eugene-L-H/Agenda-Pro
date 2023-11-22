@@ -29,8 +29,8 @@ header h1 {
 // Dark mode.
 #dark-mode-icon {
   cursor: pointer;
+  user-select: none;
   transition: transform 0.2s ease;
-  color: red;
 }
 
 #dark-mode-icon:hover {
@@ -71,7 +71,7 @@ header h1 {
 }
 
 /* Hamburger icon */
-.menu-toggle {
+#hamburger-icon {
   display: none;
   justify-self: flex-end;
   flex-direction: column;
@@ -445,7 +445,7 @@ ul.projects {
 
 /* Mobile view */
 @media (max-width: 768px) {
-  .menu-toggle {
+  #hamburger-icon {
     display: flex;
   }
 }
