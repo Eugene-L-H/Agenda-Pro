@@ -8,6 +8,8 @@ import {
 // Dark mode toggle.
 import { darkMode } from "./helpers/dark-mode.js";
 
+import { hamburgerFunctionality } from "./helpers/mobile-menu.js";
+
 // For populating content area with tasks.
 import {
   displayTasks,
@@ -37,6 +39,7 @@ export {
   updateProjectsArray,
   updateTasksArray,
   darkMode,
+  hamburgerFunctionality,
   displayTasks,
   taskDateButtons,
   taskPopupFunctionality,
