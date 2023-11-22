@@ -68,6 +68,7 @@ function deleteTaskOrProject(cardId, project) {
       // Retrieve project name with matching id from projectsArray
       const projectName = array[cardIndex].name;
 
+      // Iterate through tasksArray and delete tasks associated with the project.
       tasksArray.forEach(task => {
         if (task.project === projectName) {
           // Delete the task from the tasksArray

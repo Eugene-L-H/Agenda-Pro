@@ -10,7 +10,7 @@ const main = document.querySelector("main");
 FUN.darkMode();
 
 // Display the weather information.
-FUN.fetchWeather();
+FUN.loadWeather();
 
 // Add functionality to the task date buttons.
 FUN.taskDateButtons();

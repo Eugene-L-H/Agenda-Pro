@@ -26,7 +26,7 @@ import { Project } from "./helpers/classes.js";
 // Functions for handling the popups.
 import { closePopupButton } from "./helpers/popup.js";
 
-import { fetchWeather } from "./helpers/weather.js";
+import { loadWeather } from "./helpers/weather.js";
 
 // Functions for sorting arrays by due date, and priority.
 import { sortArrayByDate, sortArrayByPriority } from "./helpers/sortArrays.js";
@@ -45,7 +45,7 @@ export {
   submitProjectButton,
   Project,
   closePopupButton,
-  fetchWeather,
+  loadWeather,
   sortArrayByDate,
   sortArrayByPriority
 };

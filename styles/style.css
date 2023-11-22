@@ -11,45 +11,26 @@ body {
 }
 
 header {
-  width: 100%;
-  height: 10%;
   display: flex;
   color: #000;
   justify-content: space-around;
   align-items: center;
+  width: 100%;
+  height: 10%;
   font-size: 2rem;
   border-bottom: 1px solid #000;
 }
 
 header h1 {
-  display: flex;
-  justify-self: center;
   font-size: 2.5rem;
   font-family: "Raleway", sans-serif;
 }
 
-/* Hamburger icon */
-.menu-toggle {
-  display: none;
-  justify-self: flex-end;
-  flex-direction: column;
-  cursor: pointer;
-  height: 30px;
-  justify-content: space-between;
-  width: 30px;
-}
-
-.bar {
-  background-color: #333;
-  border-radius: 5px;
-  height: 3px;
-  width: 100%;
-}
-
+// Dark mode.
 #dark-mode-icon {
   cursor: pointer;
-  user-select: none;
   transition: transform 0.2s ease;
+  color: red;
 }
 
 #dark-mode-icon:hover {
@@ -62,17 +43,7 @@ header h1 {
   background-color: #222;
 }
 
-/* Main app content */
-main {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 /* Weather API */
-
 #weather-info {
   display: flex;
   flex-direction: column;
@@ -97,6 +68,33 @@ main {
   font-size: 1rem;
   font-style: italic;
   margin-left: 5px;
+}
+
+/* Hamburger icon */
+.menu-toggle {
+  display: none;
+  justify-self: flex-end;
+  flex-direction: column;
+  cursor: pointer;
+  height: 30px;
+  justify-content: space-between;
+  width: 30px;
+}
+
+.bar {
+  background-color: #333;
+  border-radius: 5px;
+  height: 3px;
+  width: 100%;
+}
+
+/* Main app content */
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #app {
