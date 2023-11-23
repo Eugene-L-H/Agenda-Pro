@@ -26,7 +26,7 @@ header h1 {
   font-family: "Raleway", sans-serif;
 }
 
-// Dark mode.
+/* Dark mode */
 #dark-mode-icon {
   cursor: pointer;
   user-select: none;
@@ -64,7 +64,7 @@ header h1 {
   font-weight: 300;
 }
 
-#weather-descripton {
+#weather-description {
   font-size: 1rem;
   font-style: italic;
   margin-left: 5px;
@@ -75,10 +75,11 @@ header h1 {
   display: none;
   justify-self: flex-end;
   flex-direction: column;
-  cursor: pointer;
-  height: 30px;
   justify-content: space-between;
+  height: 30px;
   width: 30px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
 }
 
 .bar {
@@ -441,13 +442,6 @@ ul.projects {
 
 .overdue {
   background: lightsalmon;
-}
-
-/* Mobile view */
-@media (max-width: 768px) {
-  #hamburger-icon {
-    display: flex;
-  }
 }
 
 /* Applied over the entire app, popup aside, when a popup is open */

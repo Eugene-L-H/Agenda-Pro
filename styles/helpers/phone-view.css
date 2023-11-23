@@ -19,6 +19,10 @@ body {
   }
 
   /* Hamburger icon */
+  #hamburger-icon {
+    display: flex;
+  }
+
   #hamburger-icon:hover {
     color: #00f;
     transform: scale(1.1);
@@ -27,4 +31,16 @@ body {
   #app {
     display: none;
   }
+}
+
+/* Mobile menu. */
+#mobile-menu {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  width: 80vh;
+}
+
+.menu-open {
+  pointer-events: none;
 }
