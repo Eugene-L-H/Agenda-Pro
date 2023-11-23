@@ -1,7 +1,7 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   height: 100vh;
   max-width: 100%;
@@ -67,7 +67,6 @@ header h1 {
 #weather-description {
   font-size: 1rem;
   font-style: italic;
-  margin-left: 5px;
 }
 
 /* Hamburger icon */

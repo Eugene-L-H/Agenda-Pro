@@ -10,12 +10,14 @@ let projectsOpen = false;
 function mobileMenuHTML() {
   const mobileMenuHTML = `
   <div id="mobile-menu">
-    <span id="mobile-dates-label">Dates:</span>
-    <span id="mobile-today">Today</span>
-    <span id="mobile-week">This Week</span>
-    <span id="mobile-month">This Month</span>
-    <span id="mobile-year">This Year</span>
-    <span id="mobile-projects-label">Projects</span>
+  <span id="mobile-dates-label" class="mobile-label">Tasks:</span>
+    <div class="mobile-dates">
+      <button id="mobile-today" class="mobile-date-selector">Today</button>
+      <button id="mobile-week" class="mobile-date-selector">This<br>Week</button>
+      <button id="mobile-month" class="mobile-date-selector">This<br>Month</button>
+      <button id="mobile-year" class="mobile-date-selector">This<br>Year</button>
+    </div>
+    <button id="mobile-projects-button">Projects</button>
     <ul id="mobile-menu-projects">
     </ul>
   </div>
@@ -26,7 +28,7 @@ function mobileMenuHTML() {
 
 // Toggle the mobile menu open/closed.
 function mobileMenuToggle() {
-  const main = document.querySelector("main");
+  const body = document.querySelector("body");
 
   if (menuOpen) {
     // Delete Mobile Menu
@@ -35,7 +37,7 @@ function mobileMenuToggle() {
 
     // Display the mobile menu. Add event listener for projects button.
   } else {
-    main.insertAdjacentHTML("afterbegin", mobileMenuHTML());
+    body.insertAdjacentHTML("afterbegin", mobileMenuHTML());
     mobileMenuProjects();
   }
 
@@ -45,10 +47,9 @@ function mobileMenuToggle() {
 
 /* Event listener for projects button. Populates the projects list with project names. */
 function mobileMenuProjects() {
-  const projectsLabel = document.querySelector("#mobile-projects-label");
+  const projectsLabel = document.querySelector("#mobile-projects-button");
   const projectList = document.querySelector("#mobile-menu-projects");
 
-  console.log("projectsOpen before: ", projectsOpen);
   projectsLabel.addEventListener("click", () => {
     // If the projects list is open, close it.
     if (projectsOpen) {

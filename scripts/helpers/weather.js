@@ -79,7 +79,7 @@ function displayWeather(object) {
   const { location, temperature, weatherDescription } = object;
   // Update header with weather information.
   document.querySelector("#location").innerText = location;
-  document.querySelector("#temperature").innerText = `${temperature}°c, `;
+  document.querySelector("#temperature").innerText = `${temperature}°c,`;
   document.querySelector("#weather-description").innerText = weatherDescription;
 }
 
