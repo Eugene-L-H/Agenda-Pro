@@ -8,7 +8,7 @@ import {
 // Dark mode toggle.
 import { darkMode } from "./helpers/dark-mode.js";
 
-import { hamburgerFunctionality } from "./helpers/mobile-menu.js";
+import { hamburgerFunctionality } from "./mobile-menu.js";
 
 // For populating content area with tasks.
 import {
