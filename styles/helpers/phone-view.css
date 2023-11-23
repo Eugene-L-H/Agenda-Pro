@@ -1,0 +1,46 @@
+// @media queries for mobile phones
+body {
+  background: #000;
+}
+
+@media (max-width: 768px) {
+  header h1,
+  #dark-mode-icon {
+    font-size: 1.5rem;
+  }
+
+  #location,
+  #temperature {
+    font-size: 1rem;
+  }
+
+  #weather-description {
+    font-size: 0.8rem;
+  }
+
+  /* Hamburger icon */
+  #hamburger-icon {
+    display: flex;
+  }
+
+  #hamburger-icon:hover {
+    color: #00f;
+    transform: scale(1.1);
+  }
+
+  #app {
+    display: none;
+  }
+}
+
+/* Mobile menu. */
+#mobile-menu {
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+  width: 80vh;
+}
+
+.menu-open {
+  pointer-events: none;
+}

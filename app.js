@@ -9,6 +9,9 @@ const main = document.querySelector("main");
 // Dark mode functionality.
 FUN.darkMode();
 
+// Mobile menu functionality.
+FUN.hamburgerFunctionality();
+
 // Display the weather information.
 FUN.loadWeather();
 
