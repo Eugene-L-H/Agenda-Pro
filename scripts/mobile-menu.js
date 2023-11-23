@@ -18,8 +18,10 @@ function mobileMenuHTML() {
       <button id="mobile-year" class="mobile-date-selector">This<br>Year</button>
     </div>
     <button id="mobile-projects-button">Projects</button>
-    <ul id="mobile-menu-projects">
-    </ul>
+    <div className="mobile-projects-container">
+      <ul id="mobile-menu-projects">
+      </ul>
+    </div>
   </div>
   `;
 

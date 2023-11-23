@@ -39,6 +39,7 @@ body {
   margin-top: 18%;
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: fit-content;
   width: 80vw;
   background: lightgray;
@@ -57,6 +58,7 @@ body {
 .mobile-label {
   padding: 0.5rem 0;
   text-align: center;
+  border-bottom: 1px solid #000;
 }
 
 .mobile-date-selector {
@@ -67,10 +69,18 @@ body {
   border-radius: 5%;
 }
 
-#mobile-menu span {
-  border-bottom: 1px solid #000;
+#mobile-projects-button {
+  width: 100px;
+  height: 50px;
 }
 
-.mobile-menu-projects {
+#mobile-menu-projects {
   height: fit-content;
+}
+
+/* Hide mobile menu when desktop view is on. */
+@media (min-width: 768px) {
+  #mobile-menu {
+    display: none;
+  }
 }
