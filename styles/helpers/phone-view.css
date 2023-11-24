@@ -180,12 +180,26 @@ body {
   flex-direction: column;
   width: 100%;
   height: fit-content;
+  list-style-type: disc;
   padding: 0;
   margin-left: 175px;
 }
 
 #mobile-menu-projects li {
-  text-align: start;
+  display: flex;
+  align-items: flex-end;
+  text-indent: 10px;
+  color: #333;
+  height: 23px;
+  width: 185px;
+  background: #d6c6e1;
+  border-top: 1px solid #777;
+  border-left: 1px solid #777;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  border-radius: 5%;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
 }
 
 /* Mobile content div. */

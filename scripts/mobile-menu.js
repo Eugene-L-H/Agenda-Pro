@@ -24,7 +24,7 @@ function mobileMenuHTML() {
     </div>
     <button id="mobile-add-task" class="add-task-button">+<br>Add Task</button>
     <div id="mobile-project-button-container">
-      <button id="mobile-view-projects-button" class="mobile-projects-button">Projects ↓</button>
+      <button id="mobile-view-projects-button" class="mobile-projects-button">Projects 🡇</button>
       <button id="mobile-add-project-button" class="mobile-projects-button">+ Add Project</button>
     </div>
     <ul id="mobile-menu-projects">
@@ -119,7 +119,7 @@ function mobileMenuProjects() {
     if (projectsOpen) {
       projectList.innerHTML = "";
 
-      projectsButton.textContent = "Projects ↓";
+      projectsButton.textContent = "Projects 🡇";
 
       // Populate the projects list with project names.
     } else {
@@ -128,7 +128,7 @@ function mobileMenuProjects() {
         projectName.textContent = project.name;
         projectList.appendChild(projectName);
       });
-      projectsButton.textContent = "Projects ↑";
+      projectsButton.textContent = "🡅 🡅";
     }
 
     // Toggle the projects list open/closed.
