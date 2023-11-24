@@ -124,7 +124,8 @@ body {
 }
 
 .mobile-date-selector {
-  font-size: 0.95rem;
+  font-size: 0.85rem;
+  font-weight: 700;
   text-align: center;
   height: 65px;
   width: 65px;
@@ -143,13 +144,35 @@ body {
   margin-top: 120px;
 }
 
-#mobile-projects-button {
-  font-size: 1.1rem;
+.mobile-projects-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#mobile-project-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 70px;
+  width: 240px;
+}
+
+.mobile-projects-button {
+  font-size: 0.9rem;
   font-weight: 700;
-  width: 150px;
+  text-align: center;
+  width: 100px;
   height: 50px;
   border-radius: 5%;
+}
+
+#mobile-view-projects-button {
   background: #ffd580;
+}
+
+#mobile-add-project-button {
+  background: lightblue;
 }
 
 #mobile-menu-projects {
