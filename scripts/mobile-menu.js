@@ -1,5 +1,5 @@
 import { projectsArray, tasksArray } from "./helpers/state.js";
-import { displayTasks } from "./tasks.js";
+import { displayTasks, taskPopupFunctionality } from "./tasks.js";
 
 // Flag to determine if the mobile menu is open or closed.
 let menuOpen = false;
@@ -18,7 +18,7 @@ function mobileMenuHTML() {
       <button id="mobile-month" class="mobile-date-selector">This<br>Month</button>
       <button id="mobile-year" class="mobile-date-selector">This<br>Year</button>
     </div>
-    <button id="mobile-add-task">+<br>Add Task</button>
+    <button id="mobile-add-task" class="add-task-button">+<br>Add Task</button>
     <div className="mobile-projects-container">
     <button id="mobile-projects-button">Projects ↓</button>
       <ul id="mobile-menu-projects">
@@ -56,6 +56,7 @@ function mobileMenuToggle() {
   } else {
     body.insertAdjacentHTML("afterbegin", mobileMenuHTML());
     mobileMenuDates();
+    mobileMenuAddTask();
     mobileMenuProjects();
   }
 
@@ -88,6 +89,16 @@ function mobileMenuDates() {
 
   yearButton.addEventListener("click", () => {
     displayTasks("year", true);
+    mobileMenuClose();
+  });
+}
+
+// + Add Task button event listener. Calls popup.
+function mobileMenuAddTask() {
+  const addTaskButton = document.querySelector("#mobile-add-task");
+  taskPopupFunctionality("mobile");
+
+  addTaskButton.addEventListener("click", () => {
     mobileMenuClose();
   });
 }

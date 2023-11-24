@@ -276,10 +276,16 @@ export function taskDateButtons() {
   });
 }
 
+/**
+ * Display the add task popup.
+ * @param {String} locationCall - The location of the popup.
+ */
 export function taskPopupFunctionality(locationCall) {
   let addTaskButton;
   if (locationCall === "project") {
     addTaskButton = document.querySelector("#add-task-project");
+  } else if (locationCall === "mobile") {
+    addTaskButton = document.querySelector("#mobile-add-task");
   } else {
     addTaskButton = document.querySelector("#add-task-sidebar");
   }
