@@ -176,7 +176,12 @@ body {
 }
 
 #mobile-menu-projects {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
   height: fit-content;
+  padding: 0;
 }
 
 /* Mobile content div. */
