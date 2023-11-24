@@ -9,6 +9,10 @@ let projectsOpen = false;
 
 // HTML for mobile menu.
 function mobileMenuHTML() {
+  // Check if projects present in projectsArray.
+  const projectsPresent = projectsArray.length > 0 ? true : false;
+  const noProjectsMessage = "No projects found.";
+
   const mobileMenuHTML = `
   <div id="mobile-menu">
   <span id="mobile-dates-label" class="mobile-label">TASKS</span>
@@ -19,11 +23,13 @@ function mobileMenuHTML() {
       <button id="mobile-year" class="mobile-date-selector">This<br>Year</button>
     </div>
     <button id="mobile-add-task" class="add-task-button">+<br>Add Task</button>
-    <div className="mobile-projects-container">
-    <button id="mobile-projects-button">Projects ↓</button>
-      <ul id="mobile-menu-projects">
-      </ul>
+    <div id="mobile-project-button-container">
+      <button id="mobile-view-projects-button" class="mobile-projects-button">Projects 🡇</button>
+      <button id="mobile-add-project-button" class="mobile-projects-button">+ Add Project</button>
     </div>
+    <ul id="mobile-menu-projects">
+      ${projectsPresent ? "" : noProjectsMessage}
+    </ul>
   </div>
   `;
 
@@ -105,13 +111,15 @@ function mobileMenuAddTask() {
 
 /* Event listener for projects button. Populates the projects list with project names. */
 function mobileMenuProjects() {
-  const projectsLabel = document.querySelector("#mobile-projects-button");
+  const projectsButton = document.querySelector(".mobile-projects-button");
   const projectList = document.querySelector("#mobile-menu-projects");
 
-  projectsLabel.addEventListener("click", () => {
+  projectsButton.addEventListener("click", () => {
     // If the projects list is open, close it.
     if (projectsOpen) {
       projectList.innerHTML = "";
+
+      projectsButton.textContent = "Projects 🡇";
 
       // Populate the projects list with project names.
     } else {
@@ -120,6 +128,7 @@ function mobileMenuProjects() {
         projectName.textContent = project.name;
         projectList.appendChild(projectName);
       });
+      projectsButton.textContent = "🡅 🡅";
     }
 
     // Toggle the projects list open/closed.
