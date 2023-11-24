@@ -55,5 +55,6 @@ if (localStorage.getItem("tasksArray") !== null) {
   );
   array = FUN.sortArrayByDate(array);
   FUN.updateTasksArray(array);
-  FUN.displayTasks("today");
+  FUN.displayTasks("today"); // Display tasks on desktop.
+  FUN.displayTasks("today", "mobile"); // Display tasks on mobile.
 }
