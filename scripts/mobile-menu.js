@@ -111,13 +111,15 @@ function mobileMenuAddTask() {
 
 /* Event listener for projects button. Populates the projects list with project names. */
 function mobileMenuProjects() {
-  const projectsLabel = document.querySelector(".mobile-projects-button");
+  const projectsButton = document.querySelector(".mobile-projects-button");
   const projectList = document.querySelector("#mobile-menu-projects");
 
-  projectsLabel.addEventListener("click", () => {
+  projectsButton.addEventListener("click", () => {
     // If the projects list is open, close it.
     if (projectsOpen) {
       projectList.innerHTML = "";
+
+      projectsButton.textContent = "Projects ↓";
 
       // Populate the projects list with project names.
     } else {
@@ -126,6 +128,7 @@ function mobileMenuProjects() {
         projectName.textContent = project.name;
         projectList.appendChild(projectName);
       });
+      projectsButton.textContent = "Projects ↑";
     }
 
     // Toggle the projects list open/closed.
