@@ -98,7 +98,7 @@ export function displayProject(project) {
 }
 
 // In the project card, displays tasks that match that project.
-function projectDisplayTasks(projectName, tasks) {
+export function projectDisplayTasks(projectName, tasks) {
   const taskListHTML = document.querySelector("#task-list");
 
   let tasksFound = false; // Flag to check if tasks were found.

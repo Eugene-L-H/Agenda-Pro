@@ -1,5 +1,6 @@
 import { projectsArray, tasksArray } from "./helpers/state.js";
 import { displayTasks, taskPopupFunctionality } from "./tasks.js";
+import { displayProject, projectDisplayTasks } from "./project.js";
 
 // Flag to determine if the mobile menu is open or closed.
 let menuOpen = false;
@@ -22,10 +23,10 @@ function mobileMenuHTML() {
       <button id="mobile-month" class="mobile-date-selector">This<br>Month</button>
       <button id="mobile-year" class="mobile-date-selector">This<br>Year</button>
     </div>
-    <button id="mobile-add-task" class="add-task-button">+<br>Add Task</button>
+    <button id="mobile-add-task" class="add-task-button">+<br>Add<br>Task</button>
     <div id="mobile-project-button-container">
       <button id="mobile-view-projects-button" class="mobile-projects-button">Projects 🡇</button>
-      <button id="mobile-add-project-button" class="mobile-projects-button">+ Add Project</button>
+      <button id="mobile-add-project-button" class="mobile-projects-button">+ Add&nbsp;<br>Project</button>
     </div>
     <ul id="mobile-menu-projects">
       ${projectsPresent ? "" : noProjectsMessage}
@@ -123,11 +124,29 @@ function mobileMenuProjects() {
 
       // Populate the projects list with project names.
     } else {
+      // Target the mobile div in the body.
+      const mobileDiv = document.querySelector("#mobile-content");
+
       projectsArray.forEach(project => {
+        // Create a list item element for each project name.
         const projectName = document.createElement("li");
+        projectName.classList.add("mobile-project");
         projectName.textContent = project.name;
+
+        // Add name as list item to the projects list.
         projectList.appendChild(projectName);
+
+        // Add event listener for each project name.
+        projectName.addEventListener("click", () => {
+          // Clear the mobile div, load project card, and associated tasks.
+          mobileDiv.innerHTML = "";
+          mobileMenuClose();
+          mobileDiv.insertAdjacentHTML("afterbegin", displayProject(project));
+          projectDisplayTasks(project, tasksArray);
+        });
       });
+
+      // Change the projects button text upon clicking.
       projectsButton.textContent = "🡅 🡅";
     }
 

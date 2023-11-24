@@ -4,7 +4,7 @@ body {
   /* justify-content: center; */
   align-items: center;
   height: 100vh;
-  width: 97vw;
+  width: 97%;
   font-family: "Raleway", sans-serif;
   transition: filter 0.2s ease;
   overflow: hidden;
@@ -17,7 +17,7 @@ header {
   color: #000;
   justify-content: space-around;
   align-items: center;
-  width: 100%;
+  width: 97vw;
   height: 90px;
   font-size: 2rem;
   border-bottom: 1px solid #000;
@@ -30,9 +30,12 @@ header h1 {
 
 /* Dark mode */
 #dark-mode-icon {
+  position: absolute;
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease;
+  margin-right: 50%;
+  margin-left: 50%;
 }
 
 #dark-mode-icon:hover {
