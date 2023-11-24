@@ -180,9 +180,21 @@ export function taskCardFunctionality() {
   });
 }
 
-// Display today's tasks in the main content area.
-export function displayTasks(dateRange) {
-  const contentArea = document.querySelector("#content-area");
+/**
+ * Display tasks in the task list.
+ * @param {String} dateRange - The date range of tasks to display.
+ * @param {Boolean} mobile - Whether the tasks are being displayed on a mobile device.
+ * @returns {void}
+ */
+export function displayTasks(dateRange, mobile) {
+  // Where tasks will be appended to, mobile vs desktop.
+  let contentArea;
+  if (mobile) {
+    contentArea = document.querySelector("#mobile-content");
+  } else {
+    contentArea = document.querySelector("#content-area");
+  }
+
   // Clear the content area.
   contentArea.innerHTML = "";
 

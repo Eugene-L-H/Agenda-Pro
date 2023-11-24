@@ -1,4 +1,5 @@
 import { projectsArray, tasksArray } from "./helpers/state.js";
+import { displayTasks } from "./tasks.js";
 
 // Flag to determine if the mobile menu is open or closed.
 let menuOpen = false;
@@ -26,6 +27,19 @@ function mobileMenuHTML() {
   `;
 
   return mobileMenuHTML;
+}
+
+/**
+ * Add functionality to the hamburger icon (mobile menu).
+ */
+export function hamburgerFunctionality() {
+  const hamburgerIcon = document.querySelector("#hamburger-icon");
+  const mobileContent = document.querySelector("#mobile-content");
+
+  hamburgerIcon.addEventListener("click", () => {
+    mobileMenuToggle();
+    mobileContent.innerHTML = "";
+  });
 }
 
 // Toggle the mobile menu open/closed.
@@ -57,19 +71,23 @@ function mobileMenuDates() {
   const yearButton = document.querySelector("#mobile-year");
 
   todayButton.addEventListener("click", () => {
-    alert("Today");
+    displayTasks("today", true);
+    mobileMenuClose();
   });
 
   weekButton.addEventListener("click", () => {
-    alert("This Week");
+    displayTasks("week", true);
+    mobileMenuClose();
   });
 
   monthButton.addEventListener("click", () => {
-    alert("This Month");
+    displayTasks("month", true);
+    mobileMenuClose();
   });
 
   yearButton.addEventListener("click", () => {
-    alert("This Year");
+    displayTasks("year", true);
+    mobileMenuClose();
   });
 }
 
@@ -97,16 +115,9 @@ function mobileMenuProjects() {
   });
 }
 
-/**
- * Add functionality to the hamburger icon (mobile menu).
- */
-export function hamburgerFunctionality() {
-  const hamburgerIcon = document.querySelector("#hamburger-icon");
-
-  const taskList = document.querySelector("#mobile-menu-tasks");
-  const projectList = document.querySelector("#mobile-menu-projects");
-
-  hamburgerIcon.addEventListener("click", () => {
-    mobileMenuToggle();
-  });
+// Remove mobile menu from DOM, reset flag
+function mobileMenuClose() {
+  const mobileMenu = document.querySelector("#mobile-menu");
+  mobileMenu.remove();
+  menuOpen = false;
 }
