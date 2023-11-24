@@ -40,11 +40,37 @@ function mobileMenuToggle() {
     // Display the mobile menu. Add event listener for projects button.
   } else {
     body.insertAdjacentHTML("afterbegin", mobileMenuHTML());
+    mobileMenuDates();
     mobileMenuProjects();
   }
 
   // Toggle the menu open/closed.
   menuOpen ? (menuOpen = false) : (menuOpen = true);
+}
+
+// Event listeners for the task date-range buttons.
+function mobileMenuDates() {
+  // Get the date-range buttons.
+  const todayButton = document.querySelector("#mobile-today");
+  const weekButton = document.querySelector("#mobile-week");
+  const monthButton = document.querySelector("#mobile-month");
+  const yearButton = document.querySelector("#mobile-year");
+
+  todayButton.addEventListener("click", () => {
+    alert("Today");
+  });
+
+  weekButton.addEventListener("click", () => {
+    alert("This Week");
+  });
+
+  monthButton.addEventListener("click", () => {
+    alert("This Month");
+  });
+
+  yearButton.addEventListener("click", () => {
+    alert("This Year");
+  });
 }
 
 /* Event listener for projects button. Populates the projects list with project names. */

@@ -10,6 +10,7 @@ body {
 
   header {
     justify-content: space-between;
+    margin-top: 5px;
   }
 
   header h1,
