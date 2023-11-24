@@ -73,6 +73,10 @@ body {
     margin-top: 20px;
   }
 
+  #task-list > :last-child {
+    margin-bottom: 20px;
+  }
+
   #task-list li {
     margin-bottom: 15px;
   }
