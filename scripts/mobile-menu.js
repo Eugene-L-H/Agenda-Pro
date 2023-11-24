@@ -22,10 +22,10 @@ function mobileMenuHTML() {
       <button id="mobile-month" class="mobile-date-selector">This<br>Month</button>
       <button id="mobile-year" class="mobile-date-selector">This<br>Year</button>
     </div>
-    <button id="mobile-add-task" class="add-task-button">+<br>Add Task</button>
+    <button id="mobile-add-task" class="add-task-button">+<br>Add<br>Task</button>
     <div id="mobile-project-button-container">
       <button id="mobile-view-projects-button" class="mobile-projects-button">Projects 🡇</button>
-      <button id="mobile-add-project-button" class="mobile-projects-button">+ Add Project</button>
+      <button id="mobile-add-project-button" class="mobile-projects-button">+ Add&nbsp;<br>Project</button>
     </div>
     <ul id="mobile-menu-projects">
       ${projectsPresent ? "" : noProjectsMessage}

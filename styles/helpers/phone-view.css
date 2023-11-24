@@ -134,7 +134,9 @@ body {
 }
 
 #mobile-add-task {
-  /* text-align: center; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   font-weight: 700;
   height: 60px;
