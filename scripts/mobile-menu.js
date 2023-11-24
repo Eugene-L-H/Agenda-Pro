@@ -124,9 +124,18 @@ function mobileMenuProjects() {
       // Populate the projects list with project names.
     } else {
       projectsArray.forEach(project => {
+        // Create a list item element for each project name.
         const projectName = document.createElement("li");
+        projectName.classList.add("mobile-project");
         projectName.textContent = project.name;
+
         projectList.appendChild(projectName);
+
+        projectName.addEventListener("click", () => {
+          // Display tasks for the selected project.
+          displayTasks(project.name, true);
+          mobileMenuClose();
+        });
       });
       projectsButton.textContent = "🡅 🡅";
     }
@@ -136,6 +145,10 @@ function mobileMenuProjects() {
   });
 }
 
+// Event listeners for mobile menu project list.
+function mobileMenuProjectList() {
+  const projectList = document.querySelector("#mobile-menu-projects");
+}
 // Remove mobile menu from DOM, reset flag
 function mobileMenuClose() {
   const mobileMenu = document.querySelector("#mobile-menu");
