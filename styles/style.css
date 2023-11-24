@@ -11,6 +11,8 @@ body {
 }
 
 header {
+  position: absolute;
+  z-index: 1;
   display: flex;
   color: #000;
   justify-content: space-around;
