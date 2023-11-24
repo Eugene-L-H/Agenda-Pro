@@ -11,15 +11,16 @@ let projectsOpen = false;
 function mobileMenuHTML() {
   const mobileMenuHTML = `
   <div id="mobile-menu">
-  <span id="mobile-dates-label" class="mobile-label">Tasks:</span>
+  <span id="mobile-dates-label" class="mobile-label">TASKS</span>
     <div class="mobile-dates">
       <button id="mobile-today" class="mobile-date-selector">Today</button>
       <button id="mobile-week" class="mobile-date-selector">This<br>Week</button>
       <button id="mobile-month" class="mobile-date-selector">This<br>Month</button>
       <button id="mobile-year" class="mobile-date-selector">This<br>Year</button>
     </div>
-    <button id="mobile-projects-button">Projects</button>
+    <button id="mobile-add-task">+<br>Add Task</button>
     <div className="mobile-projects-container">
+    <button id="mobile-projects-button">Projects ↓</button>
       <ul id="mobile-menu-projects">
       </ul>
     </div>
