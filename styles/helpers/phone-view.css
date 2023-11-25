@@ -1,0 +1,237 @@
+// @media queries for mobile phones
+body {
+  background: #000;
+}
+
+@media (max-width: 768px) {
+  header h1 {
+    margin-left: 10px;
+  }
+
+  header {
+    justify-content: space-between;
+    height: 80px;
+  }
+
+  header h1,
+  #dark-mode-icon {
+    font-size: 1.7rem;
+  }
+
+  #dark-mode-icon {
+    margin-right: 52.7%;
+    margin-left: 47.3%;
+  }
+
+  .header-right-side {
+    display: flex;
+    justify-content: space-around;
+    width: 33%;
+    margin-right: 10px;
+  }
+
+  #weather-info {
+    margin-right: 5px;
+  }
+
+  /* Drop weather description below temperature to save space. */
+  .weather-info-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #location,
+  #temperature {
+    font-size: 1rem;
+  }
+
+  #weather-description {
+    font-size: 0.8rem;
+    margin-top: 2px;
+  }
+
+  /* Hamburger icon */
+  #hamburger-icon {
+    display: flex;
+  }
+
+  #hamburger-icon:hover {
+    color: #00f;
+    transform: scale(1.1);
+  }
+
+  /* Displayed tasks */
+  .list-range-title {
+    font-size: 1.2rem;
+    text-align: center;
+    width: 100%;
+    padding-top: 20px;
+    background: lightgray;
+  }
+
+  #task-list {
+    height: 85vh;
+  }
+
+  #task-list > :first-child {
+    /* Add top margin to first task card. */
+    margin-top: 20px;
+  }
+
+  #task-list li {
+    margin-bottom: 15px;
+  }
+
+  /* Popups */
+
+  .popup {
+    margin-top: 67px;
+  }
+
+  /* Hide desktop app content */
+  #app {
+    display: none;
+  }
+}
+
+/* Mobile menu. */
+#mobile-menu {
+  z-index: 2;
+  margin-top: 67px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: fit-content;
+  width: 314px;
+  background: lightgray;
+  border: 1px solid #000;
+}
+
+.mobile-dates {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  width: 310px;
+  height: 250px;
+}
+
+.mobile-label {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #333;
+  text-align: center;
+  width: 200px;
+  border-bottom: 1px solid #777;
+  padding-bottom: 2px;
+  margin-top: 10px;
+}
+
+.mobile-date-selector {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-align: center;
+  height: 65px;
+  width: 65px;
+  margin: 25px;
+  border-radius: 5%;
+}
+
+#mobile-add-task {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  font-weight: 700;
+  height: 60px;
+  width: 60px;
+  background: lightblue;
+  border-radius: 10%;
+  margin-top: 120px;
+}
+
+.mobile-projects-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#mobile-project-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 70px;
+  width: 240px;
+}
+
+.mobile-projects-button {
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-align: center;
+  width: 100px;
+  height: 50px;
+  border-radius: 5%;
+}
+
+#mobile-view-projects-button {
+  background: #ffd580;
+}
+
+#mobile-add-project-button {
+  background: lightblue;
+}
+
+#mobile-menu-projects {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  list-style-type: disc;
+  padding: 0;
+  margin-left: 175px;
+}
+
+#mobile-menu-projects li {
+  display: flex;
+  align-items: flex-end;
+  text-indent: 10px;
+  color: #333;
+  height: 23px;
+  width: 185px;
+  background: #d6c6e1;
+  border-top: 1px solid #777;
+  border-left: 1px solid #777;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  border-radius: 5%;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+/* Mobile content div. */
+#mobile-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  margin-top: 160px;
+}
+
+#mobile-content .no-tasks-message {
+  font-size: 1.2rem;
+  color: #444;
+  font-style: italic;
+  margin-top: 10%;
+}
+
+/* Hide while desktop view is on. */
+@media (min-width: 768px) {
+  #mobile-menu {
+    display: none;
+  }
+
+  #mobile-content {
+    display: none;
+  }
+}

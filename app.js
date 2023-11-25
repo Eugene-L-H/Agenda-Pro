@@ -9,8 +9,11 @@ const main = document.querySelector("main");
 // Dark mode functionality.
 FUN.darkMode();
 
+// Mobile menu functionality.
+FUN.hamburgerFunctionality();
+
 // Display the weather information.
-FUN.fetchWeather();
+FUN.loadWeather();
 
 // Add functionality to the task date buttons.
 FUN.taskDateButtons();
@@ -46,7 +49,12 @@ if (localStorage.getItem("projectsArray") !== null) {
 
 // Check local storage for tasks.
 if (localStorage.getItem("tasksArray") !== null) {
-  FUN.updateTasksArray(JSON.parse(localStorage.getItem("tasksArray")));
-  console.log("Tasks array on page load: ", FUN.tasksArray);
-  FUN.displayTasks("today");
+  // Sort array by dueDate, and then by priority.
+  let array = FUN.sortArrayByPriority(
+    JSON.parse(localStorage.getItem("tasksArray"))
+  );
+  array = FUN.sortArrayByDate(array);
+  FUN.updateTasksArray(array);
+  FUN.displayTasks("today"); // Display tasks on desktop.
+  FUN.displayTasks("today", "mobile"); // Display tasks on mobile.
 }

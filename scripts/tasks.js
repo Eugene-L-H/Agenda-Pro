@@ -1,11 +1,19 @@
-import { tasksArray, updateTasksArray } from "./helpers/state.js";
+import {
+  tasksArray,
+  updateTasksArray,
+  deleteIconFunctionality
+} from "./helpers/state.js";
 import { Task } from "./helpers/classes.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
 import { isDueInTimeFrame } from "./helpers/compare-dates.js";
+import { getFormattedDate } from "./helpers/compare-dates.js";
 
 export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
+
+  // Is task's dueDate in the past?
+  const overdue = task.dueDate < getFormattedDate();
 
   // Convert the priority number to a description of priority.
   let priority = "Low";
@@ -21,10 +29,12 @@ export function taskDOMobject(task) {
   }
 
   const taskHTML = `
-  <div class="task-card" id="${task.id}">
-    <div class="task-card-content ${task.checked ? "task-completed" : ""}">
+  <div class="task-card${task.checked ? " task-completed" : ""}${
+    overdue ? " overdue" : ""
+  }" id="${task.id}">
+    <div class="task-card-content">
       <h3 class="task-name">${task.name}</h3>
-      <p class="task-description">${task.description}</p>
+      <span class="task-description">${task.description}</span>
       <span class="task-project-name">Project: ${task.project}</span>
       <div class="task-priority">
       <span class="task-priority-label">Priority:</span>
@@ -41,11 +51,9 @@ export function taskDOMobject(task) {
         class="task-checkbox"
         ${task.checked ? "checked='true'" : ""}"'}"
       />
-      <span class="edit-icon ${
-        task.checked ? "task-completed" : ""
-      }" data-id="${task.id}" data-name="${task.name}">✎</span>
-      <span class="delete-icon" data-id="${task.id}" data-name="${
-    task.name
+      <span class="edit-icon ${task.checked ? "task-completed" : ""}"">✎</span>
+      <span class="delete-icon" data-name="${task.name}" data-id="${
+    task.id
   }">✖</span>
     </div>
   </div>
@@ -86,32 +94,6 @@ export function addNewTaskPopup() {
   return popupHTML;
 }
 
-// Delete task from localStorage and state using X on the task card.
-function deleteTask(taskId) {
-  // Retrieve the task array from localStorage
-  const tasks = JSON.parse(localStorage.getItem("tasksArray"));
-
-  // Check if tasks array is not null and is an array
-  if (Array.isArray(tasks)) {
-    // Find task with the matching id.
-    const taskIndex = tasks.findIndex(task => task.id === Number(taskId));
-
-    // If the task is found, remove it from the array
-    if (taskIndex !== -1) {
-      tasks.splice(taskIndex, 1);
-
-      // Save the updated array back to localStorage
-      localStorage.setItem("tasksArray", JSON.stringify(tasks));
-      // Update the tasks array in the state
-      updateTasksArray(tasks);
-    } else {
-      console.log("Task not found");
-    }
-  } else {
-    console.log("No tasks found in localStorage");
-  }
-}
-
 function checkTask(taskId) {
   // Retrieve task from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
@@ -140,7 +122,7 @@ function submitTaskButton(taskClass, locationCall) {
     if (locationCall === "project") {
       projectName = document
         .querySelector("#project-name")
-        .getAttribute("data-info");
+        .getAttribute("data-name");
     }
 
     // Create new task object from user info.
@@ -158,8 +140,10 @@ function submitTaskButton(taskClass, locationCall) {
 
     closePopup();
 
-    // Update window to display new task.
-    location.reload();
+    // Display new task in the task list.
+    const taskCard = taskDOMobject(task);
+    const taskList = document.querySelector("#task-list");
+    taskList.appendChild(taskCard);
   });
 }
 
@@ -172,26 +156,8 @@ export function taskCardFunctionality() {
     });
   });
 
-  // Add functionality to the task delete icons.
-  const deleteIcons = document.querySelectorAll(`.delete-icon`);
-  deleteIcons.forEach(icon => {
-    icon.addEventListener("click", event => {
-      // Retrieve name, and id, of task to be deleted.
-      const taskName = event.target.getAttribute("data-name");
-      const taskId = event.target.getAttribute("data-id");
-
-      // Confirm user wants to delete task.
-      if (confirm(`Are you sure you want to delete task "${taskName}"?`)) {
-        deleteTask(taskId);
-
-        // Remove task from DOM.
-        const taskCard = document.getElementById(`${taskId}`);
-        taskCard.remove();
-      } else {
-        console.log(`User cancelled deletion of task "${taskName}".`);
-      }
-    });
-  });
+  // Add functionality to the delete icons.
+  deleteIconFunctionality();
 
   // Add functionality to the task checkboxes.
   const taskCheckboxes = document.querySelectorAll(`.task-checkbox`);
@@ -200,9 +166,7 @@ export function taskCardFunctionality() {
       const taskCard = event.target.closest(".task-card");
       if (taskCard) {
         // Toggle the task's completed status.
-        taskCard
-          .querySelector(".task-card-content")
-          .classList.toggle("task-completed");
+        taskCard.classList.toggle("task-completed");
 
         taskCard.querySelector(".edit-icon").classList.toggle("task-completed");
 
@@ -216,9 +180,21 @@ export function taskCardFunctionality() {
   });
 }
 
-// Display today's tasks in the main content area.
-export function displayTasks(dateRange) {
-  const contentArea = document.querySelector("#content-area");
+/**
+ * Display tasks in the task list.
+ * @param {String} dateRange - The date range of tasks to display.
+ * @param {Boolean} mobile - Whether the tasks are being displayed on a mobile device.
+ * @returns {void}
+ */
+export function displayTasks(dateRange, mobile) {
+  // Where tasks will be appended to, mobile vs desktop.
+  let contentArea;
+  if (mobile) {
+    contentArea = document.querySelector("#mobile-content");
+  } else {
+    contentArea = document.querySelector("#content-area");
+  }
+
   // Clear the content area.
   contentArea.innerHTML = "";
 
@@ -228,14 +204,20 @@ export function displayTasks(dateRange) {
 
   // Create a list to hold the tasks.
   const taskList = document.createElement("ul");
-  taskList.classList.add("task-list");
+  taskList.id = "task-list";
 
   // Display what span of tasks that will be displayed.
   const title = document.createElement("h2");
   title.classList.add("list-range-title");
   const titleTextContent =
     dateRange[0].toUpperCase() + dateRange.slice(1, dateRange.length);
-  title.textContent = `Tasks for: ${titleTextContent}`;
+
+  // Display 'Tasks for Today', or 'Tasks for This Week', or 'Tasks for This Month'.
+  title.textContent =
+    dateRange === "today"
+      ? `Tasks for: Today`
+      : `Tasks for: This ${titleTextContent}`;
+
   tasksContainer.prepend(title);
 
   let today = new Date();
@@ -294,10 +276,16 @@ export function taskDateButtons() {
   });
 }
 
+/**
+ * Display the add task popup.
+ * @param {String} locationCall - The location of the popup.
+ */
 export function taskPopupFunctionality(locationCall) {
   let addTaskButton;
   if (locationCall === "project") {
     addTaskButton = document.querySelector("#add-task-project");
+  } else if (locationCall === "mobile") {
+    addTaskButton = document.querySelector("#mobile-add-task");
   } else {
     addTaskButton = document.querySelector("#add-task-sidebar");
   }

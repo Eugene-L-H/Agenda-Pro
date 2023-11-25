@@ -8,6 +8,8 @@ import {
 // Dark mode toggle.
 import { darkMode } from "./helpers/dark-mode.js";
 
+import { hamburgerFunctionality } from "./mobile-menu.js";
+
 // For populating content area with tasks.
 import {
   displayTasks,
@@ -26,7 +28,10 @@ import { Project } from "./helpers/classes.js";
 // Functions for handling the popups.
 import { closePopupButton } from "./helpers/popup.js";
 
-import { fetchWeather } from "./helpers/weather.js";
+import { loadWeather } from "./helpers/weather.js";
+
+// Functions for sorting arrays by due date, and priority.
+import { sortArrayByDate, sortArrayByPriority } from "./helpers/sortArrays.js";
 
 export {
   projectsArray,
@@ -34,13 +39,16 @@ export {
   updateProjectsArray,
   updateTasksArray,
   darkMode,
+  hamburgerFunctionality,
   displayTasks,
+  taskDateButtons,
   taskPopupFunctionality,
   addProjectNameToSidebar,
   addNewProjectPopup,
   submitProjectButton,
   Project,
   closePopupButton,
-  fetchWeather,
-  taskDateButtons
+  loadWeather,
+  sortArrayByDate,
+  sortArrayByPriority
 };

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="styles/meyer-reset.css" />
   <link rel="stylesheet" href="styles/style.css" />
+  <link rel="stylesheet" href="styles/helpers/phone-view.css" />
   <!-- load javascript -->
   <script type="module" src="app.js" defer></script>
   <title>// ToDo-List</title>
@@ -15,24 +16,27 @@
   <header>
     <h1>ToDo-List</h1>
     <span id="dark-mode-icon">☀</span>
-    <div id="weather-info">
-      <span id="location"></span>
-      <div>
-        <span id="temperature"></span>
-        <span id="weather-description">Fetching weather data...</span>
-      </div>
-    </div>
 
-    <!-- mobile menu -->
-    <div class="menu-toggle" id="mobile-menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
+    <div class="header-right-side">
+      <div id="weather-info">
+        <span id="location"></span>
+        <div class="weather-info-container">
+          <span id="temperature"></span>
+          <span id="weather-description">Fetching weather data...</span>
+        </div>
+      </div>
+      <!-- mobile menu -->
+      <div id="hamburger-icon">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
     </div>
   </header>
 
   <!-- main application content -->
   <main>
+    <div id="mobile-content"></div>
     <div id="app">
       <div id="tasks-header">
         <p>// To Do:</p>

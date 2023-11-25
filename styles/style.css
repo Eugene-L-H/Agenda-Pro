@@ -1,55 +1,41 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
   height: 100vh;
-  max-width: 100%;
+  width: 97%;
   font-family: "Raleway", sans-serif;
   transition: filter 0.2s ease;
   overflow: hidden;
 }
 
 header {
-  width: 100%;
-  height: 10%;
+  position: absolute;
+  z-index: 1;
   display: flex;
   color: #000;
   justify-content: space-around;
   align-items: center;
+  width: 97vw;
+  height: 90px;
   font-size: 2rem;
   border-bottom: 1px solid #000;
 }
 
 header h1 {
-  display: flex;
-  justify-self: center;
   font-size: 2.5rem;
   font-family: "Raleway", sans-serif;
 }
 
-/* Hamburger icon */
-.menu-toggle {
-  display: none;
-  justify-self: flex-end;
-  flex-direction: column;
-  cursor: pointer;
-  height: 30px;
-  justify-content: space-between;
-  width: 30px;
-}
-
-.bar {
-  background-color: #333;
-  border-radius: 5px;
-  height: 3px;
-  width: 100%;
-}
-
+/* Dark mode */
 #dark-mode-icon {
+  position: absolute;
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease;
+  margin-right: 50%;
+  margin-left: 50%;
 }
 
 #dark-mode-icon:hover {
@@ -62,17 +48,12 @@ header h1 {
   background-color: #222;
 }
 
-/* Main app content */
-main {
-  width: 100%;
-  height: 100%;
+.header-right-side {
   display: flex;
-  justify-content: center;
   align-items: center;
 }
 
 /* Weather API */
-
 #weather-info {
   display: flex;
   flex-direction: column;
@@ -93,10 +74,37 @@ main {
   font-weight: 300;
 }
 
-#weather-descripton {
+.weather-description {
   font-size: 1rem;
   font-style: italic;
-  margin-left: 5px;
+}
+
+/* Hamburger icon */
+#hamburger-icon {
+  display: none;
+  justify-self: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 25px;
+  width: 25px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.bar {
+  background-color: #333;
+  border-radius: 5px;
+  height: 3px;
+  width: 100%;
+}
+
+/* Main app content */
+main {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #app {
@@ -168,6 +176,10 @@ main {
   padding: 0.5rem;
 }
 
+#submit-task {
+  background: #fff;
+}
+
 .new-post-button:hover,
 .add-task-button:hover {
   cursor: pointer;
@@ -194,29 +206,62 @@ ul.projects {
 .project-card {
   display: flex;
   flex-direction: column;
+  width: 100%;
   height: 100%;
 }
 
+.project-info {
+  display: flex;
+  flex-direction: column;
+  height: 20%;
+}
+
 .project-card-header {
-  height: 10%;
-}
-
-.project-card-body {
-  height: 89.5%;
-}
-
-.project-description {
-  height: 5%;
-  margin-t
-}
-
-.project-deadline {
-  height: 5%;
+  display: flex;
+  align-items: center;
+  margin-top: 0.75rem;
 }
 
 #project-name {
   text-align: center;
   width: 100%;
+  margin: 0;
+  margin-left: 0.75rem;
+}
+
+.project-card-header .delete-icon {
+  margin-right: 0.75rem;
+}
+
+.project-card-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.project-description {
+  margin: 0.5rem 0 0 0;
+}
+
+.project-deadline {
+  margin: 0.5rem 0 0 0;
+}
+
+.project-priority {
+  display: flex;
+}
+
+.project-task-label-line {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 1rem;
+  border-top: 1px solid #000;
+}
+
+.project-tasks-label {
+  /* margin-left: 0.5rem; */
 }
 
 .add-task-text {
@@ -225,26 +270,18 @@ ul.projects {
 
 #add-task-project {
   display: flex;
-  align-self: center;
+  justify-self: center;
+  margin-right: 32%;
 }
 
 #project-tasks {
   display: flex;
   flex-direction: column;
-  height: 87%;
-}
-
-#project-task-list {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
   height: 100%;
-  overflow-y: auto;
 }
 
 .no-tasks {
   font-style: italic;
-  overflow: auto;
 }
 /* Popups */
 .popup {
@@ -255,8 +292,9 @@ ul.projects {
   width: 275px;
   z-index: 100;
   text-align: center;
+  margin-top: 15%;
   border: 1px solid #000;
-  background-color: #fff;
+  background-color: #eee;
 }
 
 .popup-header {
@@ -300,14 +338,17 @@ ul.projects {
 }
 
 /* Container that displays list of tasks*/
-
 .tasks-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
   margin: 0;
-  /* overflow: hidden; */
+  overflow: hidden;
+}
+
+.tasks-container-project {
+  height: 82%;
 }
 
 .list-range-title {
@@ -318,7 +359,7 @@ ul.projects {
   padding: 10px 0;
 }
 
-.task-list {
+#task-list {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
@@ -327,13 +368,18 @@ ul.projects {
   margin: 0;
   margin-bottom: 3px;
   padding: 0 1.75%;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+#task-list > li:last-child {
+  /* Last task has margin for visibility */
+  margin-bottom: 110px;
 }
 
 .task-list-item {
   display: flex;
-  width: 24%;
-  height: 250px;
+  width: fit-content;
+  height: fit-content;
   margin-top: 1.25%;
 }
 
@@ -343,7 +389,8 @@ ul.projects {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 90%;
+  width: 230px;
+  height: 240px;
   border: 1px solid #000;
   padding: 0.25rem 0.75rem;
 }
@@ -389,9 +436,9 @@ ul.projects {
   pointer-events: auto;
 }
 
-
 .delete-icon {
   display: inline-block;
+  font-size: 1.5rem;
   pointer-events: auto;
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -400,11 +447,11 @@ ul.projects {
 .delete-icon:hover {
   color: #f00;
   transform: scale(1.1);
-
 }
 
 .task-completed {
   text-decoration: line-through;
+  background: #eee !important;
   color: #aaa;
   pointer-events: none;
   cursor: default;
@@ -412,11 +459,8 @@ ul.projects {
 
 /*---*/
 
-/* Mobile view */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: flex;
-  }
+.overdue {
+  background: lightsalmon;
 }
 
 /* Applied over the entire app, popup aside, when a popup is open */
