@@ -34,6 +34,8 @@ body {
     margin-right: 5px;
     width: 62%;
     margin-top: -10px;
+  }
+
   /* Drop weather description below temperature to save space. */
   .weather-info-container {
     display: flex;
@@ -93,6 +95,9 @@ body {
     display: none;
   }
 
+  .geolocaiton-error {
+    font-size: 0.5rem;
+  }
 }
 
 /* Mobile menu. */

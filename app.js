@@ -1,30 +1,26 @@
 // Global state variables, and helper functions
-import * as imp from "./scripts/imports.js";
+import * as fun from "./scripts/imports.js";
 
 // Dark mode functionality.
-imp.darkMode();
-
-// Mobile menu functionality.
-FUN.hamburgerFunctionality();
+fun.darkMode();
 
 // Display the weather information.
-imp.loadWeather();
+fun.loadWeather();
 
 // Mobile menu functionality.
-imp.hamburgerFunctionality();
-
+fun.hamburgerFunctionality();
 
 // Add functionality to the task date buttons.
-imp.taskDateButtons();
+fun.taskDateButtons();
 
 // Add functionality to the Add Task button in the sidebar.
-imp.taskPopupFunctionality();
+fun.taskPopupFunctionality();
 
 // Add functionality to the Add Project button.
-imp.addProjectPopupFunctionality();
+fun.addProjectPopupFunctionality();
 
 // Check local storage for tasks.
-imp.tasksStorageToDisplay();
+fun.tasksStorageToDisplay();
 
 // Check local storage for projects. Display in sidebar.
-imp.projectsStorageToDisplay();
+fun.projectsStorageToDisplay();
