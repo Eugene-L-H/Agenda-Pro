@@ -1,16 +1,29 @@
 import {
   deleteIconFunctionality,
   projectsArray,
+  updateProjectsArray,
   closePopup,
   closePopupButton,
   tasksArray,
   Project
 } from "./imports.js";
+
 import {
   taskPopupFunctionality,
   taskDOMobject,
   taskCardFunctionality
 } from "./tasks.js";
+
+// Check local storage for projects. Add them to the sidebar.
+export function projectsStorageToDisplay() {
+  if (localStorage.getItem("projectsArray") !== null) {
+    updateProjectsArray(JSON.parse(localStorage.getItem("projectsArray")));
+    for (const project of projectsArray) {
+      // Create list item dom object
+      addProjectNameToSidebar(project.name);
+    }
+  }
+}
 
 // Popup form for creating a new project.
 function addNewProjectPopup() {
