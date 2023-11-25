@@ -361,6 +361,7 @@ ul.projects {
   padding: 10px 0;
 }
 
+.task-list,
 #task-list {
   display: flex;
   flex-flow: row wrap;
@@ -373,6 +374,7 @@ ul.projects {
   overflow-y: auto;
 }
 
+.task-list > li:last-child,
 #task-list > li:last-child {
   /* Last task has margin for visibility */
   margin-bottom: 110px;
@@ -382,7 +384,7 @@ ul.projects {
   display: flex;
   width: fit-content;
   height: fit-content;
-  margin-top: 1.25%;
+  margin-top: 25px;
 }
 
 /* Task cards */

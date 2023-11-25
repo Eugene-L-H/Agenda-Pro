@@ -71,16 +71,16 @@ body {
     background: lightgray;
   }
 
-  #task-list {
+  .task-list {
     height: 85vh;
   }
 
-  #task-list > :first-child {
+  .task-list > :first-child {
     /* Add top margin to first task card. */
     margin-top: 20px;
   }
 
-  #task-list li {
+  .task-list li {
     margin-bottom: 15px;
   }
 

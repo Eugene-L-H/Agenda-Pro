@@ -114,7 +114,7 @@ export function displayProject(project) {
             </div>
           </div>
           <div class="tasks-container tasks-container-project">
-              <ul id="task-list"></ul>
+              <ul class="task-list"></ul>
           </div>
       </div>
   </div>
@@ -130,16 +130,19 @@ export function displayProject(project) {
  * @returns {String} inserts HTML for the tasks.
  */
 export function projectDisplayTasks(project, tasks) {
-  const taskListHTML = document.querySelector("#task-list");
+  const taskListHTML = document.querySelectorAll(".task-list");
+
+  taskListHTML.forEach(list => (list.innerHTML = ""));
 
   let tasksFound = false; // Flag to check if tasks were found.
 
   // Loop through tasksArray and find tasks that match the project name.
   tasks.forEach(task => {
-    console.log("");
     if (project.name === task.project) {
-      taskListHTML.appendChild(taskDOMobject(task));
-      // Set flag to true.
+      console.log(task);
+
+      taskListHTML.forEach(list => list.appendChild(taskDOMobject(task)));
+      // Set flag to true
       tasksFound = true;
     }
   });
