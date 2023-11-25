@@ -97,15 +97,21 @@ export function displayProject(project) {
   return projectHTML;
 }
 
-// In the project card, displays tasks that match that project.
-export function projectDisplayTasks(projectName, tasks) {
+/**
+ * Displays tasks for a project.
+ * @param {Object} project - Project object.
+ * @param {Array} tasks - Tasks array.
+ * @returns {String} inserts HTML for the tasks.
+ */
+export function projectDisplayTasks(project, tasks) {
   const taskListHTML = document.querySelector("#task-list");
 
   let tasksFound = false; // Flag to check if tasks were found.
 
   // Loop through tasksArray and find tasks that match the project name.
   tasks.forEach(task => {
-    if (projectName.name === task.project) {
+    console.log("");
+    if (project.name === task.project) {
       taskListHTML.appendChild(taskDOMobject(task));
       // Set flag to true.
       tasksFound = true;
@@ -130,6 +136,11 @@ export function projectDisplayTasks(projectName, tasks) {
   }
 }
 
+/**
+ * Adds project name to the sidebar.
+ * @param {String} name - Project name.
+ * @returns {String} inserts HTML for the project name.
+ */
 export function addProjectNameToSidebar(name) {
   // Unordered list that displays names of user-registered projects.
   const projectsNav = document.querySelector("#projects-nav");
@@ -157,7 +168,6 @@ export function addProjectNameToSidebar(name) {
   projectsNav.append(projectListItem);
 }
 
-// Add functionality for the "Add Project" button.
 export function submitProjectButton(projectClass) {
   const submitButton = document.querySelector("#submit-project");
   submitButton.addEventListener("click", () => {

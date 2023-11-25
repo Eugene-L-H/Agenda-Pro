@@ -25,7 +25,7 @@ function mobileMenuHTML() {
     </div>
     <button id="mobile-add-task" class="add-task-button">+<br>Add<br>Task</button>
     <div id="mobile-project-button-container">
-      <button id="mobile-view-projects-button" class="mobile-projects-button">Projects 🡇</button>
+      <button id="mobile-view-projects-button" class="mobile-projects-button">Projects</button>
       <button id="mobile-add-project-button" class="mobile-projects-button">+ Add&nbsp;<br>Project</button>
     </div>
     <ul id="mobile-menu-projects">
@@ -120,7 +120,7 @@ function mobileMenuProjects() {
     if (projectsOpen) {
       projectList.innerHTML = "";
 
-      projectsButton.textContent = "Projects 🡇";
+      projectsButton.textContent = "Projects";
 
       // Populate the projects list with project names.
     } else {
@@ -142,12 +142,13 @@ function mobileMenuProjects() {
           mobileDiv.innerHTML = "";
           mobileMenuClose();
           mobileDiv.insertAdjacentHTML("afterbegin", displayProject(project));
+          taskPopupFunctionality("project"); // Add task popup functionality.
           projectDisplayTasks(project, tasksArray);
         });
       });
 
       // Change the projects button text upon clicking.
-      projectsButton.textContent = "🡅 🡅";
+      projectsButton.textContent = "^ Hide ^";
     }
 
     // Toggle the projects list open/closed.
