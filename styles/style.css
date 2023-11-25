@@ -59,6 +59,8 @@ header h1 {
   flex-direction: column;
   justify-content: center;
   height: 100%;
+  max-width: 150px;
+  text-align: center;
   font-size: 1rem;
   font-style: italic;
 }
