@@ -277,7 +277,7 @@ ul.projects {
 #project-tasks {
   display: flex;
   flex-direction: column;
-  height: 87%;
+  height: 100%;
 }
 
 .no-tasks {
@@ -338,7 +338,6 @@ ul.projects {
 }
 
 /* Container that displays list of tasks*/
-
 .tasks-container {
   display: flex;
   flex-direction: column;
@@ -370,6 +369,11 @@ ul.projects {
   margin-bottom: 3px;
   padding: 0 1.75%;
   overflow-y: auto;
+}
+
+#task-list > li:last-child {
+  /* Last task has margin for visibility */
+  margin-bottom: 110px;
 }
 
 .task-list-item {
