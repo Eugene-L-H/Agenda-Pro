@@ -2,7 +2,8 @@ import {
   projectsArray,
   tasksArray,
   updateProjectsArray,
-  updateTasksArray
+  updateTasksArray,
+  deleteIconFunctionality
 } from "./helpers/state.js";
 
 // Dark mode toggle.
@@ -19,14 +20,14 @@ import {
 
 import {
   addProjectNameToSidebar,
-  addNewProjectPopup,
+  addProjectPopupFunctionality,
   submitProjectButton
 } from "./project.js";
 
 import { Project } from "./helpers/classes.js";
 
 // Functions for handling the popups.
-import { closePopupButton } from "./helpers/popup.js";
+import { closePopup, closePopupButton } from "./helpers/popup.js";
 
 import { loadWeather } from "./helpers/weather.js";
 
@@ -38,15 +39,17 @@ export {
   tasksArray,
   updateProjectsArray,
   updateTasksArray,
+  deleteIconFunctionality,
   darkMode,
   hamburgerFunctionality,
   displayTasks,
   taskDateButtons,
   taskPopupFunctionality,
   addProjectNameToSidebar,
-  addNewProjectPopup,
+  addProjectPopupFunctionality,
   submitProjectButton,
   Project,
+  closePopup,
   closePopupButton,
   loadWeather,
   sortArrayByDate,

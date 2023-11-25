@@ -1,14 +1,19 @@
-import { deleteIconFunctionality, projectsArray } from "./helpers/state.js";
+import {
+  deleteIconFunctionality,
+  projectsArray,
+  closePopup,
+  closePopupButton,
+  tasksArray,
+  Project
+} from "./imports.js";
 import {
   taskPopupFunctionality,
   taskDOMobject,
   taskCardFunctionality
 } from "./tasks.js";
-import { closePopup } from "./helpers/popup.js";
-import { tasksArray } from "./imports.js";
 
 // Popup form for creating a new project.
-export function addNewProjectPopup() {
+function addNewProjectPopup() {
   const popupHTML = `
     <div class="popup">
       <div class="popup-header">
@@ -37,6 +42,27 @@ export function addNewProjectPopup() {
   `;
 
   return popupHTML;
+}
+
+// Add functionality to the Add Project button.
+export function addProjectPopupFunctionality() {
+  const body = document.querySelector("body");
+  const addNewProjectBtn = document.querySelector("#add-project-button");
+  const main = document.querySelector("main");
+  addNewProjectBtn.addEventListener("click", () => {
+    // Add the popup HTML to the DOM.
+    const popupHTML = addNewProjectPopup();
+
+    // Add the popup HTML to the DOM.
+    body.insertAdjacentHTML("afterbegin", popupHTML);
+    main.classList.add("blur");
+
+    // Add functionality to the close popup button.
+    closePopupButton();
+
+    // Add functionality to the submit project button.
+    submitProjectButton(Project);
+  });
 }
 
 // HTML to display project in the main content area.
@@ -177,8 +203,9 @@ export function submitProjectButton(projectClass) {
     // Get the values from the form.
     const id = Date.now();
     const projectName = document.querySelector("#project-name-popup").value;
-    const projectDescription = document.querySelector("#project-description")
-      .value;
+    const projectDescription = document.querySelector(
+      "#project-description"
+    ).value;
     const projectPriority = document.querySelector("#project-priority").value;
     let projectDeadline = document.querySelector("#project-deadline").value;
     if (projectDeadline === "") projectDeadline = null;

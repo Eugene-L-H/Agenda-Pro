@@ -1,11 +1,6 @@
 // Global state variables, and helper functions
 import * as FUN from "./scripts/imports.js";
 
-// DOM objects
-const body = document.querySelector("body");
-
-const main = document.querySelector("main");
-
 // Dark mode functionality.
 FUN.darkMode();
 
@@ -22,21 +17,7 @@ FUN.taskDateButtons();
 FUN.taskPopupFunctionality();
 
 // Add functionality to the Add Project button.
-const addNewProjectBtn = document.querySelector("#add-project-button");
-addNewProjectBtn.addEventListener("click", () => {
-  // Add the popup HTML to the DOM.
-  const popupHTML = FUN.addNewProjectPopup();
-
-  // Add the popup HTML to the DOM.
-  body.insertAdjacentHTML("afterbegin", popupHTML);
-  main.classList.add("blur");
-
-  // Add functionality to the close popup button.
-  FUN.closePopupButton();
-
-  // Add functionality to the submit project button.
-  FUN.submitProjectButton(FUN.Project);
-});
+FUN.addProjectPopupFunctionality();
 
 // Check local storage for projects. Add them to the sidebar.
 if (localStorage.getItem("projectsArray") !== null) {
