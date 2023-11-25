@@ -4,11 +4,15 @@ import * as imp from "./scripts/imports.js";
 // Dark mode functionality.
 imp.darkMode();
 
+// Mobile menu functionality.
+FUN.hamburgerFunctionality();
+
 // Display the weather information.
 imp.loadWeather();
 
 // Mobile menu functionality.
 imp.hamburgerFunctionality();
+
 
 // Add functionality to the task date buttons.
 imp.taskDateButtons();

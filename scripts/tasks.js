@@ -21,7 +21,6 @@ export function tasksStorageToDisplay() {
     displayTasks("today"); // Display tasks on desktop.
     displayTasks("today", "mobile"); // Display tasks on mobile.
   }
-}
 
 export function taskDOMobject(task) {
   const listItem = document.createElement("li");
