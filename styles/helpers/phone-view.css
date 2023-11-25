@@ -27,13 +27,13 @@ body {
     display: flex;
     justify-content: space-around;
     width: 33%;
-    margin-right: 10px;
+    margin-right: 13px;
   }
 
   #weather-info {
     margin-right: 5px;
-  }
-
+    width: 62%;
+    margin-top: -10px;
   /* Drop weather description below temperature to save space. */
   .weather-info-container {
     display: flex;
@@ -46,7 +46,7 @@ body {
   }
 
   #weather-description {
-    font-size: 0.8rem;
+    font-size: 2.2vw;
     margin-top: 2px;
   }
 
@@ -69,16 +69,16 @@ body {
     background: lightgray;
   }
 
-  #task-list {
+  .task-list {
     height: 85vh;
   }
 
-  #task-list > :first-child {
+  .task-list > :first-child {
     /* Add top margin to first task card. */
     margin-top: 20px;
   }
 
-  #task-list li {
+  .task-list li {
     margin-bottom: 15px;
   }
 
@@ -92,6 +92,7 @@ body {
   #app {
     display: none;
   }
+
 }
 
 /* Mobile menu. */

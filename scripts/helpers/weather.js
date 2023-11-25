@@ -101,7 +101,11 @@ export async function loadWeather() {
     displayWeather(weatherObject);
   } catch (error) {
     console.error(error);
-    document.querySelector("#weather-description").innerText =
+
+    // Display geolocation error where the weather info would have been.
+    const weatherDescription = document.querySelector("#weather-description");
+    // weatherDescription.classList.add("geolocation-error-mobile");
+    weatherDescription.innerText =
       "Weather information not available when geolocation is disabled.";
   }
 }

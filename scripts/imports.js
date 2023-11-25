@@ -2,7 +2,8 @@ import {
   projectsArray,
   tasksArray,
   updateProjectsArray,
-  updateTasksArray
+  updateTasksArray,
+  deleteIconFunctionality
 } from "./helpers/state.js";
 
 // Dark mode toggle.
@@ -12,21 +13,23 @@ import { hamburgerFunctionality } from "./mobile-menu.js";
 
 // For populating content area with tasks.
 import {
+  tasksStorageToDisplay,
   displayTasks,
   taskDateButtons,
   taskPopupFunctionality
 } from "./tasks.js";
 
 import {
+  projectsStorageToDisplay,
   addProjectNameToSidebar,
-  addNewProjectPopup,
+  addProjectPopupFunctionality,
   submitProjectButton
 } from "./project.js";
 
 import { Project } from "./helpers/classes.js";
 
 // Functions for handling the popups.
-import { closePopupButton } from "./helpers/popup.js";
+import { closePopup, closePopupButton } from "./helpers/popup.js";
 
 import { loadWeather } from "./helpers/weather.js";
 
@@ -38,15 +41,19 @@ export {
   tasksArray,
   updateProjectsArray,
   updateTasksArray,
+  deleteIconFunctionality,
   darkMode,
   hamburgerFunctionality,
+  tasksStorageToDisplay,
   displayTasks,
   taskDateButtons,
   taskPopupFunctionality,
+  projectsStorageToDisplay,
   addProjectNameToSidebar,
-  addNewProjectPopup,
+  addProjectPopupFunctionality,
   submitProjectButton,
   Project,
+  closePopup,
   closePopupButton,
   loadWeather,
   sortArrayByDate,

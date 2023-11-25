@@ -1,14 +1,32 @@
-import { deleteIconFunctionality, projectsArray } from "./helpers/state.js";
+import {
+  deleteIconFunctionality,
+  projectsArray,
+  updateProjectsArray,
+  closePopup,
+  closePopupButton,
+  tasksArray,
+  Project
+} from "./imports.js";
+
 import {
   taskPopupFunctionality,
   taskDOMobject,
   taskCardFunctionality
 } from "./tasks.js";
-import { closePopup } from "./helpers/popup.js";
-import { tasksArray } from "./imports.js";
+
+// Check local storage for projects. Add them to the sidebar.
+export function projectsStorageToDisplay() {
+  if (localStorage.getItem("projectsArray") !== null) {
+    updateProjectsArray(JSON.parse(localStorage.getItem("projectsArray")));
+    for (const project of projectsArray) {
+      // Create list item dom object
+      addProjectNameToSidebar(project.name);
+    }
+  }
+}
 
 // Popup form for creating a new project.
-export function addNewProjectPopup() {
+function addNewProjectPopup() {
   const popupHTML = `
     <div class="popup">
       <div class="popup-header">
@@ -37,6 +55,27 @@ export function addNewProjectPopup() {
   `;
 
   return popupHTML;
+}
+
+// Add functionality to the Add Project button.
+export function addProjectPopupFunctionality() {
+  const body = document.querySelector("body");
+  const addNewProjectBtn = document.querySelector("#add-project-button");
+  const main = document.querySelector("main");
+  addNewProjectBtn.addEventListener("click", () => {
+    // Add the popup HTML to the DOM.
+    const popupHTML = addNewProjectPopup();
+
+    // Add the popup HTML to the DOM.
+    body.insertAdjacentHTML("afterbegin", popupHTML);
+    main.classList.add("blur");
+
+    // Add functionality to the close popup button.
+    closePopupButton();
+
+    // Add functionality to the submit project button.
+    submitProjectButton(Project);
+  });
 }
 
 // HTML to display project in the main content area.
@@ -88,7 +127,7 @@ export function displayProject(project) {
             </div>
           </div>
           <div class="tasks-container tasks-container-project">
-              <ul id="task-list"></ul>
+              <ul class="task-list"></ul>
           </div>
       </div>
   </div>
@@ -104,16 +143,18 @@ export function displayProject(project) {
  * @returns {String} inserts HTML for the tasks.
  */
 export function projectDisplayTasks(project, tasks) {
-  const taskListHTML = document.querySelector("#task-list");
+  const taskListHTML = document.querySelectorAll(".task-list");
+
+  taskListHTML.forEach(list => (list.innerHTML = ""));
 
   let tasksFound = false; // Flag to check if tasks were found.
 
   // Loop through tasksArray and find tasks that match the project name.
   tasks.forEach(task => {
-    console.log("");
     if (project.name === task.project) {
-      taskListHTML.appendChild(taskDOMobject(task));
-      // Set flag to true.
+
+      taskListHTML.forEach(list => list.appendChild(taskDOMobject(task)));
+      // Set flag to true
       tasksFound = true;
     }
   });
@@ -177,8 +218,13 @@ export function submitProjectButton(projectClass) {
     // Get the values from the form.
     const id = Date.now();
     const projectName = document.querySelector("#project-name-popup").value;
-    const projectDescription = document.querySelector("#project-description")
-      .value;
+    const projectDescription = document.querySelector(
+      "#project-description"
+    ).value;
+
+    //const projectDescription = document.querySelector("#project-description")
+      //.value; POSSIBLE CONFLICT? TODO
+
     const projectPriority = document.querySelector("#project-priority").value;
     let projectDeadline = document.querySelector("#project-deadline").value;
     if (projectDeadline === "") projectDeadline = null;

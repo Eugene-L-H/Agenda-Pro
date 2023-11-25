@@ -1,12 +1,26 @@
 import {
   tasksArray,
   updateTasksArray,
-  deleteIconFunctionality
-} from "./helpers/state.js";
+  deleteIconFunctionality,
+  sortArrayByDate,
+  sortArrayByPriority
+} from "./imports.js";
 import { Task } from "./helpers/classes.js";
 import { closePopup, closePopupButton } from "./helpers/popup.js";
 import { isDueInTimeFrame } from "./helpers/compare-dates.js";
 import { getFormattedDate } from "./helpers/compare-dates.js";
+
+export function tasksStorageToDisplay() {
+  if (localStorage.getItem("tasksArray") !== null) {
+    // Sort array by dueDate, and then by priority.
+    let array = sortArrayByPriority(
+      JSON.parse(localStorage.getItem("tasksArray"))
+    );
+    array = sortArrayByDate(array);
+    updateTasksArray(array);
+    displayTasks("today"); // Display tasks on desktop.
+    displayTasks("today", "mobile"); // Display tasks on mobile.
+  }
 
 export function taskDOMobject(task) {
   const listItem = document.createElement("li");
