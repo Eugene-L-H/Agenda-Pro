@@ -13,6 +13,7 @@ import { hamburgerFunctionality } from "./mobile-menu.js";
 
 // For populating content area with tasks.
 import {
+  tasksStorageToDisplay,
   displayTasks,
   taskDateButtons,
   taskPopupFunctionality
@@ -42,6 +43,7 @@ export {
   deleteIconFunctionality,
   darkMode,
   hamburgerFunctionality,
+  tasksStorageToDisplay,
   displayTasks,
   taskDateButtons,
   taskPopupFunctionality,

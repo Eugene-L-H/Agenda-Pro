@@ -29,13 +29,4 @@ if (localStorage.getItem("projectsArray") !== null) {
 }
 
 // Check local storage for tasks.
-if (localStorage.getItem("tasksArray") !== null) {
-  // Sort array by dueDate, and then by priority.
-  let array = FUN.sortArrayByPriority(
-    JSON.parse(localStorage.getItem("tasksArray"))
-  );
-  array = FUN.sortArrayByDate(array);
-  FUN.updateTasksArray(array);
-  FUN.displayTasks("today"); // Display tasks on desktop.
-  FUN.displayTasks("today", "mobile"); // Display tasks on mobile.
-}
+FUN.tasksStorageToDisplay();
