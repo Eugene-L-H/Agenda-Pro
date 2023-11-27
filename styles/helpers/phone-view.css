@@ -32,7 +32,7 @@ body {
 
   #weather-info {
     margin-right: 5px;
-    width: 62%;
+    width: 70%;
     margin-top: -10px;
   }
 
@@ -48,7 +48,15 @@ body {
   }
 
   #weather-description {
-    font-size: 2.2vw;
+    font-size: 3vw;
+    margin-top: 4px;
+  }
+
+  /* Rules for message for when geolocation is not available. */
+  #weather-description.geolocation-error {
+    color: red;
+    font-size: 2.4vw;
+    line-height: 1.2;
     margin-top: 2px;
   }
 
