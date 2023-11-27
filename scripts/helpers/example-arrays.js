@@ -51,6 +51,23 @@ function populateExampleTasks(numberOfTasks) {
 function exampleTask(iteration) {
   const randomChecked = Math.floor(Math.random() * 4);
 
+  let dateRange = returnDateRange(iteration);
+
+  let project = Math.floor(Math.random() * 5) + 1;
+
+  const task = {};
+  task.checked = randomChecked === 3 ? true : false;
+  task.description = generateLoremIpsumSentence();
+  task.dueDate = randomDueDate(dateRange);
+  task.priority = Math.floor(Math.random() * 3) + 1;
+  task.project = `Project ${project}`;
+
+  return task;
+}
+
+function exampleProject() {}
+
+function returnDateRange(iteration) {
   let dateRange = "";
 
   // Assign date range to task, based on iteration.
@@ -64,16 +81,7 @@ function exampleTask(iteration) {
     dateRange = "year";
   }
 
-  let project = Math.floor(Math.random() * 4) + 1;
-
-  const task = {};
-  task.checked = randomChecked === 3 ? true : false;
-  task.description = generateLoremIpsumSentence();
-  task.dueDate = randomDueDate(dateRange);
-  task.priority = Math.floor(Math.random() * 3) + 1;
-  task.project = `Project ${project}`;
-
-  return task;
+  return dateRange;
 }
 
 // Lorem sentences for task descriptions
