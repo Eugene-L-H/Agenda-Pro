@@ -42,12 +42,8 @@ function mobileMenuHTML() {
  */
 export function hamburgerFunctionality() {
   const hamburgerIcon = document.querySelector("#hamburger-icon");
-  const mobileContent = document.querySelector("#mobile-content");
 
-  hamburgerIcon.addEventListener("click", () => {
-    mobileMenuToggle();
-    mobileContent.innerHTML = "";
-  });
+  hamburgerIcon.addEventListener("click", () => mobileMenuToggle());
 }
 
 // Toggle the mobile menu open/closed.
@@ -56,12 +52,15 @@ function mobileMenuToggle() {
 
   if (menuOpen) {
     // Delete Mobile Menu
+    clearMobileContent();
     displayTasks("today", true);
     const mobileMenu = document.querySelector("#mobile-menu");
     mobileMenu.remove();
 
     // Display the mobile menu. Add event listener for projects button.
   } else {
+    clearMobileContent();
+
     body.insertAdjacentHTML("afterbegin", mobileMenuHTML());
     mobileMenuDates();
     mobileMenuAddTask();
@@ -70,6 +69,11 @@ function mobileMenuToggle() {
 
   // Toggle the menu open/closed.
   menuOpen ? (menuOpen = false) : (menuOpen = true);
+}
+
+function clearMobileContent() {
+  const mobileContent = document.querySelector("#mobile-content");
+  mobileContent.innerHTML = "";
 }
 
 // Event listeners for the task date-range buttons.
@@ -149,7 +153,7 @@ function mobileMenuProjects() {
       });
 
       // Change the projects button text upon clicking.
-      projectsButton.textContent = "^ Hide ^";
+      projectsButton.textContent = "^ ^";
     }
 
     // Toggle the projects list open/closed.
@@ -157,17 +161,10 @@ function mobileMenuProjects() {
   });
 }
 
-/**
- * Close the mobile menu.
- * @param {boolean} toggle - If true, display the tasks for today.
- * If false, close the mobile menu without displaying tasks.
- * @returns {void}
- */
-function mobileMenuClose(toggle = false) {
+// Remove mobile menu from DOM, reset flag
+function mobileMenuClose() {
   const mobileMenu = document.querySelector("#mobile-menu");
 
-  // Remove mobile menu from DOM, reset flag
   mobileMenu.remove();
   menuOpen = false;
-  if (toggle) displayTasks("today", true);
 }

@@ -219,8 +219,7 @@ export function displayTasks(dateRange, mobile) {
 
   // Create a list to hold the tasks.
   const taskList = document.createElement("ul");
-  // taskList.id = "task-list";
-  taskList.classList.add("task-list");
+  taskList.id = "task-list";
 
   // Display what span of tasks that will be displayed.
   const title = document.createElement("h2");
