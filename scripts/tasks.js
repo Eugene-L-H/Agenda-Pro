@@ -44,10 +44,10 @@ export function taskDOMobject(task) {
   }
 
   const taskHTML = `
-  <div class="task-card-wrapper">
+  <div id="${task.id}" class="task-card-wrapper">
     <div class="task-card${task.checked ? " task-completed" : ""}${
     overdue ? " overdue" : ""
-  }" id="${task.id}">
+  }">
       <div class="task-card-content">
         <h3 class="task-name">${task.name}</h3>
         <span class="task-description">${task.description}</span>
@@ -137,7 +137,7 @@ function submitTaskButton(taskClass, locationCall) {
     const priority = document.querySelector("#task-priority").value;
 
     // Project name is empty if the popup is from the sidebar.
-    let projectName = "None";
+    let projectName = "Unassigned";
     if (locationCall === "project") {
       projectName = document
         .querySelector("#project-name")
