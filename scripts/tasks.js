@@ -44,33 +44,37 @@ export function taskDOMobject(task) {
   }
 
   const taskHTML = `
-  <div class="task-card${task.checked ? " task-completed" : ""}${
+  <div class="task-card-wrapper">
+    <div class="task-card${task.checked ? " task-completed" : ""}${
     overdue ? " overdue" : ""
   }" id="${task.id}">
-    <div class="task-card-content">
-      <h3 class="task-name">${task.name}</h3>
-      <span class="task-description">${task.description}</span>
-      <span class="task-project-name">Project: ${task.project}</span>
-      <div class="task-priority">
-      <span class="task-priority-label">Priority:</span>
-      <span class="task-priority-value">${priority}</span>
+      <div class="task-card-content">
+        <h3 class="task-name">${task.name}</h3>
+        <span class="task-description">${task.description}</span>
+        <span class="task-project-name">Project: ${task.project}</span>
+        <div class="task-priority">
+        <span class="task-priority-label">Priority:</span>
+        <span class="task-priority-value">${priority}</span>
+        </div>
+        <div class="task-deadline">
+          <span class="task-deadline-label">Deadline:</span>
+          <span class="task-deadline-value">${task.dueDate}</span>
+        </div>
       </div>
-      <div class="task-deadline">
-        <span class="task-deadline-label">Deadline:</span>
-        <span class="task-deadline-value">${task.dueDate}</span>
-      </div>
-    </div>
-    <div class="modify-tasks">
-      <input
-        type="checkbox"
-        class="task-checkbox"
-        ${task.checked ? "checked='true'" : ""}"'}"
-      />
-      <span class="edit-icon ${task.checked ? "task-completed" : ""}"">✎</span>
-      <span class="delete-icon" data-name="${task.name}" data-id="${
+      <div class="modify-tasks">
+        <input
+          type="checkbox"
+          class="task-checkbox"
+          ${task.checked ? "checked='true'" : ""}"'}"
+        />
+        <span class="edit-icon ${
+          task.checked ? "task-completed" : ""
+        }"">✎</span>
+        </div>
+        </div>
+        <span class="delete-icon" data-name="${task.name}" data-id="${
     task.id
   }">✖</span>
-    </div>
   </div>
   `;
 
