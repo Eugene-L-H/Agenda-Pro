@@ -157,7 +157,7 @@ function submitTaskButton(taskClass, locationCall) {
 
     // Display new task in the task list.
     const taskCard = taskDOMobject(task);
-    const taskList = document.querySelector("#task-list");
+    const taskList = document.querySelector(".task-list");
     taskList.appendChild(taskCard);
   });
 }
@@ -219,7 +219,8 @@ export function displayTasks(dateRange, mobile) {
 
   // Create a list to hold the tasks.
   const taskList = document.createElement("ul");
-  taskList.id = "task-list";
+  // taskList.id = "task-list";
+  taskList.classList.add("task-list");
 
   // Display what span of tasks that will be displayed.
   const title = document.createElement("h2");

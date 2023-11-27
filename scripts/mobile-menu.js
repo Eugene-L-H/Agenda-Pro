@@ -56,6 +56,7 @@ function mobileMenuToggle() {
 
   if (menuOpen) {
     // Delete Mobile Menu
+    displayTasks("today", true);
     const mobileMenu = document.querySelector("#mobile-menu");
     mobileMenu.remove();
 
@@ -106,7 +107,7 @@ function mobileMenuAddTask() {
   taskPopupFunctionality("mobile");
 
   addTaskButton.addEventListener("click", () => {
-    mobileMenuClose();
+    mobileMenuClose(true);
   });
 }
 
@@ -156,9 +157,17 @@ function mobileMenuProjects() {
   });
 }
 
-// Remove mobile menu from DOM, reset flag
-function mobileMenuClose() {
+/**
+ * Close the mobile menu.
+ * @param {boolean} toggle - If true, display the tasks for today.
+ * If false, close the mobile menu without displaying tasks.
+ * @returns {void}
+ */
+function mobileMenuClose(toggle = false) {
   const mobileMenu = document.querySelector("#mobile-menu");
+
+  // Remove mobile menu from DOM, reset flag
   mobileMenu.remove();
   menuOpen = false;
+  if (toggle) displayTasks("today", true);
 }
