@@ -5,6 +5,9 @@ import { displayProject, projectDisplayTasks } from "./project.js";
 // Flag to determine if the mobile menu is open or closed.
 let menuOpen = false;
 
+// Last task range opened by user.
+let lastTaskRange = "today";
+
 // Flag to determine if project list is open or closed.
 let projectsOpen = false;
 
@@ -53,7 +56,7 @@ function mobileMenuToggle() {
   if (menuOpen) {
     // Delete Mobile Menu
     clearMobileContent();
-    displayTasks("today", true);
+    displayTasks(lastTaskRange, true);
     const mobileMenu = document.querySelector("#mobile-menu");
     mobileMenu.remove();
 
@@ -87,21 +90,25 @@ function mobileMenuDates() {
   todayButton.addEventListener("click", () => {
     displayTasks("today", true);
     mobileMenuClose();
+    lastTaskRange = "today";
   });
 
   weekButton.addEventListener("click", () => {
     displayTasks("week", true);
     mobileMenuClose();
+    lastTaskRange = "week";
   });
 
   monthButton.addEventListener("click", () => {
     displayTasks("month", true);
     mobileMenuClose();
+    lastTaskRange = "month";
   });
 
   yearButton.addEventListener("click", () => {
     displayTasks("year", true);
     mobileMenuClose();
+    lastTaskRange = "year";
   });
 }
 
@@ -111,7 +118,7 @@ function mobileMenuAddTask() {
   taskPopupFunctionality("mobile");
 
   addTaskButton.addEventListener("click", () => {
-    mobileMenuClose(true);
+    mobileMenuClose();
   });
 }
 

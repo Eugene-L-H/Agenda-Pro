@@ -152,8 +152,6 @@ export function projectDisplayTasks(project, tasks) {
   // Loop through tasksArray and find tasks that match the project name.
   tasks.forEach(task => {
     if (project.name === task.project) {
-      console.log(task);
-
       taskListHTML.forEach(list => list.appendChild(taskDOMobject(task)));
       // Set flag to true
       tasksFound = true;
@@ -219,9 +217,8 @@ export function submitProjectButton(projectClass) {
     // Get the values from the form.
     const id = Date.now();
     const projectName = document.querySelector("#project-name-popup").value;
-    const projectDescription = document.querySelector(
-      "#project-description"
-    ).value;
+    const projectDescription = document.querySelector("#project-description")
+      .value;
     const projectPriority = document.querySelector("#project-priority").value;
     let projectDeadline = document.querySelector("#project-deadline").value;
     if (projectDeadline === "") projectDeadline = null;
