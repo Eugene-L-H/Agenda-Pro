@@ -1,15 +1,17 @@
 import {
+  Task,
   tasksArray,
   updateTasksArray,
   deleteIconFunctionality,
   populateExampleArray,
   sortArrayByDate,
-  sortArrayByPriority
+  sortArrayByPriority,
+  closePopup,
+  closePopupButton,
+  isDueInTimeFrame,
+  getFormattedDate,
+  isThisYear
 } from "./imports.js";
-import { Task } from "./helpers/classes.js";
-import { closePopup, closePopupButton } from "./helpers/popup.js";
-import { isDueInTimeFrame } from "./helpers/compare-dates.js";
-import { getFormattedDate } from "./helpers/compare-dates.js";
 
 export function tasksStorageToDisplay() {
   if (localStorage.getItem("tasksArray") !== null) {

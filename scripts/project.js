@@ -5,7 +5,8 @@ import {
   closePopup,
   closePopupButton,
   tasksArray,
-  Project
+  Project,
+  populateExampleArray
 } from "./imports.js";
 
 import {
@@ -22,6 +23,9 @@ export function projectsStorageToDisplay() {
       // Create list item dom object
       addProjectNameToSidebar(project.name);
     }
+  } else {
+    updateProjectsArray(populateExampleArray("project", 5));
+    location.reload();
   }
 }
 

@@ -24,7 +24,7 @@ export function isDueInTimeFrame(dueDate, timeFrame) {
     case "month":
       return isThisMonth(due, today);
     case "year":
-      return isThisYear(due, today);
+      return true;
     default:
       return false; // Return false for unknown time frames
   }
@@ -42,6 +42,10 @@ export function getFormattedDate() {
   const formattedDay = day < 10 ? `0${day}` : day;
 
   return `${year}-${formattedMonth}-${formattedDay}`;
+}
+
+export function isThisYear(due, today) {
+  return due.getFullYear() === today.getFullYear();
 }
 
 function isToday(due, today) {
@@ -65,8 +69,4 @@ function isThisMonth(due, today) {
     due.getMonth() === today.getMonth() &&
     due.getFullYear() === today.getFullYear()
   );
-}
-
-function isThisYear(due, today) {
-  return due.getFullYear() === today.getFullYear();
 }

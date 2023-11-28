@@ -20,7 +20,7 @@ function exampleTask(iteration) {
   const task = {};
   task.id = Date.now() + iteration;
   task.checked = randomChecked === 3 ? true : false;
-  task.name = `Task ${iteration}`;
+  task.name = `Task ${iteration + 1}`;
   task.description = generateLoremIpsumSentence();
   task.dueDate = randomDueDate(dateRange);
   task.priority = Math.floor(Math.random() * 3) + 1;
@@ -32,7 +32,7 @@ function exampleTask(iteration) {
 function exampleProject(iteration) {
   const project = {};
   project.id = Date.now() + iteration;
-  project.name = `Task ${iteration}`;
+  project.name = `Project ${iteration + 1}`;
   project.description = generateLoremIpsumSentence();
   project.priority = Math.floor(Math.random() * 3) + 1;
   project.deadline = "None";

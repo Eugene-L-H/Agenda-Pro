@@ -29,7 +29,7 @@ import {
   submitProjectButton
 } from "./project.js";
 
-import { Project } from "./helpers/classes.js";
+import { Project, Task } from "./helpers/classes.js";
 
 // Functions for handling the popups.
 import { closePopup, closePopupButton } from "./helpers/popup.js";
@@ -38,6 +38,12 @@ import { loadWeather } from "./helpers/weather.js";
 
 // Functions for sorting arrays by due date, and priority.
 import { sortArrayByDate, sortArrayByPriority } from "./helpers/sortArrays.js";
+
+import {
+  isDueInTimeFrame,
+  getFormattedDate,
+  isThisYear
+} from "./helpers/compare-dates.js";
 
 export {
   projectsArray,
@@ -57,9 +63,13 @@ export {
   addProjectPopupFunctionality,
   submitProjectButton,
   Project,
+  Task,
   closePopup,
   closePopupButton,
   loadWeather,
   sortArrayByDate,
-  sortArrayByPriority
+  sortArrayByPriority,
+  isDueInTimeFrame,
+  getFormattedDate,
+  isThisYear
 };
