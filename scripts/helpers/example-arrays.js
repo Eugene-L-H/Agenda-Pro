@@ -1,7 +1,6 @@
-function populateExampleArray(type, numberOfObjects) {
+export function populateExampleArray(type, numberOfObjects) {
   const exampleArray = [];
 
-  // Create 16 tasks
   for (let i = 0; i < numberOfObjects; i++) {
     const object = type === "task" ? exampleTask(i) : exampleProject(i);
 
@@ -92,7 +91,7 @@ function randomDueDate(dateRange) {
       break;
   }
 
-  const random = Math.floor(Math.random() * days) + 1;
+  const random = Math.floor(Math.random() * days);
 
   return generateSpecificDate(random);
 }

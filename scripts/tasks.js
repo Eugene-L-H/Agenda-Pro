@@ -2,6 +2,7 @@ import {
   tasksArray,
   updateTasksArray,
   deleteIconFunctionality,
+  populateExampleArray,
   sortArrayByDate,
   sortArrayByPriority
 } from "./imports.js";
@@ -20,6 +21,8 @@ export function tasksStorageToDisplay() {
     updateTasksArray(array);
     displayTasks("today"); // Display tasks on desktop.
     displayTasks("today", "mobile"); // Display tasks on mobile.
+  } else {
+    updateTasksArray(populateExampleArray("task", 16));
   }
 }
 

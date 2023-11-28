@@ -6,6 +6,9 @@ import {
   deleteIconFunctionality
 } from "./helpers/state.js";
 
+// For populating tasks/projects array with examples.
+import { populateExampleArray } from "./helpers/example-arrays.js";
+
 // Dark mode toggle.
 import { darkMode } from "./helpers/dark-mode.js";
 
@@ -42,6 +45,7 @@ export {
   updateProjectsArray,
   updateTasksArray,
   deleteIconFunctionality,
+  populateExampleArray,
   darkMode,
   hamburgerFunctionality,
   tasksStorageToDisplay,
