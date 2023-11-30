@@ -60,6 +60,10 @@ body {
     margin-top: 2px;
   }
 
+  .geolocaiton-error {
+    font-size: 0.5rem;
+  }
+
   /* Hamburger icon */
   #hamburger-icon {
     display: flex;
@@ -68,6 +72,10 @@ body {
   #hamburger-icon:hover {
     color: #00f;
     transform: scale(1.1);
+  }
+
+  .project-info {
+    min-height: 12%;
   }
 
   /* Displayed tasks */
@@ -101,10 +109,6 @@ body {
   /* Hide desktop app content */
   #app {
     display: none;
-  }
-
-  .geolocaiton-error {
-    font-size: 0.5rem;
   }
 }
 

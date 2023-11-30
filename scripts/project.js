@@ -112,20 +112,21 @@ export function displayProject(project) {
                   <span>Description:&nbsp;</span>
                   ${project.description}
               </p>
-              <div class="project-deadline">
-                  <span class="project-deadline-label">Deadline:</span>
-                  <span class="project-deadline-value">${project.deadline}</span>
-              </div>
-              <div class="project-priority">                
-                <span class="project-priority-label">Priority:</span>
-                <span class="project-priority-value">&nbsp;${priority}</span>
+              <div class="deadline-priority">
+                <div class="project-deadline">
+                    <span class="project-deadline-label">Deadline:</span>
+                    <span class="project-deadline-value">${project.deadline}</span>
+                </div>
+                <div class="project-priority">
+                  <span class="project-priority-label">Priority:</span>
+                  <span class="project-priority-value">&nbsp;${priority}</span>
+                </div>
               </div>
           </div>
       </div>
 
       <div id="project-tasks">
           <div class="project-task-label-line">
-            <span class="project-tasks-label">Tasks:</span>
             <div id="add-task-project" class="new-post-button add-task-button">
                 <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
             </div>

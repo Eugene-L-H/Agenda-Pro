@@ -125,7 +125,7 @@ main {
 #tasks-header {
   width: 100%;
   height: 10%;
-  background-color: #eee;
+  background-color: #ccc;
   border-bottom: 1px solid #000;
 }
 
@@ -220,7 +220,8 @@ ul.projects {
 .project-info {
   display: flex;
   flex-direction: column;
-  height: 20%;
+  min-height: 20%;
+  background-color: #eee;
 }
 
 .project-card-header {
@@ -243,6 +244,8 @@ ul.projects {
 .project-card-body {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  min-height: 70%;
   align-items: center;
 }
 
@@ -252,10 +255,18 @@ ul.projects {
 
 .project-description {
   margin: 0.5rem 0 0 0;
+  font-style: italic;
+  text-align: center;
+}
+
+.deadline-priority {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .project-deadline {
-  margin: 0.5rem 0 0 0;
+  margin: 0 0 0 0;
 }
 
 .project-priority {
@@ -267,7 +278,6 @@ ul.projects {
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
-  margin-top: 1rem;
   border-top: 1px solid #000;
 }
 
@@ -282,7 +292,6 @@ ul.projects {
 #add-task-project {
   display: flex;
   justify-self: center;
-  margin-right: 32%;
 }
 
 #project-tasks {
