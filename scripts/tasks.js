@@ -266,6 +266,8 @@ export function displayTasks(dateRange, mobile) {
     }
   });
 
+  // Tasks later than the current year are displayed as 'Future Tasks' on the "This Year" tab.
+
   // If there are tasks that match the date range, display them.
   if (match) {
     tasksContainer.appendChild(taskList); // Add tasks to container.

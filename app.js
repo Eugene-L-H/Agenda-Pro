@@ -5,7 +5,7 @@ import * as fun from "./scripts/imports.js";
 fun.darkMode();
 
 // Display the weather information.
-fun.loadWeather();
+fun.updateWeather();
 
 // Mobile menu functionality.
 fun.hamburgerFunctionality();

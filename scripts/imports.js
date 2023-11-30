@@ -34,7 +34,7 @@ import { Project, Task } from "./helpers/classes.js";
 // Functions for handling the popups.
 import { closePopup, closePopupButton } from "./helpers/popup.js";
 
-import { loadWeather } from "./helpers/weather.js";
+import { updateWeather } from "./helpers/weather.js";
 
 // Functions for sorting arrays by due date, and priority.
 import { sortArrayByDate, sortArrayByPriority } from "./helpers/sortArrays.js";
@@ -66,7 +66,7 @@ export {
   Task,
   closePopup,
   closePopupButton,
-  loadWeather,
+  updateWeather,
   sortArrayByDate,
   sortArrayByPriority,
   isDueInTimeFrame,

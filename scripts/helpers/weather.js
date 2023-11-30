@@ -95,17 +95,18 @@ function displayWeather(object) {
  * while `displayWeather` is responsible for updating the DOM elements with the weather information.
  * Any errors caught in the process result in an appropriate error message being displayed.
  */
-export async function loadWeather() {
+export async function updateWeather() {
   try {
     const weatherObject = await fetchWeather();
     displayWeather(weatherObject);
   } catch (error) {
     console.error(error);
-
-    // Display geolocation error where the weather info would have been.
     const weatherDescription = document.querySelector("#weather-description");
     weatherDescription.classList.add("geolocation-error");
     weatherDescription.innerText =
       "Weather information not available when geolocation is disabled.";
+  } finally {
+    // Set the timeout to call updateWeather again in one hour
+    setTimeout(updateWeather, 3600000); // 3600000 milliseconds = 1 hour
   }
 }
