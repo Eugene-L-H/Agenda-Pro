@@ -169,8 +169,10 @@ export function projectDisplayTasks(project, tasks) {
         <p class="no-tasks">No tasks found for this project.</p>
       </li>
     `;
-    taskListHTML.innerHTML = noTasksHTML;
-    taskListHTML.classList.add("no-tasks");
+
+    // Add message to each project task list, mobile and and desktop app.
+    taskListHTML.forEach(taskList => (taskList.innerHTML = noTasksHTML));
+    taskListHTML.forEach(taskList => taskList.classList.add("no-tasks"));
 
     // Add functionality to the delete icon for the project card.
     deleteIconFunctionality();

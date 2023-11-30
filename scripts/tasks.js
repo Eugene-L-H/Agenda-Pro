@@ -273,8 +273,7 @@ export function displayTasks(dateRange, mobile) {
     tasksContainer.appendChild(taskList); // Add tasks to container.
     contentArea.appendChild(tasksContainer); // Add container to DOM.
 
-    // Add functionality to the task cards.
-
+    /* Add functionality to the task cards. Only applied on mobile call to avoid multiple event handlers being assigned to task cards, as the event handler applied by taskCardFunctionality is added to both the desktop section, and the mobile task cards. */
     if (mobile) taskCardFunctionality();
   } else {
     // If there are no tasks that match the date range, display a message.
