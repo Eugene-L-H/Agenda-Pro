@@ -1,6 +1,12 @@
 // Global state variables, and helper functions
 import * as fun from "./scripts/imports.js";
 
+// Add page reload to title in the header.
+const siteTitle = document.querySelector("#site-title");
+siteTitle.addEventListener("click", () => {
+  location.reload();
+});
+
 // Dark mode functionality.
 fun.darkMode();
 

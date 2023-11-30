@@ -274,7 +274,8 @@ export function displayTasks(dateRange, mobile) {
     contentArea.appendChild(tasksContainer); // Add container to DOM.
 
     // Add functionality to the task cards.
-    taskCardFunctionality();
+
+    if (mobile) taskCardFunctionality();
   } else {
     // If there are no tasks that match the date range, display a message.
     const noTasksMessage = document.createElement("h2");
