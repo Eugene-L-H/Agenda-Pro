@@ -3,7 +3,7 @@ body {
   background: #000;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 692px) {
   header h1 {
     margin-left: 10px;
   }
@@ -48,7 +48,7 @@ body {
   }
 
   #weather-description {
-    font-size: 3vw;
+    font-size: 0.85rem;
     margin-top: 4px;
   }
 
@@ -240,7 +240,7 @@ body {
 }
 
 /* Hide while desktop view is on. */
-@media (min-width: 768px) {
+@media (min-width: 692px) {
   #mobile-menu {
     display: none;
   }
