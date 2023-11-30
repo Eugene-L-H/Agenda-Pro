@@ -211,6 +211,7 @@ ul.projects {
 
 /* Project cards */
 .project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -237,20 +238,12 @@ ul.projects {
   margin-left: 0.75rem;
 }
 
-.project-card-header .delete-icon {
-  margin-right: 0.75rem;
-}
-
 .project-card-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   min-height: 70%;
   align-items: center;
-}
-
-.project-card.delete-icon {
-  margin-left: 300px;
 }
 
 .project-description {
@@ -279,10 +272,6 @@ ul.projects {
   align-items: center;
   justify-content: space-around;
   border-top: 1px solid #000;
-}
-
-.project-tasks-label {
-  /* margin-left: 0.5rem; */
 }
 
 .add-task-text {
@@ -465,12 +454,24 @@ ul.projects {
 .delete-icon {
   position: absolute;
   justify-self: flex-end;
+
   font-size: 1.3rem;
   pointer-events: auto;
   cursor: pointer;
-  margin-left: 205px;
-  margin-top: 223px;
+
   transition: transform 0.2s ease;
+}
+
+.task-card-wrapper .delete-icon {
+  margin-left: 205px !important;
+  margin-top: 223px !important;
+}
+
+.project-card .delete-icon {
+  /* margin: 5px 5px 0 auto; */
+  top: 0;
+  right: 0;
+  margin: 5px 5px 0 0;
 }
 
 .delete-icon:hover {

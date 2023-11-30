@@ -99,13 +99,13 @@ export function displayProject(project) {
 
   const projectHTML = `
     <div class="project-card">
+     <span class="delete-icon" data-name="${project.name}" data-id="${project.id}" data-project="project">✖</span>
       <div class="project-info">
           <div class="project-card-header">
               <h3 id="project-name" data-name="${project.name}">
                   <span class="project-name-prefix">Project:&nbsp;</span>
                   ${project.name}
               </h3>
-              <span class="delete-icon" data-name="${project.name}" data-id="${project.id}" data-project="project">✖</span>
           </div>
           <div class="project-card-body">
               <p class="project-description">
