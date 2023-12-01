@@ -97,8 +97,15 @@ body {
     margin-top: 80px;
   }
 
+  #add-task-project {
+    font-size: 0.75rem;
+    height: 50px;
+    width: 50px;
+    margin: -10px 0 0px 5px;
+  }
+
   .modify-project .delete-icon {
-    margin: 5px 5px 0 0;
+    margin: 20px 5px 0 0;
   }
 
   /* Displayed tasks */
