@@ -139,7 +139,9 @@ function submitTaskButton(taskClass, locationCall) {
     const id = Date.now(); // Generate a unique id for the task.
     const name = document.querySelector("#task-name").value;
     const description = document.querySelector("#task-description").value;
-    const dueDate = document.querySelector("#task-due-date").value;
+    let dueDate = document.querySelector("#task-due-date").value;
+    if (dueDate === "") dueDate = "None"; // If no due date is entered, set it to 'None'.
+
     const priority = document.querySelector("#task-priority").value;
 
     // Project name is empty if the popup is from the sidebar.
