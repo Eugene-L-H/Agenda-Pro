@@ -31,6 +31,7 @@ export function tasksStorageToDisplay() {
 export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
+  listItem.id = task.id;
 
   // Is task's dueDate in the past?
   const overdue = task.dueDate < getFormattedDate();
@@ -49,7 +50,7 @@ export function taskDOMobject(task) {
   }
 
   const taskHTML = `
-  <div id="${task.id}" class="task-card-wrapper">
+  <div class="task-card-wrapper">
     <div class="task-card${task.checked ? " task-completed" : ""}${
     overdue ? " overdue" : ""
   }">
