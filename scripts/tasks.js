@@ -167,7 +167,7 @@ function submitTaskButton(taskClass, locationCall) {
 
     // Display new task in the task list.
     const taskCard = taskDOMobject(task);
-    const taskList = document.querySelector(".task-list");
+    const taskList = document.querySelector("#task-list");
     taskList.appendChild(taskCard);
   });
 }

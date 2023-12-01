@@ -89,8 +89,7 @@ body {
   }
 
   .project-info {
-    min-height: 0;
-    height: 125px;
+    min-height: 125px;
     font-size: 0.85rem;
   }
 
