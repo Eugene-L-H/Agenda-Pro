@@ -246,6 +246,7 @@ ul.projects {
   display: flex;
   flex-direction: column;
   min-height: 180px;
+  margin-bottom: 20px;
   background-color: #eee;
 }
 
@@ -289,14 +290,6 @@ ul.projects {
 .project-priority {
   display: flex;
 }
-
-/* .project-task-label-line {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around;
-  border-top: 1px solid #000;
-} */
 
 .modify-project {
   position: absolute;
@@ -412,7 +405,7 @@ ul.projects {
   text-align: center;
   border-bottom: 1px solid #000;
   background: lightgray;
-  margin: 10px 0 0 0;
+  margin: 10px 0 20px 0;
   padding: 20px 0;
 }
 
@@ -427,10 +420,6 @@ ul.projects {
   margin-bottom: 3px;
   padding: 0 1.75%;
   overflow-y: auto;
-}
-
-#task-list > li:first-child {
-  margin-top: 20px;
 }
 
 #task-list > li:last-child {
