@@ -40,7 +40,7 @@ function mobileMenuHTML() {
 /**
  * Add functionality to the hamburger icon (mobile menu).
  */
-export function hamburgerFunctionality() {
+export function menuFunctionality() {
   const hamburgerIcon = document.querySelector("#hamburger-icon");
 
   hamburgerIcon.addEventListener("click", () => mobileMenuToggle());
@@ -126,8 +126,6 @@ let projectsOpen = false;
 function mobileMenuProjects() {
   const projectsButton = document.querySelector(".mobile-projects-button");
   const projectList = document.querySelector("#mobile-menu-projects");
-  console.log("projectList: ", projectList);
-  console.log("projectsButton: ", projectsButton);
 
   projectsButton.addEventListener("click", () => {
     // If the projects list is open, close it.
@@ -140,7 +138,6 @@ function mobileMenuProjects() {
     } else {
       // Target the mobile div in the body.
       const mobileDiv = document.querySelector("#mobile-content");
-      console.log("projectsArray: ", projectsArray);
 
       projectsArray.forEach(project => {
         // Create a list item element for each project name.

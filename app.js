@@ -14,7 +14,7 @@ fun.darkMode();
 fun.updateWeather();
 
 // Mobile menu functionality.
-fun.hamburgerFunctionality();
+fun.menuFunctionality();
 
 // Add functionality to the task date buttons.
 // fun.taskDateButtons();
