@@ -75,7 +75,7 @@ function mobileMenuToggle() {
 }
 
 function clearMobileContent() {
-  const mobileContent = document.querySelector("#mobile-content");
+  const mobileContent = document.querySelector("#content-area");
   mobileContent.innerHTML = "";
 }
 
