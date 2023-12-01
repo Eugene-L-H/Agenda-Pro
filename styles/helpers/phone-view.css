@@ -3,7 +3,7 @@ body {
   background: #000;
 }
 
-@media (max-width: 692px) {
+@media (max-width: 780px) {
   header h1 {
     margin-left: 10px;
   }
