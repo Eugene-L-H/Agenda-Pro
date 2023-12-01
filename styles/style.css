@@ -233,7 +233,6 @@ ul.projects {
 
 /* Project cards */
 .project-card {
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -243,9 +242,10 @@ ul.projects {
 }
 
 .project-info {
+  position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 20%;
+  min-height: 180px;
   background-color: #eee;
 }
 
@@ -290,12 +290,25 @@ ul.projects {
   display: flex;
 }
 
-.project-task-label-line {
+/* .project-task-label-line {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   border-top: 1px solid #000;
+} */
+
+.modify-project {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  min-width: 100%;
+  margin-top: 145px;
+}
+
+.modify-project .delete-icon {
+  position: initial;
+  margin: 10px 5px 0 0;
 }
 
 .add-task-text {
@@ -394,11 +407,11 @@ ul.projects {
   padding: 20px 0;
 }
 
-.task-list,
 #task-list {
   display: flex;
+  justify-content: center;
   flex-flow: row wrap;
-  justify-content: space-around;
+  gap: 20px;
   height: 100%;
   width: 96.5%;
   margin: 0;
@@ -407,7 +420,10 @@ ul.projects {
   overflow-y: auto;
 }
 
-.task-list > li:last-child,
+#task-list > li:first-child {
+  margin-top: 20px;
+}
+
 #task-list > li:last-child {
   /* Last task has margin for visibility */
   margin-bottom: 110px;
@@ -417,7 +433,7 @@ ul.projects {
   display: flex;
   width: fit-content;
   height: fit-content;
-  margin-top: 25px;
+  margin-bottom: 10px;
 }
 
 /* Task cards */
@@ -474,7 +490,7 @@ ul.projects {
 
 .task-checkbox {
   pointer-events: auto;
-  margin-right: 49px;
+  margin-right: 50px;
 }
 
 .delete-icon {
@@ -489,17 +505,6 @@ ul.projects {
 .task-card-wrapper .delete-icon {
   margin-left: 205px !important;
   margin-top: 223px !important;
-}
-
-.modify-project {
-  position: inline-block;
-  display: flex;
-  justify-content: space-between;
-  min-width: 100%;
-}
-
-.modify-project .delete-icon {
-  position: initial;
 }
 
 .delete-icon:hover {

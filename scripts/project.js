@@ -107,8 +107,7 @@ export function displayProject(project) {
           </div>
           <div class="project-card-body">
               <p class="project-description">
-                  <span>Description:&nbsp;</span>
-                  ${project.description}
+                 ${project.description}
               </p>
               <div class="deadline-priority">
                 <div class="project-deadline">
@@ -132,7 +131,7 @@ export function displayProject(project) {
           <div class="project-task-label-line">
           </div>
           <div class="tasks-container tasks-container-project">
-              <ul class="task-list"></ul>
+              <ul id="task-list"></ul>
           </div>
       </div>
   </div>
@@ -148,7 +147,7 @@ export function displayProject(project) {
  * @returns {String} inserts HTML for the tasks.
  */
 export function projectDisplayTasks(project, tasks) {
-  const taskListHTML = document.querySelectorAll(".task-list");
+  const taskListHTML = document.querySelectorAll("#task-list");
 
   taskListHTML.forEach(list => (list.innerHTML = ""));
 
