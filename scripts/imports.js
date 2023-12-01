@@ -12,7 +12,7 @@ import { populateExampleArray } from "./helpers/example-arrays.js";
 // Dark mode toggle.
 import { darkMode } from "./helpers/dark-mode.js";
 
-import { hamburgerFunctionality } from "./mobile-menu.js";
+import { menuFunctionality } from "./mobile-menu.js";
 
 // For populating content area with tasks.
 import {
@@ -23,7 +23,7 @@ import {
 } from "./tasks.js";
 
 import {
-  projectsStorageToDisplay,
+  populateLocalProjectsArray,
   addProjectNameToSidebar,
   addProjectPopupFunctionality,
   submitProjectButton
@@ -53,12 +53,12 @@ export {
   deleteIconFunctionality,
   populateExampleArray,
   darkMode,
-  hamburgerFunctionality,
+  menuFunctionality,
   tasksStorageToDisplay,
   displayTasks,
   taskDateButtons,
   taskPopupFunctionality,
-  projectsStorageToDisplay,
+  populateLocalProjectsArray,
   addProjectNameToSidebar,
   addProjectPopupFunctionality,
   submitProjectButton,

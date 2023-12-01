@@ -8,9 +8,6 @@ let menuOpen = false;
 // Last task range opened by user.
 let lastTaskRange = "today";
 
-// Flag to determine if project list is open or closed.
-let projectsOpen = false;
-
 // HTML for mobile menu.
 function mobileMenuHTML() {
   // Check if projects present in projectsArray.
@@ -43,10 +40,12 @@ function mobileMenuHTML() {
 /**
  * Add functionality to the hamburger icon (mobile menu).
  */
-export function hamburgerFunctionality() {
+export function menuFunctionality() {
   const hamburgerIcon = document.querySelector("#hamburger-icon");
+  const wideScreenMenu = document.querySelector("#wide-screen-menu");
 
   hamburgerIcon.addEventListener("click", () => mobileMenuToggle());
+  wideScreenMenu.addEventListener("click", () => mobileMenuToggle());
 }
 
 // Toggle the mobile menu open/closed.
@@ -75,7 +74,7 @@ function mobileMenuToggle() {
 }
 
 function clearMobileContent() {
-  const mobileContent = document.querySelector("#mobile-content");
+  const mobileContent = document.querySelector("#content-area");
   mobileContent.innerHTML = "";
 }
 
@@ -122,6 +121,9 @@ function mobileMenuAddTask() {
   });
 }
 
+// Flag to determine if project list is open or closed.
+let projectsOpen = false;
+
 /* Event listener for projects button. Populates the projects list with project names. */
 function mobileMenuProjects() {
   const projectsButton = document.querySelector(".mobile-projects-button");
@@ -137,7 +139,7 @@ function mobileMenuProjects() {
       // Populate the projects list with project names.
     } else {
       // Target the mobile div in the body.
-      const mobileDiv = document.querySelector("#mobile-content");
+      const contentArea = document.querySelector("#content-area");
 
       projectsArray.forEach(project => {
         // Create a list item element for each project name.
@@ -151,9 +153,9 @@ function mobileMenuProjects() {
         // Add event listener for each project name.
         projectName.addEventListener("click", () => {
           // Clear the mobile div, load project card, and associated tasks.
-          mobileDiv.innerHTML = "";
+          contentArea.innerHTML = "";
           mobileMenuClose();
-          mobileDiv.insertAdjacentHTML("afterbegin", displayProject(project));
+          contentArea.insertAdjacentHTML("afterbegin", displayProject(project));
           taskPopupFunctionality("project"); // Add task popup functionality.
           projectDisplayTasks(project, tasksArray);
         });

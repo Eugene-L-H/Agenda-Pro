@@ -16,13 +16,12 @@ import {
 } from "./tasks.js";
 
 // Check local storage for projects. Add them to the sidebar.
-export function projectsStorageToDisplay() {
+export function populateLocalProjectsArray() {
+  // Update local projects array with projects from local storage.
   if (localStorage.getItem("projectsArray") !== null) {
     updateProjectsArray(JSON.parse(localStorage.getItem("projectsArray")));
-    for (const project of projectsArray) {
-      // Create list item dom object
-      addProjectNameToSidebar(project.name);
-    }
+
+    // If local storage is empty, populate with example projects.
   } else {
     updateProjectsArray(populateExampleArray("project", 5));
     location.reload();
@@ -99,7 +98,6 @@ export function displayProject(project) {
 
   const projectHTML = `
     <div class="project-card">
-     <span class="delete-icon" data-name="${project.name}" data-id="${project.id}" data-project="project">✖</span>
       <div class="project-info">
           <div class="project-card-header">
               <h3 id="project-name" data-name="${project.name}">
@@ -123,13 +121,15 @@ export function displayProject(project) {
                 </div>
               </div>
           </div>
+          <div class="modify-project">
+      <div id="add-task-project" class="new-post-button add-task-button">
+        <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
       </div>
-
+      <span class="project-delete-icon delete-icon" data-name="${project.name}" data-id="${project.id}" data-project="project">✖</span>
+     </div>
+      </div>
       <div id="project-tasks">
           <div class="project-task-label-line">
-            <div id="add-task-project" class="new-post-button add-task-button">
-                <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
-            </div>
           </div>
           <div class="tasks-container tasks-container-project">
               <ul class="task-list"></ul>

@@ -14,19 +14,19 @@ fun.darkMode();
 fun.updateWeather();
 
 // Mobile menu functionality.
-fun.hamburgerFunctionality();
+fun.menuFunctionality();
 
 // Add functionality to the task date buttons.
-fun.taskDateButtons();
+// fun.taskDateButtons();
 
 // Add functionality to the Add Task button in the sidebar.
-fun.taskPopupFunctionality();
+// fun.taskPopupFunctionality();
 
 // Add functionality to the Add Project button.
-fun.addProjectPopupFunctionality();
+// fun.addProjectPopupFunctionality();
 
 // Check local storage for tasks.
 fun.tasksStorageToDisplay();
 
-// Check local storage for projects. Display in sidebar.
-fun.projectsStorageToDisplay();
+// Check local storage for projects.Populate local variable.
+fun.populateLocalProjectsArray();

@@ -211,13 +211,7 @@ export function taskCardFunctionality() {
  * @returns {void}
  */
 export function displayTasks(dateRange, mobile) {
-  // Where tasks will be appended to, mobile vs desktop.
-  let contentArea;
-  if (mobile) {
-    contentArea = document.querySelector("#mobile-content");
-  } else {
-    contentArea = document.querySelector("#content-area");
-  }
+  const contentArea = document.querySelector("#content-area");
 
   // Clear the content area.
   contentArea.innerHTML = "";

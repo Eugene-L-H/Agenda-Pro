@@ -15,7 +15,7 @@ header {
   z-index: 1;
   display: flex;
   color: #000;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   width: 97vw;
   height: 90px;
@@ -26,6 +26,7 @@ header {
 header h1 {
   font-size: 2.5rem;
   font-family: "Raleway", sans-serif;
+  margin-left: 7%;
 }
 
 /* Dark mode */
@@ -51,6 +52,7 @@ header h1 {
 .header-right-side {
   display: flex;
   align-items: center;
+  margin-right: 20%;
 }
 
 /* Weather API */
@@ -103,6 +105,21 @@ header h1 {
   border-radius: 5px;
   height: 3px;
   width: 100%;
+}
+
+#wide-screen-menu {
+  position: absolute;
+  font-size: 1rem;
+  min-width: 65px;
+  width: 5vw;
+  background-color: turquoise;
+  margin: 78px 0px 0 87%;
+  padding-top: 4px;
+  transition: transform 0.2s ease;
+}
+
+#wide-screen-menu:hover {
+  transform: scale(1.1);
 }
 
 /* Main app content */
@@ -205,8 +222,13 @@ ul.projects {
 }
 
 #content-area {
-  width: 75.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  width: 90%;
   height: 100%;
+  margin-top: 160px;
 }
 
 /* Project cards */
@@ -215,7 +237,9 @@ ul.projects {
   display: flex;
   flex-direction: column;
   width: 100%;
+  max-width: 850px;
   height: 100%;
+  margin-top: 10px;
 }
 
 .project-info {
@@ -286,6 +310,7 @@ ul.projects {
 #project-tasks {
   display: flex;
   flex-direction: column;
+  align-items: center;
   height: 100%;
 }
 
@@ -350,22 +375,23 @@ ul.projects {
 .tasks-container {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 75vw;
+  max-width: 764px;
   height: 100%;
   margin: 0;
   overflow: hidden;
 }
 
 .tasks-container-project {
-  height: 82%;
+  width: 70vw;
 }
 
 .list-range-title {
-  /* text-align: center; */
-  width: 100%;
+  text-align: center;
   border-bottom: 1px solid #000;
-  margin: 0;
-  padding: 10px 0;
+  background: lightgray;
+  margin: 10px 0 0 0;
+  padding: 20px 0;
 }
 
 .task-list,
@@ -454,11 +480,9 @@ ul.projects {
 .delete-icon {
   position: absolute;
   justify-self: flex-end;
-
   font-size: 1.3rem;
   pointer-events: auto;
   cursor: pointer;
-
   transition: transform 0.2s ease;
 }
 
@@ -467,11 +491,15 @@ ul.projects {
   margin-top: 223px !important;
 }
 
-.project-card .delete-icon {
-  /* margin: 5px 5px 0 auto; */
-  top: 0;
-  right: 0;
-  margin: 5px 5px 0 0;
+.modify-project {
+  position: inline-block;
+  display: flex;
+  justify-content: space-between;
+  min-width: 100%;
+}
+
+.modify-project .delete-icon {
+  position: initial;
 }
 
 .delete-icon:hover {
