@@ -72,6 +72,7 @@ export function taskDOMobject(task) {
           type="checkbox"
           class="task-checkbox"
           ${task.checked ? "checked='true'" : ""}"'}"
+          data-id="${task.id}"
         />
         <span class="edit-icon ${
           task.checked ? "task-completed" : ""
@@ -198,7 +199,7 @@ export function taskCardFunctionality() {
         taskCard.querySelector(".edit-icon").classList.toggle("task-completed");
 
         // Retrieve the task id.
-        const taskId = taskCard.getAttribute("id");
+        const taskId = event.target.getAttribute("data-id");
 
         // Change tasks "checked" status in localStorage.
         checkTask(taskId);
