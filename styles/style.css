@@ -233,7 +233,6 @@ ul.projects {
 
 /* Project cards */
 .project-card {
-  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -243,9 +242,10 @@ ul.projects {
 }
 
 .project-info {
+  position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 20%;
+  min-height: 180px;
   background-color: #eee;
 }
 
@@ -290,12 +290,25 @@ ul.projects {
   display: flex;
 }
 
-.project-task-label-line {
+/* .project-task-label-line {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
   border-top: 1px solid #000;
+} */
+
+.modify-project {
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  min-width: 100%;
+  margin-top: 145px;
+}
+
+.modify-project .delete-icon {
+  position: initial;
+  margin: 10px 5px 0 0;
 }
 
 .add-task-text {
@@ -474,7 +487,7 @@ ul.projects {
 
 .task-checkbox {
   pointer-events: auto;
-  margin-right: 49px;
+  margin-right: 50px;
 }
 
 .delete-icon {
@@ -489,17 +502,6 @@ ul.projects {
 .task-card-wrapper .delete-icon {
   margin-left: 205px !important;
   margin-top: 223px !important;
-}
-
-.modify-project {
-  position: inline-block;
-  display: flex;
-  justify-content: space-between;
-  min-width: 100%;
-}
-
-.modify-project .delete-icon {
-  position: initial;
 }
 
 .delete-icon:hover {

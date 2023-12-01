@@ -83,8 +83,23 @@ body {
     margin-top: 0;
   }
 
+  .project-card-body {
+    padding-bottom: 5px;
+    background-color: #eee;
+  }
+
   .project-info {
-    min-height: 12%;
+    min-height: 0;
+    height: 125px;
+    font-size: 0.85rem;
+  }
+
+  .modify-project {
+    margin-top: 80px;
+  }
+
+  .modify-project .delete-icon {
+    margin: 5px 5px 0 0;
   }
 
   /* Displayed tasks */

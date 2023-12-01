@@ -107,8 +107,7 @@ export function displayProject(project) {
           </div>
           <div class="project-card-body">
               <p class="project-description">
-                  <span>Description:&nbsp;</span>
-                  ${project.description}
+                 ${project.description}
               </p>
               <div class="deadline-priority">
                 <div class="project-deadline">
