@@ -105,6 +105,12 @@ header h1 {
   width: 100%;
 }
 
+#wide-screen-menu {
+  position: absolute;
+  font-size: 1.1rem;
+  margin: 63px 0px 0 90%;
+}
+
 /* Main app content */
 main {
   width: 100%;
@@ -455,11 +461,9 @@ ul.projects {
 .delete-icon {
   position: absolute;
   justify-self: flex-end;
-
   font-size: 1.3rem;
   pointer-events: auto;
   cursor: pointer;
-
   transition: transform 0.2s ease;
 }
 

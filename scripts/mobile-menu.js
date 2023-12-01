@@ -42,8 +42,10 @@ function mobileMenuHTML() {
  */
 export function menuFunctionality() {
   const hamburgerIcon = document.querySelector("#hamburger-icon");
+  const wideScreenMenu = document.querySelector("#wide-screen-menu");
 
   hamburgerIcon.addEventListener("click", () => mobileMenuToggle());
+  wideScreenMenu.addEventListener("click", () => mobileMenuToggle());
 }
 
 // Toggle the mobile menu open/closed.
