@@ -8,9 +8,6 @@ let menuOpen = false;
 // Last task range opened by user.
 let lastTaskRange = "today";
 
-// Flag to determine if project list is open or closed.
-let projectsOpen = false;
-
 // HTML for mobile menu.
 function mobileMenuHTML() {
   // Check if projects present in projectsArray.
@@ -122,10 +119,15 @@ function mobileMenuAddTask() {
   });
 }
 
+// Flag to determine if project list is open or closed.
+let projectsOpen = false;
+
 /* Event listener for projects button. Populates the projects list with project names. */
 function mobileMenuProjects() {
   const projectsButton = document.querySelector(".mobile-projects-button");
   const projectList = document.querySelector("#mobile-menu-projects");
+  console.log("projectList: ", projectList);
+  console.log("projectsButton: ", projectsButton);
 
   projectsButton.addEventListener("click", () => {
     // If the projects list is open, close it.
@@ -138,6 +140,7 @@ function mobileMenuProjects() {
     } else {
       // Target the mobile div in the body.
       const mobileDiv = document.querySelector("#mobile-content");
+      console.log("projectsArray: ", projectsArray);
 
       projectsArray.forEach(project => {
         // Create a list item element for each project name.

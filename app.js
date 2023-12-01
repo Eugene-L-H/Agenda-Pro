@@ -28,5 +28,5 @@ fun.hamburgerFunctionality();
 // Check local storage for tasks.
 fun.tasksStorageToDisplay();
 
-// Check local storage for projects. Display in sidebar.
-// fun.projectsStorageToDisplay();
+// Check local storage for projects.Populate local variable.
+fun.populateLocalProjectsArray();

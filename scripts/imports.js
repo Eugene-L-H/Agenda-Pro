@@ -23,7 +23,7 @@ import {
 } from "./tasks.js";
 
 import {
-  projectsStorageToDisplay,
+  populateLocalProjectsArray,
   addProjectNameToSidebar,
   addProjectPopupFunctionality,
   submitProjectButton
@@ -58,7 +58,7 @@ export {
   displayTasks,
   taskDateButtons,
   taskPopupFunctionality,
-  projectsStorageToDisplay,
+  populateLocalProjectsArray,
   addProjectNameToSidebar,
   addProjectPopupFunctionality,
   submitProjectButton,
