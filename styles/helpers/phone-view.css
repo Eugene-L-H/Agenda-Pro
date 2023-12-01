@@ -79,6 +79,10 @@ body {
     display: none;
   }
 
+  .project-card {
+    margin-top: 0;
+  }
+
   .project-info {
     min-height: 12%;
   }
@@ -86,10 +90,8 @@ body {
   /* Displayed tasks */
   .list-range-title {
     font-size: 1.2rem;
-    text-align: center;
-    width: 100%;
     padding-top: 20px;
-    background: lightgray;
+    margin: 0;
   }
 
   .task-list {
@@ -246,15 +248,4 @@ body {
   color: #444;
   font-style: italic;
   margin-top: 10%;
-}
-
-/* Hide while desktop view is on. */
-@media (min-width: 692px) {
-  #mobile-menu {
-    display: none;
-  }
-
-  #mobile-content {
-    display: none;
-  }
 }

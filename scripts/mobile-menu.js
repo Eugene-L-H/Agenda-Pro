@@ -139,7 +139,7 @@ function mobileMenuProjects() {
       // Populate the projects list with project names.
     } else {
       // Target the mobile div in the body.
-      const mobileDiv = document.querySelector("#mobile-content");
+      const contentArea = document.querySelector("#content-area");
 
       projectsArray.forEach(project => {
         // Create a list item element for each project name.
@@ -153,9 +153,9 @@ function mobileMenuProjects() {
         // Add event listener for each project name.
         projectName.addEventListener("click", () => {
           // Clear the mobile div, load project card, and associated tasks.
-          mobileDiv.innerHTML = "";
+          contentArea.innerHTML = "";
           mobileMenuClose();
-          mobileDiv.insertAdjacentHTML("afterbegin", displayProject(project));
+          contentArea.insertAdjacentHTML("afterbegin", displayProject(project));
           taskPopupFunctionality("project"); // Add task popup functionality.
           projectDisplayTasks(project, tasksArray);
         });

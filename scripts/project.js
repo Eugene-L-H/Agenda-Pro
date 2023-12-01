@@ -98,10 +98,6 @@ export function displayProject(project) {
 
   const projectHTML = `
     <div class="project-card">
-     <span class="project-delete-icon delete-icon" data-name="${project.name}" data-id="${project.id}" data-project="project">✖</span>
-      <div id="add-task-project" class="new-post-button add-task-button">
-        <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
-      </div>
       <div class="project-info">
           <div class="project-card-header">
               <h3 id="project-name" data-name="${project.name}">
@@ -125,11 +121,15 @@ export function displayProject(project) {
                 </div>
               </div>
           </div>
+          <div class="modify-project">
+      <div id="add-task-project" class="new-post-button add-task-button">
+        <span class="plus-sign">+</span><span>&nbsp;Add Task</span>
       </div>
-
+      <span class="project-delete-icon delete-icon" data-name="${project.name}" data-id="${project.id}" data-project="project">✖</span>
+     </div>
+      </div>
       <div id="project-tasks">
           <div class="project-task-label-line">
-            
           </div>
           <div class="tasks-container tasks-container-project">
               <ul class="task-list"></ul>
