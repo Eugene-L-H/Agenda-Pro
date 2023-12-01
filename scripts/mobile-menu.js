@@ -5,9 +5,6 @@ import { displayProject, projectDisplayTasks } from "./project.js";
 // Flag to determine if the mobile menu is open or closed.
 let menuOpen = false;
 
-// Last task range opened by user.
-let lastTaskRange = "today";
-
 // HTML for mobile menu.
 function mobileMenuHTML() {
   // Check if projects present in projectsArray.
@@ -53,16 +50,11 @@ function mobileMenuToggle() {
   const body = document.querySelector("body");
 
   if (menuOpen) {
-    // Delete Mobile Menu
-    clearMobileContent();
-    displayTasks(lastTaskRange, true);
     const mobileMenu = document.querySelector("#mobile-menu");
     mobileMenu.remove();
 
     // Display the mobile menu. Add event listener for projects button.
   } else {
-    clearMobileContent();
-
     body.insertAdjacentHTML("afterbegin", mobileMenuHTML());
     mobileMenuDates();
     mobileMenuAddTask();
@@ -89,25 +81,21 @@ function mobileMenuDates() {
   todayButton.addEventListener("click", () => {
     displayTasks("today", true);
     mobileMenuClose();
-    lastTaskRange = "today";
   });
 
   weekButton.addEventListener("click", () => {
     displayTasks("week", true);
     mobileMenuClose();
-    lastTaskRange = "week";
   });
 
   monthButton.addEventListener("click", () => {
     displayTasks("month", true);
     mobileMenuClose();
-    lastTaskRange = "month";
   });
 
   yearButton.addEventListener("click", () => {
     displayTasks("year", true);
     mobileMenuClose();
-    lastTaskRange = "year";
   });
 }
 

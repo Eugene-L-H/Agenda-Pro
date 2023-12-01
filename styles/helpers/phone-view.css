@@ -121,6 +121,7 @@ body {
 
 /* Mobile menu. */
 #mobile-menu {
+  position: absolute;
   z-index: 2;
   margin-top: 67px;
   display: flex;
