@@ -112,7 +112,7 @@ body {
   .list-range-title {
     font-size: 1.2rem;
     padding-top: 20px;
-    margin: 0 0 20px 0;
+    margin: 0;
   }
 
   .task-list {
