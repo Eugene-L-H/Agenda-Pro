@@ -100,8 +100,7 @@ body {
   #add-task-project {
     font-size: 0.75rem;
     height: 50px;
-    width: 50px;
-    margin: -10px 0 0px 5px;
+    margin: -10px 0 0px 5%;
   }
 
   .modify-project .delete-icon {

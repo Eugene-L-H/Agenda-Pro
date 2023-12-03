@@ -57,15 +57,14 @@ export function taskDOMobject(task) {
       <div class="task-card-content">
         <h3 class="task-name">${task.name}</h3>
         <span class="task-description">${task.description}</span>
-        <span class="task-project-name">Project: ${task.project}</span>
-        <div class="task-priority">
-        <span class="task-priority-label">Priority:</span>
-        <span class="task-priority-value">${priority}</span>
-        </div>
-        <div class="task-deadline">
+        
+        <p class="task-details">
+          Project: ${task.project}<br>
+          Priority: ${priority}<br>
           <span class="task-deadline-label">Deadline:</span>
           <span class="task-deadline-value">${task.dueDate}</span>
-        </div>
+        </p>
+        
       </div>
       <div class="modify-tasks">
         <input
