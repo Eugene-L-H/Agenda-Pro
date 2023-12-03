@@ -5,33 +5,30 @@ body {
 
 @media (max-width: 780px) {
   header h1 {
-    margin-left: 10px;
+    position: absolute;
+    font-size: 1.6rem;
+    margin-right: 60%;
   }
 
   header {
-    justify-content: space-between;
+    justify-content: center;
     height: 80px;
   }
 
-  header h1,
   #dark-mode-icon {
     font-size: 1.7rem;
   }
 
-  #dark-mode-icon {
-    margin-right: 52.7%;
-    margin-left: 47.3%;
-  }
-
   .header-right-side {
+    position: absolute;
     display: flex;
+    width: 25%;
     justify-content: space-around;
-    width: 33%;
-    margin-right: 13px;
+    margin-left: 81%;
   }
 
   #weather-info {
-    margin-right: 5px;
+    margin-right: 15px;
     width: 70%;
     margin-top: -10px;
   }
@@ -269,4 +266,24 @@ body {
   color: #444;
   font-style: italic;
   margin-top: 10%;
+}
+
+@media (max-width: 430px) {
+  #location,
+  #temperature {
+    font-size: 0.85rem;
+  }
+
+  #weather-description {
+    font-size: 0.7rem;
+  }
+
+  #hamburger-icon {
+    max-height: 23px;
+    margin-left: 20px;
+  }
+
+  .bar {
+    max-width: 25px;
+  }
 }
