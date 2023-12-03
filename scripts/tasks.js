@@ -8,6 +8,7 @@ import {
   sortArrayByPriority,
   closePopup,
   closePopupButton,
+  blurMainToggle,
   isDueInTimeFrame,
   getFormattedDate,
   isThisYear
@@ -64,7 +65,7 @@ export function taskDOMobject(task) {
           <span class="task-deadline-label">Deadline:</span>
           <span class="task-deadline-value">${task.dueDate}</span>
         </p>
-        
+
       </div>
       <div class="modify-tasks">
         <input
@@ -315,13 +316,10 @@ export function taskPopupFunctionality(locationCall) {
 
   addTaskButton.addEventListener("click", () => {
     const body = document.querySelector("body");
-    const main = document.querySelector("main");
     const popupHTML = addNewTaskPopup();
 
     // Add the popup HTML to the DOM.
     body.insertAdjacentHTML("afterbegin", popupHTML);
-    main.classList.add("blur");
-
     // Add functionality for the close popup button, on new popup.
     closePopupButton();
 

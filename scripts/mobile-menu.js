@@ -1,6 +1,12 @@
-import { projectsArray, tasksArray } from "./helpers/state.js";
-import { displayTasks, taskPopupFunctionality } from "./tasks.js";
-import { displayProject, projectDisplayTasks } from "./project.js";
+import {
+  blurMainToggle,
+  projectsArray,
+  tasksArray,
+  displayTasks,
+  taskPopupFunctionality,
+  displayProject,
+  projectDisplayTasks
+} from "./imports.js";
 
 // Flag to determine if the mobile menu is open or closed.
 let menuOpen = false;
@@ -38,11 +44,19 @@ function mobileMenuHTML() {
  * Add functionality to the hamburger icon (mobile menu).
  */
 export function menuFunctionality() {
+  const main = document.querySelector("main");
   const hamburgerIcon = document.querySelector("#hamburger-icon");
   const wideScreenMenu = document.querySelector("#wide-screen-menu");
 
-  hamburgerIcon.addEventListener("click", () => mobileMenuToggle());
-  wideScreenMenu.addEventListener("click", () => mobileMenuToggle());
+  hamburgerIcon.addEventListener("click", () => {
+    blurMainToggle(); // Blur the main screen.
+    mobileMenuToggle();
+  });
+
+  wideScreenMenu.addEventListener("click", () => {
+    blurMainToggle(); // Blur the main screen.
+    mobileMenuToggle();
+  });
 }
 
 // Toggle the mobile menu open/closed.
@@ -81,21 +95,25 @@ function mobileMenuDates() {
   todayButton.addEventListener("click", () => {
     displayTasks("today", true);
     mobileMenuClose();
+    blurMainToggle(); // Remove blur from the main screen.
   });
 
   weekButton.addEventListener("click", () => {
     displayTasks("week", true);
     mobileMenuClose();
+    blurMainToggle(); // Remove blur from the main screen.
   });
 
   monthButton.addEventListener("click", () => {
     displayTasks("month", true);
     mobileMenuClose();
+    blurMainToggle(); // Remove blur from the main screen.
   });
 
   yearButton.addEventListener("click", () => {
     displayTasks("year", true);
     mobileMenuClose();
+    blurMainToggle(); // Remove blur from the main screen.
   });
 }
 
@@ -106,6 +124,7 @@ function mobileMenuAddTask() {
 
   addTaskButton.addEventListener("click", () => {
     mobileMenuClose();
+    blurMainToggle(); // Remove blur from the main screen.
   });
 }
 
@@ -143,6 +162,7 @@ function mobileMenuProjects() {
           // Clear the mobile div, load project card, and associated tasks.
           contentArea.innerHTML = "";
           mobileMenuClose();
+          blurMainToggle(); // Remove blur from the main screen.
           contentArea.insertAdjacentHTML("afterbegin", displayProject(project));
           taskPopupFunctionality("project"); // Add task popup functionality.
           projectDisplayTasks(project, tasksArray);

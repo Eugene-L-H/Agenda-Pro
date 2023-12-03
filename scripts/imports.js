@@ -26,13 +26,19 @@ import {
   populateLocalProjectsArray,
   addProjectNameToSidebar,
   addProjectPopupFunctionality,
-  submitProjectButton
+  submitProjectButton,
+  displayProject,
+  projectDisplayTasks
 } from "./project.js";
 
 import { Project, Task } from "./helpers/classes.js";
 
 // Functions for handling the popups.
-import { closePopup, closePopupButton } from "./helpers/popup.js";
+import {
+  closePopup,
+  closePopupButton,
+  blurMainToggle
+} from "./helpers/popup.js";
 
 import { updateWeather } from "./helpers/weather.js";
 
@@ -62,10 +68,13 @@ export {
   addProjectNameToSidebar,
   addProjectPopupFunctionality,
   submitProjectButton,
+  displayProject,
+  projectDisplayTasks,
   Project,
   Task,
   closePopup,
   closePopupButton,
+  blurMainToggle,
   updateWeather,
   sortArrayByDate,
   sortArrayByPriority,

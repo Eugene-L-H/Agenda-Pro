@@ -17,3 +17,9 @@ export function closePopupButton() {
     closePopup();
   });
 }
+
+// Blur the main content area.
+export function blurMainToggle() {
+  const main = document.querySelector("main");
+  main.classList.toggle("blur");
+}
