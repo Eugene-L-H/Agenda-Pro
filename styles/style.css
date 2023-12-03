@@ -332,6 +332,13 @@ ul.projects {
 .no-tasks {
   font-style: italic;
 }
+
+.no-tasks-message {
+  margin-top: 10rem;
+  font-size: 1.75rem;
+  font-style: italic;
+}
+
 /* Popups */
 .popup {
   display: flex;

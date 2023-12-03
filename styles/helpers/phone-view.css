@@ -134,9 +134,9 @@ body {
     margin-top: 67px;
   }
 
-  /* Hide desktop app content */
-  #app {
-    display: none;
+  .no-tasks-message {
+    margin-top: 7rem;
+    font-size: 1.4rem;
   }
 }
 
