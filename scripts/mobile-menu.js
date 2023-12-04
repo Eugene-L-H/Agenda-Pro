@@ -5,7 +5,11 @@ import {
   displayTasks,
   taskPopupFunctionality,
   displayProject,
-  projectDisplayTasks
+  projectDisplayTasks,
+  addNewProjectPopup,
+  closePopupButton,
+  submitProjectButton,
+  Project
 } from "./imports.js";
 
 // Flag to determine if the mobile menu is open or closed.
@@ -72,15 +76,11 @@ function mobileMenuToggle() {
     mobileMenuDates();
     mobileMenuAddTask();
     mobileMenuProjects();
+    mobileMenuAddProject();
   }
 
   // Toggle the menu open/closed.
   menuOpen ? (menuOpen = false) : (menuOpen = true);
-}
-
-function clearMobileContent() {
-  const mobileContent = document.querySelector("#content-area");
-  mobileContent.innerHTML = "";
 }
 
 // Event listeners for the task date-range buttons.
@@ -175,9 +175,8 @@ function mobileMenuProjects() {
               "afterbegin",
               displayProject(project)
             );
-            taskPopupFunctionality("project"); // Add task popup functionality.
+            taskPopupFunctionality(project); // Add task popup functionality.
             projectDisplayTasks(project, tasksArray);
-            projectsOpen = false;
           });
         });
       }
@@ -191,8 +190,28 @@ function mobileMenuProjects() {
   });
 }
 
+function mobileMenuAddProject() {
+  const body = document.querySelector("body");
+  const addNewProjectButton = document.querySelector(
+    "#mobile-add-project-button"
+  );
+
+  addNewProjectButton.addEventListener("click", () => {
+    // Add the popup HTML to the DOM.
+    const popupHTML = addNewProjectPopup();
+    body.insertAdjacentHTML("afterbegin", popupHTML);
+
+    // Add functionality to the close popup button.
+    closePopupButton();
+
+    // Add functionality to the submit project button.
+    submitProjectButton(Project);
+    mobileMenuClose(); // Close the mobile menu.
+  });
+}
+
 // Remove mobile menu from DOM, reset flag
-function mobileMenuClose() {
+export function mobileMenuClose() {
   const mobileMenu = document.querySelector("#mobile-menu");
 
   mobileMenu.remove();

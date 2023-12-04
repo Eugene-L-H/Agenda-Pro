@@ -3,10 +3,9 @@ import {
   projectsArray,
   updateProjectsArray,
   closePopup,
-  closePopupButton,
   tasksArray,
-  Project,
-  populateExampleArray
+  populateExampleArray,
+  blurMainToggle
 } from "./imports.js";
 
 import {
@@ -29,7 +28,7 @@ export function populateLocalProjectsArray() {
 }
 
 // Popup form for creating a new project.
-function addNewProjectPopup() {
+export function addNewProjectPopup() {
   const popupHTML = `
     <div class="popup">
       <div class="popup-header">
@@ -58,27 +57,6 @@ function addNewProjectPopup() {
   `;
 
   return popupHTML;
-}
-
-// Add functionality to the Add Project button.
-export function addProjectPopupFunctionality() {
-  const body = document.querySelector("body");
-  const addNewProjectBtn = document.querySelector("#add-project-button");
-  const main = document.querySelector("main");
-  addNewProjectBtn.addEventListener("click", () => {
-    // Add the popup HTML to the DOM.
-    const popupHTML = addNewProjectPopup();
-
-    // Add the popup HTML to the DOM.
-    body.insertAdjacentHTML("afterbegin", popupHTML);
-    main.classList.add("blur");
-
-    // Add functionality to the close popup button.
-    closePopupButton();
-
-    // Add functionality to the submit project button.
-    submitProjectButton(Project);
-  });
 }
 
 // HTML to display project in the main content area.
@@ -215,6 +193,8 @@ export function addProjectNameToSidebar(name) {
 
 export function submitProjectButton(projectClass) {
   const submitButton = document.querySelector("#submit-project");
+  const contentArea = document.querySelector("#content-area");
+
   submitButton.addEventListener("click", () => {
     // Create a new project.
     const project = new projectClass();
@@ -234,11 +214,17 @@ export function submitProjectButton(projectClass) {
     project.priority = projectPriority;
     project.deadline = document.querySelector("#project-deadline").value;
 
-    // Add the project to the project list.
+    // Add the project to the projects array.
     projectsArray.push(project);
     localStorage.setItem("projectsArray", JSON.stringify(projectsArray));
 
-    addProjectNameToSidebar(projectName);
+    // Display new project in main area.
+    // Clear the mobile div, load project card, and associated tasks.
+    contentArea.innerHTML = "";
+    blurMainToggle(); // Remove blur from the main screen.
+    contentArea.insertAdjacentHTML("afterbegin", displayProject(project));
+    taskPopupFunctionality("project"); // Add task popup functionality.
+    projectDisplayTasks(project, tasksArray);
 
     closePopup();
   });

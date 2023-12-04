@@ -11,7 +11,9 @@ import {
   blurMainToggle,
   isDueInTimeFrame,
   getFormattedDate,
-  isThisYear
+  populateLocalProjectsArray,
+  projectDisplayTasks,
+  projectsArray
 } from "./imports.js";
 
 export function tasksStorageToDisplay() {
@@ -134,7 +136,7 @@ function checkTask(taskId) {
 }
 
 // *Used in taskPopupFunctionality()*
-function submitTaskButton(taskClass, locationCall) {
+function submitTaskButton(taskClass, project) {
   const submitButton = document.querySelector("#submit-task");
   submitButton.addEventListener("click", () => {
     const id = Date.now(); // Generate a unique id for the task.
@@ -147,10 +149,8 @@ function submitTaskButton(taskClass, locationCall) {
 
     // Project name is empty if the popup is from the sidebar.
     let projectName = "Unassigned";
-    if (locationCall === "project") {
-      projectName = document
-        .querySelector("#project-name")
-        .getAttribute("data-name");
+    if (project !== null) {
+      projectName = project.name;
     }
 
     // Create new task object from user info.
@@ -165,13 +165,12 @@ function submitTaskButton(taskClass, locationCall) {
 
     // Add task to the tasksArray.
     updateTasksArray([...tasksArray, task]);
-
+    sortArrayByPriority(tasksArray);
+    sortArrayByDate(tasksArray);
     closePopup();
 
     // Display new task in the task list.
-    const taskCard = taskDOMobject(task);
-    const taskList = document.querySelector("#task-list");
-    taskList.appendChild(taskCard);
+    projectDisplayTasks(project, tasksArray);
   });
 }
 
@@ -214,7 +213,7 @@ export function taskCardFunctionality() {
  * @param {Boolean} mobile - Whether the tasks are being displayed on a mobile device.
  * @returns {void}
  */
-export function displayTasks(dateRange, mobile) {
+export function displayTasks(dateRange) {
   const contentArea = document.querySelector("#content-area");
 
   // Clear the content area.
@@ -271,8 +270,7 @@ export function displayTasks(dateRange, mobile) {
     tasksContainer.appendChild(taskList); // Add tasks to container.
     contentArea.appendChild(tasksContainer); // Add container to DOM.
 
-    /* Add functionality to the task cards. Only applied on mobile call to avoid multiple event handlers being assigned to task cards, as the event handler applied by taskCardFunctionality is added to both the desktop section, and the mobile task cards. */
-    if (mobile) taskCardFunctionality();
+    taskCardFunctionality();
   } else {
     // If there are no tasks that match the date range, display a message.
     const noTasksMessage = document.createElement("h2");
@@ -304,14 +302,12 @@ export function taskDateButtons() {
  * Display the add task popup.
  * @param {String} locationCall - The location of the popup.
  */
-export function taskPopupFunctionality(locationCall) {
+export function taskPopupFunctionality(project) {
   let addTaskButton;
-  if (locationCall === "project") {
-    addTaskButton = document.querySelector("#add-task-project");
-  } else if (locationCall === "mobile") {
+  if (project === "mobile") {
     addTaskButton = document.querySelector("#mobile-add-task");
   } else {
-    addTaskButton = document.querySelector("#add-task-sidebar");
+    addTaskButton = document.querySelector("#add-task-project");
   }
 
   addTaskButton.addEventListener("click", () => {
@@ -326,6 +322,6 @@ export function taskPopupFunctionality(locationCall) {
     blurMainToggle(); // Blur the main screen.
 
     // Add functionality for the "Add Task" button.
-    submitTaskButton(Task, locationCall);
+    submitTaskButton(Task, project);
   });
 }

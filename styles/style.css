@@ -426,14 +426,14 @@ ul.projects {
   gap: 20px;
   height: 100%;
   width: 100%;
-  margin: 0 0 120px 0;
+  margin: 0;
   padding: 20px 0;
   overflow-y: auto;
 }
 
 #task-list > li:last-child {
   /* Last task has margin for visibility */
-  margin-bottom: 110px;
+  margin-bottom: 250px;
 }
 
 .task-list-item {
