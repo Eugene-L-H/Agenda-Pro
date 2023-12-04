@@ -256,6 +256,9 @@ ul.projects {
   flex-direction: column;
   min-height: 180px;
   background-color: #eee;
+  border-bottom: 2px solid #555;
+  border-right: 3px solid #aaa;
+  border-left: 1px solid #bbb;
 }
 
 .project-card-header {
