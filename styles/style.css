@@ -255,7 +255,6 @@ ul.projects {
   display: flex;
   flex-direction: column;
   min-height: 180px;
-  margin-bottom: 20px;
   background-color: #eee;
 }
 
@@ -406,14 +405,10 @@ ul.projects {
 .tasks-container {
   display: flex;
   flex-direction: column;
-  width: 75vw;
+  height: 100%;
   max-width: 780px;
   margin: 0;
   overflow: hidden;
-}
-
-.tasks-container-project {
-  width: 70vw;
 }
 
 .list-range-title {
@@ -431,8 +426,7 @@ ul.projects {
   gap: 20px;
   height: 100%;
   width: 100%;
-  margin: 0;
-  margin-bottom: 30px;
+  margin: 0 0 120px 0;
   padding: 20px 0;
   overflow-y: auto;
 }
