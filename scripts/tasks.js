@@ -323,6 +323,8 @@ export function taskPopupFunctionality(locationCall) {
     // Add functionality for the close popup button, on new popup.
     closePopupButton();
 
+    blurMainToggle(); // Blur the main screen.
+
     // Add functionality for the "Add Task" button.
     submitTaskButton(Task, locationCall);
   });

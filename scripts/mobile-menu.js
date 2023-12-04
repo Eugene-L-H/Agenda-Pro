@@ -11,6 +11,9 @@ import {
 // Flag to determine if the mobile menu is open or closed.
 let menuOpen = false;
 
+// Flag to determine if project list is open or closed.
+let projectsOpen = false;
+
 // HTML for mobile menu.
 function mobileMenuHTML() {
   // Check if projects present in projectsArray.
@@ -44,7 +47,6 @@ function mobileMenuHTML() {
  * Add functionality to the hamburger icon (mobile menu).
  */
 export function menuFunctionality() {
-  const main = document.querySelector("main");
   const hamburgerIcon = document.querySelector("#hamburger-icon");
   const wideScreenMenu = document.querySelector("#wide-screen-menu");
 
@@ -57,6 +59,8 @@ export function menuFunctionality() {
     blurMainToggle(); // Blur the main screen.
     mobileMenuToggle();
   });
+
+  projectsOpen = false;
 }
 
 // Toggle the mobile menu open/closed.
@@ -128,9 +132,6 @@ function mobileMenuAddTask() {
   });
 }
 
-// Flag to determine if project list is open or closed.
-let projectsOpen = false;
-
 /* Event listener for projects button. Populates the projects list with project names. */
 function mobileMenuProjects() {
   const projectsButton = document.querySelector(".mobile-projects-button");
@@ -166,6 +167,7 @@ function mobileMenuProjects() {
           contentArea.insertAdjacentHTML("afterbegin", displayProject(project));
           taskPopupFunctionality("project"); // Add task popup functionality.
           projectDisplayTasks(project, tasksArray);
+          projectsOpen = false;
         });
       });
 
