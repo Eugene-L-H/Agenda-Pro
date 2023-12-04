@@ -15,8 +15,13 @@ body {
     height: 80px;
   }
 
+  header .arrows {
+    font-size: 1rem;
+  }
+
   #dark-mode-icon {
     font-size: 1.7rem;
+    margin-right: 0;
   }
 
   .header-right-side {
@@ -82,7 +87,6 @@ body {
 
   .project-card-body {
     padding-bottom: 5px;
-    background-color: #eee;
   }
 
   .project-info {
@@ -107,7 +111,7 @@ body {
   /* Displayed tasks */
   .list-range-title {
     font-size: 1.2rem;
-    padding-top: 20px;
+    padding: 15px 0;
     margin: 0;
   }
 
@@ -293,5 +297,9 @@ body {
 
   #mobile-menu {
     width: 290px;
+  }
+
+  .project-card-body {
+    font-size: 0.7rem;
   }
 }

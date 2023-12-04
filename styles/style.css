@@ -7,14 +7,17 @@ body {
   font-family: "Raleway", sans-serif;
   transition: filter 0.2s ease;
   overflow: hidden;
+  color: #160e03;
+  background-color: #fff5e5;
 }
 
 header {
   position: absolute;
   z-index: 1;
   display: flex;
-  color: #000;
   justify-content: space-around;
+  background-color: #eee;
+  /* color: #000; */
   align-items: center;
   width: 97vw;
   height: 90px;
@@ -26,26 +29,28 @@ header h1 {
   font-size: 2.2rem;
   font-family: "Raleway", sans-serif;
   cursor: pointer;
-  /* margin-left: 7%; */
+  word-spacing: -4px;
 }
 
 h1 .pro {
   font-style: italic;
   font-weight: 300;
+  color: #ff8c00;
 }
 
 h1 .arrows {
   font-style: italic;
   font-weight: 100;
+  font-size: 1.8rem;
+  color: #00b3b3;
 }
 
 /* Dark mode */
 #dark-mode-icon {
-  /* position: absolute; */
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease;
-  /* margin-right: 61px; */
+  margin-right: 61px;
 }
 
 #dark-mode-icon:hover {
@@ -255,7 +260,8 @@ ul.projects {
   display: flex;
   flex-direction: column;
   min-height: 180px;
-  background-color: #eee;
+  background-color: lightblue;
+  color: #674019;
   border-bottom: 2px solid #555;
   border-right: 3px solid #aaa;
   border-left: 1px solid #bbb;
@@ -313,6 +319,7 @@ ul.projects {
 .modify-project .delete-icon {
   position: initial;
   margin: 10px 5px 0 0;
+  color: #160e03;
 }
 
 .add-task-text {
@@ -330,7 +337,7 @@ ul.projects {
   width: 60px;
   border-radius: 8%;
   margin: -30px 0 0 5%;
-  background-color: lightblue;
+  background-color: lavender;
 }
 
 #project-tasks {
@@ -409,6 +416,7 @@ ul.projects {
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 75vw;
   max-width: 780px;
   margin: 0;
   overflow: hidden;
@@ -417,7 +425,7 @@ ul.projects {
 .list-range-title {
   text-align: center;
   border-bottom: 1px solid #000;
-  background: lightgray;
+  background: lightblue;
   margin: 10px 0 0 0;
   padding: 20px 0;
 }
@@ -462,6 +470,7 @@ ul.projects {
   height: 240px;
   border: 1px solid #000;
   padding: 0.25rem 0.75rem;
+  background-color: #e7e7e7;
 }
 
 .task-card-content {
@@ -512,7 +521,7 @@ ul.projects {
 
 .task-checkbox {
   pointer-events: auto;
-  margin-right: 50px;
+  margin-right: 48px;
 }
 
 .delete-icon {

@@ -84,9 +84,9 @@ export function displayProject(project) {
         </h3>
       </div>
       <div class="project-card-body">
-        <p class="project-description">
+        <span class="project-description">
           ${project.description}
-        </p>
+        </span>
         <div class="deadline-priority">
           <div class="project-deadline">
             <span class="project-deadline-label">Deadline:</span>
