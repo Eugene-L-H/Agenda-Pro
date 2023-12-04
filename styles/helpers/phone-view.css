@@ -94,6 +94,10 @@ body {
     font-size: 0.85rem;
   }
 
+  .project-description {
+    margin-top: 10px;
+  }
+
   .modify-project {
     margin-top: 80px;
   }
@@ -301,5 +305,16 @@ body {
 
   .project-card-body {
     font-size: 0.7rem;
+  }
+
+  .project-description {
+    margin-top: 15px;
+  }
+
+  #add-task-project {
+    font-size: 0.6rem;
+    height: 40px;
+    width: 50px;
+    margin-top: 0;
   }
 }
