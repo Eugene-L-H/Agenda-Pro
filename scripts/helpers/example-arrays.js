@@ -4,6 +4,7 @@ export function populateExampleArray(type, numberOfObjects) {
   for (let i = 0; i < numberOfObjects; i++) {
     const object = type === "task" ? exampleTask(i) : exampleProject(i);
 
+    console.log(object);
     exampleArray.push(object);
   }
 
@@ -26,6 +27,7 @@ function exampleTask(iteration) {
   task.priority = Math.floor(Math.random() * 3) + 1;
   task.project = `Project ${project}`;
 
+  console.log(task.priority);
   return task;
 }
 

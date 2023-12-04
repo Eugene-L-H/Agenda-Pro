@@ -41,11 +41,12 @@ export function taskDOMobject(task) {
 
   // Convert the priority number to a description of priority.
   let priority = "Low";
-  switch (task.priority) {
-    case "3":
+  let taskPriority = Number(task.priority);
+  switch (taskPriority) {
+    case 3:
       priority = "High";
       break;
-    case "2":
+    case 2:
       priority = "Medium";
       break;
     default:
