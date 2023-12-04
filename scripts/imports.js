@@ -6,6 +6,8 @@ import {
   deleteIconFunctionality
 } from "./helpers/state.js";
 
+import { editIconFunctionality } from "./helpers/editFunctionality.js";
+
 // For populating tasks/projects array with examples.
 import { populateExampleArray } from "./helpers/example-arrays.js";
 
@@ -57,6 +59,7 @@ export {
   updateProjectsArray,
   updateTasksArray,
   deleteIconFunctionality,
+  editIconFunctionality,
   populateExampleArray,
   darkMode,
   menuFunctionality,

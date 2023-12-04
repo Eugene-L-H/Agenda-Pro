@@ -13,7 +13,8 @@ import {
   getFormattedDate,
   populateLocalProjectsArray,
   projectDisplayTasks,
-  projectsArray
+  projectsArray,
+  editIconFunctionality
 } from "./imports.js";
 
 export function tasksStorageToDisplay() {
@@ -63,8 +64,8 @@ export function taskDOMobject(task) {
         <span class="task-description">${task.description}</span>
         
         <p class="task-details">
-          Project: ${task.project}<br>
-          Priority: ${priority}<br>
+          Project: <span class="task-project">${task.project}</span><br>
+          Priority: <span class="task-priority">${priority}</span><br>
           <span class="task-deadline-label">Deadline:</span>
           <span class="task-deadline-value">${task.dueDate}</span>
         </p>
@@ -74,12 +75,12 @@ export function taskDOMobject(task) {
         <input
           type="checkbox"
           class="task-checkbox"
-          ${task.checked ? "checked='true'" : ""}"'}"
+          ${task.checked ? "checked='true'" : ""}"
           data-id="${task.id}"
         />
         <span class="edit-icon ${
           task.checked ? "task-completed" : ""
-        }"">✎</span>
+        }" data-id="${task.id}">✎</span>
         </div>
         </div>
         <span class="delete-icon" data-name="${task.name}" data-id="${
@@ -177,12 +178,7 @@ function submitTaskButton(taskClass, project) {
 
 // Functionality for task cards. *Used in the displayTasks() function*.
 export function taskCardFunctionality() {
-  const editIcons = document.querySelectorAll(`.edit-icon`);
-  editIcons.forEach(icon => {
-    icon.addEventListener("click", event => {
-      alert("edit functionality currently in development");
-    });
-  });
+  editIconFunctionality();
 
   // Add functionality to the delete icons.
   deleteIconFunctionality();
