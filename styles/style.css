@@ -1,10 +1,9 @@
 body {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
   height: 100vh;
-  width: 97%;
+  width: 97%; /* Prevents horizontal scrolling */
   font-family: "Raleway", sans-serif;
   transition: filter 0.2s ease;
   overflow: hidden;
@@ -30,9 +29,14 @@ header h1 {
   /* margin-left: 7%; */
 }
 
-h1 span {
+h1 .pro {
   font-style: italic;
   font-weight: 300;
+}
+
+h1 .arrows {
+  font-style: italic;
+  font-weight: 100;
 }
 
 /* Dark mode */

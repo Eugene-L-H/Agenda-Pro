@@ -16,10 +16,6 @@ let projectsOpen = false;
 
 // HTML for mobile menu.
 function mobileMenuHTML() {
-  // Check if projects present in projectsArray.
-  const projectsPresent = projectsArray.length > 0 ? true : false;
-  const noProjectsMessage = "No projects found.";
-
   const mobileMenuHTML = `
   <div id="mobile-menu">
   <span id="mobile-dates-label" class="mobile-label">TASKS</span>
@@ -35,7 +31,6 @@ function mobileMenuHTML() {
       <button id="mobile-add-project-button" class="mobile-projects-button">+ Add&nbsp;<br>Project</button>
     </div>
     <ul id="mobile-menu-projects">
-      ${projectsPresent ? "" : noProjectsMessage}
     </ul>
   </div>
   `;
@@ -137,6 +132,10 @@ function mobileMenuProjects() {
   const projectsButton = document.querySelector(".mobile-projects-button");
   const projectList = document.querySelector("#mobile-menu-projects");
 
+  // Check if projects present in projectsArray.
+  const projectsPresent = projectsArray.length > 0 ? true : false;
+  const noProjectsMessage = "No projects found.";
+
   projectsButton.addEventListener("click", () => {
     // If the projects list is open, close it.
     if (projectsOpen) {
@@ -149,27 +148,39 @@ function mobileMenuProjects() {
       // Target the mobile div in the body.
       const contentArea = document.querySelector("#content-area");
 
-      projectsArray.forEach(project => {
-        // Create a list item element for each project name.
-        const projectName = document.createElement("li");
-        projectName.classList.add("mobile-project");
-        projectName.textContent = project.name;
+      // If no projects present, display message.
+      if (!projectsPresent) {
+        projectList.insertAdjacentHTML(
+          "afterbegin",
+          `<p class="no-projects-message">${noProjectsMessage}</p>`
+        );
+      } else {
+        // If projects present, display projects list.
+        projectsArray.forEach(project => {
+          // Create a list item element for each project name.
+          const projectName = document.createElement("li");
+          projectName.classList.add("mobile-project");
+          projectName.textContent = project.name;
 
-        // Add name as list item to the projects list.
-        projectList.appendChild(projectName);
+          // Add name as list item to the projects list.
+          projectList.appendChild(projectName);
 
-        // Add event listener for each project name.
-        projectName.addEventListener("click", () => {
-          // Clear the mobile div, load project card, and associated tasks.
-          contentArea.innerHTML = "";
-          mobileMenuClose();
-          blurMainToggle(); // Remove blur from the main screen.
-          contentArea.insertAdjacentHTML("afterbegin", displayProject(project));
-          taskPopupFunctionality("project"); // Add task popup functionality.
-          projectDisplayTasks(project, tasksArray);
-          projectsOpen = false;
+          // Add event listener for each project name.
+          projectName.addEventListener("click", () => {
+            // Clear the mobile div, load project card, and associated tasks.
+            contentArea.innerHTML = "";
+            mobileMenuClose();
+            blurMainToggle(); // Remove blur from the main screen.
+            contentArea.insertAdjacentHTML(
+              "afterbegin",
+              displayProject(project)
+            );
+            taskPopupFunctionality("project"); // Add task popup functionality.
+            projectDisplayTasks(project, tasksArray);
+            projectsOpen = false;
+          });
         });
-      });
+      }
 
       // Change the projects button text upon clicking.
       projectsButton.textContent = "^ ^";
