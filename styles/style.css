@@ -49,7 +49,7 @@ h1 .arrows {
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease;
-  margin-right: 32px;
+  margin-right: 25px;
 }
 
 #dark-mode-icon:hover {

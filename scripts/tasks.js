@@ -399,6 +399,15 @@ function updateTaskButton(taskId, tasksArray) {
 
     updateTasksArray(tasksArray);
 
+    let editedPriority = Number(editedTaskInfo.priority);
+    if (editedPriority === 1) {
+      editedPriority = "Low";
+    } else if (editedPriority === 2) {
+      editedPriority = "Medium";
+    } else {
+      editedPriority = "High";
+    }
+
     // Update taskCard properties to match editedTaskInfo.
     const taskCard = document.querySelector(`#${taskId}`);
     taskCard.querySelector(".task-name").textContent = editedTaskInfo.name;
@@ -406,10 +415,9 @@ function updateTaskButton(taskId, tasksArray) {
       editedTaskInfo.description;
     taskCard.querySelector(".task-deadline-value").textContent =
       editedTaskInfo.dueDate;
-    taskCard.querySelector(".task-priority").textContent =
-      editedTaskInfo.priority;
-    taskCard.querySelector(".task-project").textContent =
-      editedTaskInfo.project;
+    taskCard.querySelector(".task-priority").textContent = editedPriority;
+    // taskCard.querySelector(".task-project").textContent =
+    //   editedTaskInfo.project;
 
     closePopup();
   });
