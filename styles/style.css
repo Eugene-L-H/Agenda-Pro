@@ -378,6 +378,13 @@ ul.projects {
   border-bottom: 1px solid #000;
 }
 
+.popup-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: auto 55px auto 0;
+  color: orange;
+}
+
 .close-popup {
   display: inline-block;
   text-align: center;
