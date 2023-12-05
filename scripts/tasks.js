@@ -63,8 +63,8 @@ export function taskDOMobject(task) {
         <span class="task-description">${task.description}</span>
         
         <p class="task-details">
-          Project: ${task.project}<br>
-          Priority: ${priority}<br>
+          Project: <span class="task-project">${task.project}</span><br>
+          Priority: <span class="task-priority">${priority}</span><br>
           <span class="task-deadline-label">Deadline:</span>
           <span class="task-deadline-value">${task.dueDate}</span>
         </p>
@@ -74,12 +74,12 @@ export function taskDOMobject(task) {
         <input
           type="checkbox"
           class="task-checkbox"
-          ${task.checked ? "checked='true'" : ""}"'}"
+          ${task.checked ? "checked='true'" : ""}"
           data-id="${task.id}"
         />
         <span class="edit-icon ${
           task.checked ? "task-completed" : ""
-        }"">✎</span>
+        }" data-id="${task.id}">✎</span>
         </div>
         </div>
         <span class="delete-icon" data-name="${task.name}" data-id="${
@@ -96,7 +96,8 @@ export function taskDOMobject(task) {
 export function addNewTaskPopup() {
   const popupHTML = `
     <div class="popup">
-      <div class="popup-header">
+      <div class="popup-header add">
+        <span class="popup-title add">ADD TASK</span>
         <span class="close-popup">&times;</span>
       </div>
       <div class="popup-body">
@@ -123,6 +124,43 @@ export function addNewTaskPopup() {
   return popupHTML;
 }
 
+function editTaskPopupHTML(taskInfo) {
+  const priority = taskInfo.priority.toLowerCase();
+
+  const popup = `
+    <div class="popup">
+      <div class="popup-header edit">
+        <span class="popup-title edit">EDIT TASK</span>
+        <span class="close-popup">&times;</span>
+      </div>
+      <div class="popup-body">
+        <label for="task-name">Task Name:</label>
+        <input type="text" id="task-name" value="${taskInfo.name}" />
+        <label for="task-description">Description:</label>
+        <textarea
+          rows="4"
+          id="task-description"
+        >${taskInfo.description}</textarea>
+        <label for="task-priority">Priority:</label>
+        <select id="task-priority" def>
+          <option value="1" ${priority === "low" ? "selected" : ""}>Low</option>
+          <option value="2" ${
+            priority === "medium" ? "selected" : ""
+          }>Medium</option>
+          <option value="3" ${
+            priority === "high" ? "selected" : ""
+          }>High</option>
+        </select>
+        <label for="task-due-date">Due Date (Optional):</label>
+        <input type="date" id="task-due-date" value="${taskInfo.dueDate}" />
+        <button id="update-task" class="new-post-button">Update Task</button>
+      </div>
+    </div>
+    `;
+
+  return popup;
+}
+
 function checkTask(taskId) {
   // Retrieve task from localStorage
   const tasks = JSON.parse(localStorage.getItem("tasksArray"));
@@ -140,7 +178,7 @@ function checkTask(taskId) {
 function submitTaskButton(taskClass, project) {
   const submitButton = document.querySelector("#submit-task");
   submitButton.addEventListener("click", () => {
-    const id = Date.now(); // Generate a unique id for the task.
+    const id = `id${Date.now()}`; // Generate a unique id for the task.
     const name = document.querySelector("#task-name").value;
     const description = document.querySelector("#task-description").value;
     let dueDate = document.querySelector("#task-due-date").value;
@@ -177,12 +215,7 @@ function submitTaskButton(taskClass, project) {
 
 // Functionality for task cards. *Used in the displayTasks() function*.
 export function taskCardFunctionality() {
-  const editIcons = document.querySelectorAll(`.edit-icon`);
-  editIcons.forEach(icon => {
-    icon.addEventListener("click", event => {
-      alert("edit functionality currently in development");
-    });
-  });
+  editIconFunctionality();
 
   // Add functionality to the delete icons.
   deleteIconFunctionality();
@@ -325,4 +358,98 @@ export function taskPopupFunctionality(project) {
     // Add functionality for the "Add Task" button.
     submitTaskButton(Task, project);
   });
+}
+
+function editIconFunctionality() {
+  const body = document.querySelector("body");
+  const editIcons = document.querySelectorAll(`.edit-icon`);
+
+  editIcons.forEach(icon => {
+    icon.addEventListener("click", event => {
+      const taskCard = event.target.closest("li");
+      const taskInfo = getTaskCardInfo(taskCard, taskCard.id);
+
+      const popup = editTaskPopupHTML(taskInfo);
+      body.insertAdjacentHTML("afterbegin", popup);
+
+      closePopupButton();
+      blurMainToggle(); // Blur the main screen.
+      updateTaskButton(taskInfo.id, tasksArray);
+    });
+  });
+}
+
+function updateTaskButton(taskId, tasksArray) {
+  const updateTaskButton = document.querySelector("#update-task");
+
+  updateTaskButton.addEventListener("click", () => {
+    const editedTaskInfo = getEditedTaskInfo(taskId);
+    console.log(editedTaskInfo);
+
+    // Find task in local storage that matches taskInfo.id, change properties to those from taskInfo.
+    const taskIndex = tasksArray.findIndex(
+      task => task.id === editedTaskInfo.id
+    );
+    console.log("BEFORE: ", tasksArray[taskIndex]); // DEBUG
+    tasksArray[taskIndex].name = editedTaskInfo.name;
+    tasksArray[taskIndex].description = editedTaskInfo.description;
+    tasksArray[taskIndex].dueDate = editedTaskInfo.dueDate;
+    tasksArray[taskIndex].priority = editedTaskInfo.priority;
+    console.log("AFTER: ", tasksArray[taskIndex]); // DEBUG
+
+    updateTasksArray(tasksArray);
+
+    // Update taskCard properties to match editedTaskInfo.
+    const taskCard = document.querySelector(`#${taskId}`);
+    taskCard.querySelector(".task-name").textContent = editedTaskInfo.name;
+    taskCard.querySelector(".task-description").textContent =
+      editedTaskInfo.description;
+    taskCard.querySelector(".task-deadline-value").textContent =
+      editedTaskInfo.dueDate;
+    taskCard.querySelector(".task-priority").textContent =
+      editedTaskInfo.priority;
+    taskCard.querySelector(".task-project").textContent =
+      editedTaskInfo.project;
+
+    closePopup();
+  });
+}
+
+function getTaskCardInfo(taskCard, taskId) {
+  const name = taskCard.querySelector(".task-name").textContent;
+  const description = taskCard.querySelector(".task-description").textContent;
+  const dueDate = taskCard.querySelector(".task-deadline-value").textContent;
+  const priority = taskCard.querySelector(".task-priority").textContent;
+  const project = taskCard.querySelector(".task-project").textContent;
+  const id = taskId;
+
+  const taskInfo = {
+    name,
+    description,
+    dueDate,
+    priority,
+    project,
+    id
+  };
+
+  return taskInfo;
+}
+
+function getEditedTaskInfo(taskId) {
+  const updatedInfo = document.querySelector(".popup");
+  const name = updatedInfo.querySelector("#task-name").value;
+  const description = updatedInfo.querySelector("#task-description").value;
+  const priority = updatedInfo.querySelector("#task-priority").value;
+  const dueDate = updatedInfo.querySelector("#task-due-date").value;
+  const id = taskId;
+
+  const editedTaskInfo = {
+    name,
+    description,
+    priority,
+    dueDate,
+    id
+  };
+
+  return editedTaskInfo;
 }

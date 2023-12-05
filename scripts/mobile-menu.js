@@ -30,6 +30,7 @@ function mobileMenuHTML() {
       <button id="mobile-year" class="mobile-date-selector">This<br>Year</button>
     </div>
     <button id="mobile-add-task" class="add-task-button">+<br>Add<br>Task</button>
+    <span class="mobile-label project">PROJECTS</span>
     <div id="mobile-project-button-container">
       <button id="mobile-view-projects-button" class="mobile-projects-button">Projects</button>
       <button id="mobile-add-project-button" class="mobile-projects-button">+ Add&nbsp;<br>Project</button>
@@ -50,11 +51,13 @@ export function menuFunctionality() {
   const wideScreenMenu = document.querySelector("#wide-screen-menu");
 
   hamburgerIcon.addEventListener("click", () => {
+    removePopup();
     blurMainToggle(); // Blur the main screen.
     mobileMenuToggle();
   });
 
   wideScreenMenu.addEventListener("click", () => {
+    removePopup();
     blurMainToggle(); // Blur the main screen.
     mobileMenuToggle();
   });
@@ -216,4 +219,12 @@ export function mobileMenuClose() {
 
   mobileMenu.remove();
   menuOpen = false;
+}
+
+function removePopup() {
+  const popup = document.querySelector(".popup");
+  if (popup !== null) {
+    popup.remove();
+    blurMainToggle();
+  }
 }

@@ -50,7 +50,7 @@ h1 .arrows {
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease;
-  margin-right: 61px;
+  margin-right: 40px;
 }
 
 #dark-mode-icon:hover {
@@ -214,8 +214,12 @@ main {
   padding: 0.5rem;
 }
 
-#submit-task {
+#update-task,
+#submit-task,
+#submit-project {
   background: #fff;
+  font-weight: 700;
+  padding: 7px;
 }
 
 .new-post-button:hover,
@@ -289,6 +293,7 @@ ul.projects {
 }
 
 .project-description {
+  width: 60%;
   margin: auto 0;
   font-style: italic;
   text-align: center;
@@ -366,7 +371,7 @@ ul.projects {
   width: 275px;
   z-index: 100;
   text-align: center;
-  margin-top: 15%;
+  margin-top: 75px;
   border: 1px solid #000;
   background-color: #eee;
 }
@@ -378,6 +383,31 @@ ul.projects {
   border-bottom: 1px solid #000;
 }
 
+.popup-header.add {
+  background: coral;
+}
+
+.popup-header.edit {
+  background-color: teal;
+}
+
+.popup-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: auto 55px auto 0;
+}
+
+.popup-title.add {
+}
+
+.popup-title.edit {
+  color: #ffd280;
+}
+
+.popup-title.project {
+  margin-right: 34px;
+}
+
 .close-popup {
   display: inline-block;
   text-align: center;
@@ -385,6 +415,7 @@ ul.projects {
   cursor: pointer;
   font-size: 1.5rem;
   color: #000;
+  background-color: #eee;
   font-weight: bold;
   text-decoration: none;
   padding: 4px 10px;
@@ -401,6 +432,11 @@ ul.projects {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
+}
+
+.popup #task-name,
+.popup #task-description {
+  text-align: center;
 }
 
 .popup-body > :not(:first-child) {
@@ -424,7 +460,7 @@ ul.projects {
 
 .list-range-title {
   text-align: center;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #777;
   background: lightblue;
   margin: 10px 0 0 0;
   padding: 20px 0;
