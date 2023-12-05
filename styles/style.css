@@ -49,7 +49,7 @@ h1 .arrows {
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease;
-  margin-right: 25px;
+  margin-right: 20px;
 }
 
 #dark-mode-icon:hover {
@@ -110,7 +110,8 @@ h1 .arrows {
   height: 25px;
   min-width: 30px;
   cursor: pointer;
-  transition: transform 0.2s ease;
+  margin-right: 10px;
+  stransition: transform 0.2s ease;
 }
 
 .bar {
@@ -123,11 +124,12 @@ h1 .arrows {
 #wide-screen-menu {
   position: absolute;
   font-size: 1rem;
+  font-weight: 700;
   min-width: 65px;
   width: 5vw;
   background-color: turquoise;
   margin: 78px 0px 0 87%;
-  padding-top: 4px;
+  padding: 6px;
   transition: transform 0.2s ease;
 }
 
@@ -390,6 +392,10 @@ ul.projects {
   background-color: teal;
 }
 
+.popup-header.project {
+  background-color: lightsteelblue;
+}
+
 .popup-title {
   font-size: 1.2rem;
   font-weight: 700;
@@ -434,12 +440,15 @@ ul.projects {
 }
 
 .popup #task-name,
-.popup #task-description {
+.popup #task-description,
+.popup #project-name-popup,
+.popup #project-description {
   text-align: center;
+  padding: 4px;
 }
 
 .popup-body > :not(:first-child) {
-  margin-top: 15px;
+  margin-top: 12px;
 }
 
 .popup textarea {
@@ -505,7 +514,10 @@ ul.projects {
   align-items: center;
   width: 230px;
   height: 240px;
-  border: 1px solid #000;
+  border-top: 2px solid #555;
+  border-left: 2px solid #777;
+  border-right: 3px solid #333;
+  border-bottom: 3px solid #333;
   padding: 0.25rem 0.75rem;
   background-color: #e7e7e7;
 }
@@ -520,7 +532,7 @@ ul.projects {
 
 .task-name {
   text-decoration: underline;
-  margin-bottom: 0;
+  margin-top: 5px;
 }
 
 .task-description {
@@ -533,6 +545,7 @@ ul.projects {
 .task-details {
   margin: auto 0 5px 0;
   line-height: 1.2;
+  margin-left: 5px;
 }
 
 .modify-tasks {
@@ -591,7 +604,7 @@ ul.projects {
 /*---*/
 
 .overdue {
-  background: lightsalmon;
+  background: tomato;
 }
 
 /* Applied over the entire app, popup aside, when a popup is open */

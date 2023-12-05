@@ -31,7 +31,7 @@ export function populateLocalProjectsArray() {
 export function addNewProjectPopup() {
   const popupHTML = `
     <div class="popup">
-      <div class="popup-header">
+      <div class="popup-header project">
        <span class="popup-title project">NEW PROJECT</span>
         <span class="close-popup">&times;</span>
       </div>
