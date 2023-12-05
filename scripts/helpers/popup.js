@@ -5,6 +5,7 @@ export function closePopup() {
 
   // Remove the popup, back to default view.
   popup.remove();
+
   // Remove the blur effect from the screen once popup disappears.
   main.classList.remove("blur");
 }
@@ -21,5 +22,7 @@ export function closePopupButton() {
 // Blur the main content area.
 export function blurMainToggle() {
   const main = document.querySelector("main");
+
+  // Toggle the blur effect on the app, behind the popup.
   main.classList.toggle("blur");
 }

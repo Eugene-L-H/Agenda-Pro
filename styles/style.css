@@ -50,7 +50,7 @@ h1 .arrows {
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease;
-  margin-right: 61px;
+  margin-right: 40px;
 }
 
 #dark-mode-icon:hover {
@@ -214,8 +214,10 @@ main {
   padding: 0.5rem;
 }
 
+#update-task,
 #submit-task {
   background: #fff;
+  font-weight: 700;
 }
 
 .new-post-button:hover,
@@ -367,7 +369,7 @@ ul.projects {
   width: 275px;
   z-index: 100;
   text-align: center;
-  margin-top: 15%;
+  margin-top: 75px;
   border: 1px solid #000;
   background-color: #eee;
 }

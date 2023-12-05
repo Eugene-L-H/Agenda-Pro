@@ -153,7 +153,7 @@ function editTaskPopupHTML(taskInfo) {
         </select>
         <label for="task-due-date">Due Date (Optional):</label>
         <input type="date" id="task-due-date" value="${taskInfo.dueDate}" />
-        <button id="submit-task" class="new-post-button">Update Task</button>
+        <button id="update-task" class="new-post-button">Update Task</button>
       </div>
     </div>
     `;
@@ -367,7 +367,6 @@ function editIconFunctionality() {
   editIcons.forEach(icon => {
     icon.addEventListener("click", event => {
       const taskCard = event.target.closest(".task-card");
-      console.log(taskCard);
 
       const name = taskCard.querySelector(".task-name").textContent;
       const description = taskCard.querySelector(".task-description")
@@ -387,8 +386,6 @@ function editIconFunctionality() {
         id
       };
 
-      console.log(taskInfo);
-
       const popup = editTaskPopupHTML(taskInfo);
       body.insertAdjacentHTML("afterbegin", popup);
 
@@ -396,8 +393,4 @@ function editIconFunctionality() {
       blurMainToggle(); // Blur the main screen.
     });
   });
-}
-
-function updateTaskInStorage(task) {
-  const tasks = JSON.parse(localStorage.getItem("tasks"));
 }
