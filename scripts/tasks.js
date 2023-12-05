@@ -213,6 +213,8 @@ function submitTaskButton(taskClass, project) {
   });
 }
 
+function updateTaskButton(taskClass, project) {}
+
 // Functionality for task cards. *Used in the displayTasks() function*.
 export function taskCardFunctionality() {
   editIconFunctionality();

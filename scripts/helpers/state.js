@@ -147,12 +147,3 @@ export function deleteIconFunctionality() {
     });
   });
 }
-
-export function editIconFunctionality() {
-  const editIcons = document.querySelectorAll(`.edit-icon`);
-  editIcons.forEach(icon => {
-    icon.addEventListener("click", event => {
-      alert("edit functionality currently in development");
-    });
-  });
-}

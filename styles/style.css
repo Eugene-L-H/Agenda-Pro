@@ -215,9 +215,11 @@ main {
 }
 
 #update-task,
-#submit-task {
+#submit-task,
+#submit-project {
   background: #fff;
   font-weight: 700;
+  padding: 7px;
 }
 
 .new-post-button:hover,
