@@ -51,11 +51,13 @@ export function menuFunctionality() {
   const wideScreenMenu = document.querySelector("#wide-screen-menu");
 
   hamburgerIcon.addEventListener("click", () => {
+    removePopup();
     blurMainToggle(); // Blur the main screen.
     mobileMenuToggle();
   });
 
   wideScreenMenu.addEventListener("click", () => {
+    removePopup();
     blurMainToggle(); // Blur the main screen.
     mobileMenuToggle();
   });
@@ -217,4 +219,12 @@ export function mobileMenuClose() {
 
   mobileMenu.remove();
   menuOpen = false;
+}
+
+function removePopup() {
+  const popup = document.querySelector(".popup");
+  if (popup !== null) {
+    popup.remove();
+    blurMainToggle();
+  }
 }
