@@ -16,6 +16,10 @@ body {
     height: 80px;
   }
 
+  header .pro {
+    font-weight: 700;
+  }
+
   header .arrows {
     font-size: 1rem;
   }

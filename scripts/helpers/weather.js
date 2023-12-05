@@ -10,8 +10,7 @@ function fetchWeather() {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        console.log("lat: ", lat, "lon: ", lon);
-
+        // TODO: update timezone to a dynamic timezone based on lat/lon
         const response = await fetch(
           `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=51.0447&timezone=America%2FDenver&hourly=temperature_2m,weathercode&forecast_days=1`
         );
