@@ -96,7 +96,8 @@ export function taskDOMobject(task) {
 export function addNewTaskPopup() {
   const popupHTML = `
     <div class="popup">
-      <div class="popup-header">
+      <div class="popup-header add">
+        <span class="popup-title add">ADD TASK</span>
         <span class="close-popup">&times;</span>
       </div>
       <div class="popup-body">
@@ -128,8 +129,8 @@ function editTaskPopupHTML(taskInfo) {
 
   const popup = `
     <div class="popup">
-      <div class="popup-header">
-        <span class="popup-title">EDIT TASK</span>
+      <div class="popup-header edit">
+        <span class="popup-title edit">EDIT TASK</span>
         <span class="close-popup">&times;</span>
       </div>
       <div class="popup-body">

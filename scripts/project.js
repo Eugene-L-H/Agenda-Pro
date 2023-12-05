@@ -32,6 +32,7 @@ export function addNewProjectPopup() {
   const popupHTML = `
     <div class="popup">
       <div class="popup-header">
+       <span class="popup-title project">NEW PROJECT</span>
         <span class="close-popup">&times;</span>
       </div>
       <div class="popup-body">

@@ -30,6 +30,7 @@ function mobileMenuHTML() {
       <button id="mobile-year" class="mobile-date-selector">This<br>Year</button>
     </div>
     <button id="mobile-add-task" class="add-task-button">+<br>Add<br>Task</button>
+    <span class="mobile-label project">PROJECTS</span>
     <div id="mobile-project-button-container">
       <button id="mobile-view-projects-button" class="mobile-projects-button">Projects</button>
       <button id="mobile-add-project-button" class="mobile-projects-button">+ Add&nbsp;<br>Project</button>
