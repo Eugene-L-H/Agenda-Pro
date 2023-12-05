@@ -262,7 +262,7 @@ export function displayTasks(dateRange) {
   taskList.id = "task-list";
 
   // Display what span of tasks that will be displayed.
-  const title = document.createElement("h2");
+  const title = document.createElement("span");
   title.classList.add("list-range-title");
   const titleTextContent =
     dateRange[0].toUpperCase() + dateRange.slice(1, dateRange.length);

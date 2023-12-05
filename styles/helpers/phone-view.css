@@ -40,7 +40,6 @@ body {
   #weather-info {
     margin-right: 15px;
     width: 70%;
-    margin-top: -10px;
   }
 
   /* Drop weather description below temperature to save space. */
@@ -121,7 +120,6 @@ body {
   .list-range-title {
     font-size: 1.2rem;
     padding: 15px 0;
-    margin: 0;
   }
 
   .task-list {
