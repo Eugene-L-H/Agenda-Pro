@@ -178,7 +178,7 @@ function checkTask(taskId) {
 function submitTaskButton(taskClass, project) {
   const submitButton = document.querySelector("#submit-task");
   submitButton.addEventListener("click", () => {
-    const id = Date.now(); // Generate a unique id for the task.
+    const id = `id${Date.now()}`; // Generate a unique id for the task.
     const name = document.querySelector("#task-name").value;
     const description = document.querySelector("#task-description").value;
     let dueDate = document.querySelector("#task-due-date").value;
@@ -212,8 +212,6 @@ function submitTaskButton(taskClass, project) {
     projectDisplayTasks(project, tasksArray);
   });
 }
-
-function updateTaskButton(taskClass, project) {}
 
 // Functionality for task cards. *Used in the displayTasks() function*.
 export function taskCardFunctionality() {
@@ -368,31 +366,90 @@ function editIconFunctionality() {
 
   editIcons.forEach(icon => {
     icon.addEventListener("click", event => {
-      const taskCard = event.target.closest(".task-card");
-
-      const name = taskCard.querySelector(".task-name").textContent;
-      const description = taskCard.querySelector(".task-description")
-        .textContent;
-      const dueDate = taskCard.querySelector(".task-deadline-value")
-        .textContent;
-      const priority = taskCard.querySelector(".task-priority").textContent;
-      const project = taskCard.querySelector(".task-project").textContent;
-      const id = event.target.closest("li").id;
-
-      const taskInfo = {
-        name,
-        description,
-        dueDate,
-        priority,
-        project,
-        id
-      };
+      const taskCard = event.target.closest("li");
+      const taskInfo = getTaskCardInfo(taskCard, taskCard.id);
 
       const popup = editTaskPopupHTML(taskInfo);
       body.insertAdjacentHTML("afterbegin", popup);
 
       closePopupButton();
       blurMainToggle(); // Blur the main screen.
+      updateTaskButton(taskInfo.id, tasksArray);
     });
   });
+}
+
+function updateTaskButton(taskId, tasksArray) {
+  const updateTaskButton = document.querySelector("#update-task");
+
+  updateTaskButton.addEventListener("click", () => {
+    const editedTaskInfo = getEditedTaskInfo(taskId);
+    console.log(editedTaskInfo);
+
+    // Find task in local storage that matches taskInfo.id, change properties to those from taskInfo.
+    const taskIndex = tasksArray.findIndex(
+      task => task.id === editedTaskInfo.id
+    );
+    console.log("BEFORE: ", tasksArray[taskIndex]); // DEBUG
+    tasksArray[taskIndex].name = editedTaskInfo.name;
+    tasksArray[taskIndex].description = editedTaskInfo.description;
+    tasksArray[taskIndex].dueDate = editedTaskInfo.dueDate;
+    tasksArray[taskIndex].priority = editedTaskInfo.priority;
+    console.log("AFTER: ", tasksArray[taskIndex]); // DEBUG
+
+    updateTasksArray(tasksArray);
+
+    // Update taskCard properties to match editedTaskInfo.
+    const taskCard = document.querySelector(`#${taskId}`);
+    taskCard.querySelector(".task-name").textContent = editedTaskInfo.name;
+    taskCard.querySelector(".task-description").textContent =
+      editedTaskInfo.description;
+    taskCard.querySelector(".task-deadline-value").textContent =
+      editedTaskInfo.dueDate;
+    taskCard.querySelector(".task-priority").textContent =
+      editedTaskInfo.priority;
+    taskCard.querySelector(".task-project").textContent =
+      editedTaskInfo.project;
+
+    closePopup();
+  });
+}
+
+function getTaskCardInfo(taskCard, taskId) {
+  const name = taskCard.querySelector(".task-name").textContent;
+  const description = taskCard.querySelector(".task-description").textContent;
+  const dueDate = taskCard.querySelector(".task-deadline-value").textContent;
+  const priority = taskCard.querySelector(".task-priority").textContent;
+  const project = taskCard.querySelector(".task-project").textContent;
+  const id = taskId;
+
+  const taskInfo = {
+    name,
+    description,
+    dueDate,
+    priority,
+    project,
+    id
+  };
+
+  return taskInfo;
+}
+
+function getEditedTaskInfo(taskId) {
+  const updatedInfo = document.querySelector(".popup");
+  const name = updatedInfo.querySelector("#task-name").value;
+  const description = updatedInfo.querySelector("#task-description").value;
+  const priority = updatedInfo.querySelector("#task-priority").value;
+  const dueDate = updatedInfo.querySelector("#task-due-date").value;
+  const id = taskId;
+
+  const editedTaskInfo = {
+    name,
+    description,
+    priority,
+    dueDate,
+    id
+  };
+
+  return editedTaskInfo;
 }
