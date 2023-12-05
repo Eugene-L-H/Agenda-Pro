@@ -10,10 +10,15 @@ function fetchWeather() {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
+        console.log("lat: ", lat, "lon: ", lon);
+
         const response = await fetch(
-          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&hourly=temperature_2m,weathercode&forecast_days=1`
+          `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=51.0447&timezone=America%2FDenver&hourly=temperature_2m,weathercode&forecast_days=1`
         );
         const data = await response.json();
+
+        // api call, with yyc coordinates, for browser debugging:
+        /* https://https://api.open-meteo.com/v1/forecast?latitude=51.0447&longitude=114.0719&timezone=America%2FDenver&hourly=temperature_2m,weathercode&forecast_days=1 */
 
         const locationResponse = await fetch(
           `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`
@@ -25,8 +30,14 @@ function fetchWeather() {
           data.address.town ||
           data.address.village ||
           "Unknown location";
+
+        // Get current hour. Used for indexing into hourly temperature array.
         const currentHour = new Date().getHours();
+
+        // Get temperature for current hour, rounded to nearest integer.
         const temperature = Math.round(data.hourly.temperature_2m[currentHour]);
+
+        // Get weather description based on weather code.
         const weatherCode = data.hourly.weathercode[currentHour];
         const weatherDescription = describeWeatherByWMOCode(weatherCode);
 
