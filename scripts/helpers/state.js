@@ -59,9 +59,7 @@ function deleteTaskOrProject(cardId, project) {
   // Check if array is not null and is an array
   if (Array.isArray(array)) {
     // Find task with the matching id.
-    const cardIndex = array.findIndex(
-      cardType => cardType.id === Number(cardId)
-    );
+    const cardIndex = array.findIndex(cardType => cardType.id === cardId);
 
     // If project is being deleted, delete tasks associated with the project.
     if (cardType === "project") {

@@ -24,7 +24,6 @@ import {
 
 import {
   populateLocalProjectsArray,
-  addProjectNameToSidebar,
   submitProjectButton,
   displayProject,
   projectDisplayTasks,
@@ -66,7 +65,6 @@ export {
   taskDateButtons,
   taskPopupFunctionality,
   populateLocalProjectsArray,
-  addProjectNameToSidebar,
   submitProjectButton,
   displayProject,
   projectDisplayTasks,

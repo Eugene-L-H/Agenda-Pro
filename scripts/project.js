@@ -125,16 +125,16 @@ export function displayProject(project) {
  * @returns {String} inserts HTML for the tasks.
  */
 export function projectDisplayTasks(project, tasks) {
-  const taskListHTML = document.querySelectorAll("#task-list");
+  const taskListHTML = document.querySelector("#task-list");
 
-  taskListHTML.forEach(list => (list.innerHTML = ""));
+  taskListHTML.innerHTML = "";
 
   let tasksFound = false; // Flag to check if tasks were found.
 
   // Loop through tasksArray and find tasks that match the project name.
   tasks.forEach(task => {
     if (project.name === task.project) {
-      taskListHTML.forEach(list => list.appendChild(taskDOMobject(task)));
+      taskListHTML.appendChild(taskDOMobject(task));
       // Set flag to true
       tasksFound = true;
     }
@@ -149,8 +149,8 @@ export function projectDisplayTasks(project, tasks) {
     `;
 
     // Add message to each project task list, mobile and and desktop app.
-    taskListHTML.forEach(taskList => (taskList.innerHTML = noTasksHTML));
-    taskListHTML.forEach(taskList => taskList.classList.add("no-tasks"));
+    taskListHTML.innerHTML = noTasksHTML;
+    taskListHTML.classList.add("no-tasks");
 
     // Add functionality to the delete icon for the project card.
     deleteIconFunctionality();
@@ -158,38 +158,6 @@ export function projectDisplayTasks(project, tasks) {
     // Add functionality to task cards.
     taskCardFunctionality();
   }
-}
-
-/**
- * Adds project name to the sidebar.
- * @param {String} name - Project name.
- * @returns {String} inserts HTML for the project name.
- */
-export function addProjectNameToSidebar(name) {
-  // Unordered list that displays names of user-registered projects.
-  const projectsNav = document.querySelector("#projects-nav");
-
-  // Create list item dom object
-  const projectListItem = document.createElement("li");
-  projectListItem.classList.add("nav-item");
-  projectListItem.textContent = name;
-
-  // Add functionality for the projectListItem.
-  projectListItem.addEventListener("click", event => {
-    const name = event.target.textContent;
-    const contentArea = document.querySelector("#content-area");
-    const project = projectsArray.find(project => project.name === name);
-    contentArea.innerHTML = displayProject(project);
-
-    // Display tasks for that project.
-    projectDisplayTasks(project, tasksArray);
-
-    // Add functionality for the "Add Task" button.
-    taskPopupFunctionality("project");
-  });
-
-  // Add project title to main sidebar.
-  projectsNav.append(projectListItem);
 }
 
 export function submitProjectButton(projectClass) {

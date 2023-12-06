@@ -514,10 +514,10 @@ ul.projects {
   align-items: center;
   width: 230px;
   height: 240px;
-  border-top: 2px solid #555;
-  border-left: 2px solid #777;
-  border-right: 3px solid #333;
-  border-bottom: 3px solid #333;
+  border-top: 1px solid #555;
+  border-left: 1px solid #777;
+  border-right: 2px solid #333;
+  border-bottom: 2px solid #333;
   padding: 0.25rem 0.75rem;
   background-color: #e7e7e7;
 }

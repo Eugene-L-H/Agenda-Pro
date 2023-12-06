@@ -25,7 +25,6 @@ export function tasksStorageToDisplay() {
     array = sortArrayByDate(array);
     updateTasksArray(array);
     displayTasks("today"); // Display tasks on desktop.
-    displayTasks("today", "mobile"); // Display tasks on mobile.
   } else {
     updateTasksArray(populateExampleArray("task", 16));
   }
@@ -175,8 +174,9 @@ function checkTask(taskId) {
 }
 
 // *Used in taskPopupFunctionality()*
-function submitTaskButton(taskClass, project) {
+function submitTaskButton(taskClass, locationCall, project) {
   const submitButton = document.querySelector("#submit-task");
+
   submitButton.addEventListener("click", () => {
     const id = `id${Date.now()}`; // Generate a unique id for the task.
     const name = document.querySelector("#task-name").value;
@@ -188,7 +188,7 @@ function submitTaskButton(taskClass, project) {
 
     // Project name is empty if the popup is from the sidebar.
     let projectName = "Unassigned";
-    if (project !== null) {
+    if (locationCall === "project") {
       projectName = project.name;
     }
 
@@ -208,8 +208,10 @@ function submitTaskButton(taskClass, project) {
     sortArrayByDate(tasksArray);
     closePopup();
 
-    // Display new task in the task list.
-    projectDisplayTasks(project, tasksArray);
+    // Display new task in the task list. Under a project, or on it's own.
+    locationCall === "project"
+      ? projectDisplayTasks(project, tasksArray)
+      : displayTasks("new", task);
   });
 }
 
@@ -244,10 +246,9 @@ export function taskCardFunctionality() {
 /**
  * Display tasks in the task list.
  * @param {String} dateRange - The date range of tasks to display.
- * @param {Boolean} mobile - Whether the tasks are being displayed on a mobile device.
  * @returns {void}
  */
-export function displayTasks(dateRange) {
+export function displayTasks(dateRange, task) {
   const contentArea = document.querySelector("#content-area");
 
   // Clear the content area.
@@ -264,6 +265,17 @@ export function displayTasks(dateRange) {
   // Display what span of tasks that will be displayed.
   const title = document.createElement("span");
   title.classList.add("list-range-title");
+
+  // Display newly created task, in the app, on it's own.
+  if (dateRange === "new") {
+    title.textContent = "New Task:";
+    taskList.appendChild(taskDOMobject(task));
+
+    tasksContainer.appendChild(title);
+    tasksContainer.appendChild(taskList);
+    return contentArea.appendChild(tasksContainer);
+  }
+
   const titleTextContent =
     dateRange[0].toUpperCase() + dateRange.slice(1, dateRange.length);
 
@@ -336,9 +348,9 @@ export function taskDateButtons() {
  * Display the add task popup.
  * @param {String} locationCall - The location of the popup.
  */
-export function taskPopupFunctionality(project) {
+export function taskPopupFunctionality(locationCall, project) {
   let addTaskButton;
-  if (project === "mobile") {
+  if (locationCall === "main-menu") {
     addTaskButton = document.querySelector("#mobile-add-task");
   } else {
     addTaskButton = document.querySelector("#add-task-project");
@@ -356,7 +368,7 @@ export function taskPopupFunctionality(project) {
     blurMainToggle(); // Blur the main screen.
 
     // Add functionality for the "Add Task" button.
-    submitTaskButton(Task, project);
+    submitTaskButton(Task, locationCall, project);
   });
 }
 

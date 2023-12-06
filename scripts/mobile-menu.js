@@ -122,7 +122,7 @@ function mobileMenuDates() {
 // + Add Task button event listener. Calls popup.
 function mobileMenuAddTask() {
   const addTaskButton = document.querySelector("#mobile-add-task");
-  taskPopupFunctionality("mobile");
+  taskPopupFunctionality("main-menu");
 
   addTaskButton.addEventListener("click", () => {
     mobileMenuClose();
@@ -178,7 +178,7 @@ function mobileMenuProjects() {
               "afterbegin",
               displayProject(project)
             );
-            taskPopupFunctionality(project); // Add task popup functionality.
+            taskPopupFunctionality("project", project); // Add task popup functionality.
             projectDisplayTasks(project, tasksArray);
           });
         });
