@@ -481,7 +481,6 @@ ul.projects {
   justify-content: center;
   flex-flow: row wrap;
   gap: 20px;
-  height: 100%;
   width: 100%;
   margin: 0;
   padding: 20px 0;
