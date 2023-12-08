@@ -30,6 +30,17 @@ export function tasksStorageToDisplay() {
   }
 }
 
+// Functionality for task cards. *Used in the displayTasks() function*.
+export function taskCardFunctionality() {
+  editIconFunctionality();
+
+  // Add functionality to the delete icons.
+  deleteIconFunctionality();
+
+  // Add functionality to the task checkboxes.
+  checkboxFunctionality();
+}
+
 export function taskDOMobject(task) {
   const listItem = document.createElement("li");
   listItem.classList.add("task-list-item");
@@ -122,129 +133,6 @@ export function addNewTaskPopup() {
     </div>
   `;
   return popupHTML;
-}
-
-function editTaskPopupHTML(taskInfo) {
-  const priority = taskInfo.priority.toLowerCase();
-
-  const popup = `
-    <div class="popup">
-      <div class="popup-header edit">
-        <span class="popup-title edit">EDIT TASK</span>
-        <span class="close-popup">&times;</span>
-      </div>
-      <div class="popup-body">
-        <label for="task-name">Task Name:</label>
-        <input type="text" id="task-name" value="${
-          taskInfo.name
-        }" maxlength="45" />
-        <label for="task-description">Description:</label>
-        <textarea
-          rows="4"
-          id="task-description"
-          maxlength="100"
-        >${taskInfo.description}</textarea>
-        <label for="task-priority">Priority:</label>
-        <select id="task-priority" def>
-          <option value="1" ${priority === "low" ? "selected" : ""}>Low</option>
-          <option value="2" ${
-            priority === "medium" ? "selected" : ""
-          }>Medium</option>
-          <option value="3" ${
-            priority === "high" ? "selected" : ""
-          }>High</option>
-        </select>
-        <label for="task-due-date">Due Date (Optional):</label>
-        <input type="date" id="task-due-date" value="${taskInfo.dueDate}" />
-        <button id="update-task" class="new-post-button">Update Task</button>
-      </div>
-    </div>
-    `;
-
-  return popup;
-}
-
-function checkTask(taskId) {
-  // Retrieve task from localStorage
-  const tasks = JSON.parse(localStorage.getItem("tasksArray"));
-  tasks.forEach(task => {
-    if (task.id === Number(taskId)) {
-      // Update the task's completed status
-      task.checked === false ? (task.checked = true) : (task.checked = false);
-    }
-  });
-  localStorage.setItem("tasksArray", JSON.stringify(tasks));
-  updateTasksArray(tasks);
-}
-
-// *Used in taskPopupFunctionality()*
-function submitTaskButton(taskClass, locationCall, project) {
-  const submitButton = document.querySelector("#submit-task");
-
-  submitButton.addEventListener("click", () => {
-    const id = `id${Date.now()}`; // Generate a unique id for the task.
-    const name = document.querySelector("#task-name").value;
-    const description = document.querySelector("#task-description").value;
-    let dueDate = document.querySelector("#task-due-date").value;
-    if (dueDate === "") dueDate = "None"; // If no due date is entered, set it to 'None'.
-
-    const priority = document.querySelector("#task-priority").value;
-
-    // Project name is empty if the popup is from the sidebar.
-    let projectName = "Unassigned";
-    if (locationCall === "project") {
-      projectName = project.name;
-    }
-
-    // Create new task object from user info.
-    const task = new taskClass(
-      id,
-      name,
-      description,
-      dueDate,
-      priority,
-      projectName
-    );
-
-    // Add task to the tasksArray.
-    updateTasksArray([...tasksArray, task]);
-    sortArrayByPriority(tasksArray);
-    sortArrayByDate(tasksArray);
-    closePopup();
-
-    // Display new task in the task list. Under a project, or on it's own.
-    locationCall === "project"
-      ? projectDisplayTasks(project, tasksArray)
-      : displayTasks("new", task);
-  });
-}
-
-// Functionality for task cards. *Used in the displayTasks() function*.
-export function taskCardFunctionality() {
-  editIconFunctionality();
-
-  // Add functionality to the delete icons.
-  deleteIconFunctionality();
-
-  // Add functionality to the task checkboxes.
-  const taskCheckboxes = document.querySelectorAll(`.task-checkbox`);
-  taskCheckboxes.forEach(taskCheckbox => {
-    taskCheckbox.addEventListener("click", event => {
-      const taskCard = event.target.closest(".task-card");
-      if (taskCard) {
-        // Toggle the task's completed status.
-        taskCard.classList.toggle("task-completed");
-
-        taskCard.querySelector(".edit-icon").classList.toggle("task-completed");
-
-        // Retrieve the task id.
-        const taskId = event.target.getAttribute("data-id");
-
-        // Change tasks "checked" status in localStorage.
-        checkTask(taskId);
-      }
-    });
-  });
 }
 
 /**
@@ -391,6 +279,123 @@ function editIconFunctionality() {
       closePopupButton();
       blurMainToggle(); // Blur the main screen.
       updateTaskButton(taskInfo.id, tasksArray);
+    });
+  });
+}
+
+function editTaskPopupHTML(taskInfo) {
+  const priority = taskInfo.priority.toLowerCase();
+
+  const popup = `
+    <div class="popup">
+      <div class="popup-header edit">
+        <span class="popup-title edit">EDIT TASK</span>
+        <span class="close-popup">&times;</span>
+      </div>
+      <div class="popup-body">
+        <label for="task-name">Task Name:</label>
+        <input type="text" id="task-name" value="${
+          taskInfo.name
+        }" maxlength="45" />
+        <label for="task-description">Description:</label>
+        <textarea
+          rows="4"
+          id="task-description"
+          maxlength="100"
+        >${taskInfo.description}</textarea>
+        <label for="task-priority">Priority:</label>
+        <select id="task-priority" def>
+          <option value="1" ${priority === "low" ? "selected" : ""}>Low</option>
+          <option value="2" ${
+            priority === "medium" ? "selected" : ""
+          }>Medium</option>
+          <option value="3" ${
+            priority === "high" ? "selected" : ""
+          }>High</option>
+        </select>
+        <label for="task-due-date">Due Date (Optional):</label>
+        <input type="date" id="task-due-date" value="${taskInfo.dueDate}" />
+        <button id="update-task" class="new-post-button">Update Task</button>
+      </div>
+    </div>
+    `;
+
+  return popup;
+}
+
+function checkTask(taskId) {
+  // Retrieve task from localStorage
+  const tasks = JSON.parse(localStorage.getItem("tasksArray"));
+  tasks.forEach(task => {
+    if (task.id === taskId) {
+      // Update the task's completed status
+      task.checked === false ? (task.checked = true) : (task.checked = false);
+    }
+  });
+  localStorage.setItem("tasksArray", JSON.stringify(tasks));
+  updateTasksArray(tasks);
+}
+
+// *Used in taskPopupFunctionality()*
+function submitTaskButton(taskClass, locationCall, project) {
+  const submitButton = document.querySelector("#submit-task");
+
+  submitButton.addEventListener("click", () => {
+    const id = `id${Date.now()}`; // Generate a unique id for the task.
+    const name = document.querySelector("#task-name").value;
+    const description = document.querySelector("#task-description").value;
+    let dueDate = document.querySelector("#task-due-date").value;
+    if (dueDate === "") dueDate = "None"; // If no due date is entered, set it to 'None'.
+
+    const priority = document.querySelector("#task-priority").value;
+
+    // Project name is empty if the popup is from the sidebar.
+    let projectName = "Unassigned";
+    if (locationCall === "project") {
+      projectName = project.name;
+    }
+
+    // Create new task object from user info.
+    const task = new taskClass(
+      id,
+      name,
+      description,
+      dueDate,
+      priority,
+      projectName
+    );
+
+    // Add task to the tasksArray.
+    updateTasksArray([...tasksArray, task]);
+    sortArrayByPriority(tasksArray);
+    sortArrayByDate(tasksArray);
+    closePopup();
+
+    // Display new task in the task list. Under a project, or on it's own.
+    locationCall === "project"
+      ? projectDisplayTasks(project, tasksArray)
+      : displayTasks("new", task);
+  });
+}
+
+// Functionality for the checkbox used in taskCardFunctionality
+function checkboxFunctionality() {
+  const taskCheckboxes = document.querySelectorAll(`.task-checkbox`);
+  taskCheckboxes.forEach(taskCheckbox => {
+    taskCheckbox.addEventListener("click", event => {
+      const taskCard = event.target.closest(".task-card");
+      if (taskCard) {
+        // Toggle the task's completed status.
+        taskCard.classList.toggle("task-completed");
+
+        taskCard.querySelector(".edit-icon").classList.toggle("task-completed");
+
+        // Retrieve the task id.
+        const taskId = event.target.getAttribute("data-id");
+
+        // Change tasks "checked" status in localStorage.
+        checkTask(taskId);
+      }
     });
   });
 }
