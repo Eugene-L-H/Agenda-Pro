@@ -170,7 +170,8 @@ function generateRandomTask() {
     "Attend a virtual art class",
     "Explore a part of the city you've never been to",
     "Start a gratitude journal",
-    "Research ways to reduce carbon footprint"
+    "Make avocado toast",
+    "Have existential crisis"
   ];
 
   const getRandomTask = () =>

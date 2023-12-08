@@ -541,9 +541,11 @@ ul.projects {
 
 .task-description {
   font-size: 0.9rem;
+  width: 200px;
+  overflow-wrap: break-word;
   font-style: italic;
   text-align: center;
-  margin: 20px 0 auto 0;
+  margin: auto 0;
 }
 
 .task-details {
@@ -552,7 +554,7 @@ ul.projects {
   line-height: 1.2;
   margin-left: 5px;
   border-top: 1px solid #999;
-  padding-top: 5px;
+  padding-top: 8px;
 }
 
 .task-project,
@@ -567,6 +569,20 @@ ul.projects {
 .task-priority {
   margin-left: 17px;
   margin-bottom: 4px;
+}
+
+.low-priority {
+  color: green;
+}
+
+.medium-priority {
+  color: darkorange;
+}
+
+.high-priority {
+  color: red;
+  font-weight: 700;
+  font-style: italic;
 }
 
 .modify-tasks {

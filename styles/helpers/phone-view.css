@@ -221,7 +221,7 @@ body {
   justify-content: space-around;
   height: 70px;
   width: 240px;
-  margin-top: 15px;
+  margin: 15px 0 15px 0;
 }
 
 .mobile-projects-button {
@@ -256,8 +256,9 @@ body {
   align-items: flex-end;
   text-indent: 10px;
   color: #333;
-  height: 23px;
-  width: 185px;
+  height: 32px;
+  width: 85px;
+  cursor: pointer;
   background: #d6c6e1;
   border-top: 1px solid #777;
   border-left: 1px solid #777;

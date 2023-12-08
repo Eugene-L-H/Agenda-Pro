@@ -63,7 +63,7 @@ export function taskDOMobject(task) {
         
         <p class="task-details">
           <span class="task-project">Project:</span> ${task.project}<br>
-          <span class="task-priority">Priority:</span> ${priority}<br>
+          <span class="task-priority">Priority:</span> <span class="${priority.toLocaleLowerCase()}-priority">${priority}</span><br>
           <span class="task-deadline-label">Due-Date:</span>
           <span class="task-deadline-value">${task.dueDate}</span>
         </p>
@@ -101,12 +101,13 @@ export function addNewTaskPopup() {
       </div>
       <div class="popup-body">
         <label for="task-name">Task Name:</label>
-        <input type="text" id="task-name" placeholder="Task Name" />
+        <input type="text" id="task-name" placeholder="Task Name" maxlength="45" />
         <label for="task-description">Description:</label>
         <textarea
           rows="4"
           id="task-description"
           placeholder="Task Description"
+          maxlength="100"
         ></textarea>
         <label for="task-priority">Priority:</label>
         <select id="task-priority">
@@ -134,11 +135,14 @@ function editTaskPopupHTML(taskInfo) {
       </div>
       <div class="popup-body">
         <label for="task-name">Task Name:</label>
-        <input type="text" id="task-name" value="${taskInfo.name}" />
+        <input type="text" id="task-name" value="${
+          taskInfo.name
+        }" maxlength="45" />
         <label for="task-description">Description:</label>
         <textarea
           rows="4"
           id="task-description"
+          maxlength="100"
         >${taskInfo.description}</textarea>
         <label for="task-priority">Priority:</label>
         <select id="task-priority" def>
