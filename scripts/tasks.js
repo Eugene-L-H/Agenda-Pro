@@ -62,9 +62,9 @@ export function taskDOMobject(task) {
         <span class="task-description">${task.description}</span>
         
         <p class="task-details">
-          Project: <span class="task-project">${task.project}</span><br>
-          Priority: <span class="task-priority">${priority}</span><br>
-          <span class="task-deadline-label">Deadline:</span>
+          <span class="task-project">Project:</span> ${task.project}<br>
+          <span class="task-priority">Priority:</span> ${priority}<br>
+          <span class="task-deadline-label">Due-Date:</span>
           <span class="task-deadline-value">${task.dueDate}</span>
         </p>
 
@@ -396,18 +396,15 @@ function updateTaskButton(taskId, tasksArray) {
 
   updateTaskButton.addEventListener("click", () => {
     const editedTaskInfo = getEditedTaskInfo(taskId);
-    console.log(editedTaskInfo);
 
     // Find task in local storage that matches taskInfo.id, change properties to those from taskInfo.
     const taskIndex = tasksArray.findIndex(
       task => task.id === editedTaskInfo.id
     );
-    console.log("BEFORE: ", tasksArray[taskIndex]); // DEBUG
     tasksArray[taskIndex].name = editedTaskInfo.name;
     tasksArray[taskIndex].description = editedTaskInfo.description;
     tasksArray[taskIndex].dueDate = editedTaskInfo.dueDate;
     tasksArray[taskIndex].priority = editedTaskInfo.priority;
-    console.log("AFTER: ", tasksArray[taskIndex]); // DEBUG
 
     updateTasksArray(tasksArray);
 

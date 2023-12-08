@@ -49,7 +49,7 @@ h1 .arrows {
   cursor: pointer;
   user-select: none;
   transition: transform 0.2s ease;
-  margin-right: 20px;
+  margin-right: 46px;
 }
 
 #dark-mode-icon:hover {
@@ -530,21 +530,43 @@ ul.projects {
 }
 
 .task-name {
-  text-decoration: underline;
-  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px;
+  font-size: 0.95rem;
+  text-align: center;
+  border-bottom: 1px solid #777;
 }
 
 .task-description {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-style: italic;
   text-align: center;
-  margin: auto 0;
+  margin: 20px 0 auto 0;
 }
 
 .task-details {
+  font-size: 0.9rem;
   margin: auto 0 5px 0;
   line-height: 1.2;
   margin-left: 5px;
+  border-top: 1px solid #999;
+  padding-top: 5px;
+}
+
+.task-project,
+.task-priority,
+.task-deadline-label {
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-right: 5px;
+}
+
+.task-project,
+.task-priority {
+  margin-left: 17px;
+  margin-bottom: 4px;
 }
 
 .modify-tasks {
@@ -557,6 +579,7 @@ ul.projects {
   margin-right: 20px;
   margin-top: auto;
 }
+
 .edit-icon {
   cursor: pointer;
   transition: transform 0.2s ease;
@@ -570,7 +593,7 @@ ul.projects {
 
 .task-checkbox {
   pointer-events: auto;
-  margin-right: 48px;
+  margin-right: 49px;
 }
 
 .delete-icon {
