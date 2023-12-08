@@ -74,7 +74,7 @@ export function taskDOMobject(task) {
         
         <p class="task-details">
           <span class="task-project">Project:</span> ${task.project}<br>
-          <span class="task-priority">Priority:</span> <span class="${priority.toLocaleLowerCase()}-priority">${priority}</span><br>
+          <span class="task-priority">Priority:</span> <span class="task-priority-value ${priority.toLocaleLowerCase()}-priority">${priority}</span><br>
           <span class="task-deadline-label">Due-Date:</span>
           <span class="task-deadline-value">${task.dueDate}</span>
         </p>
@@ -433,7 +433,13 @@ function updateTaskButton(taskId, tasksArray) {
       editedTaskInfo.description;
     taskCard.querySelector(".task-deadline-value").textContent =
       editedTaskInfo.dueDate;
-    taskCard.querySelector(".task-priority").textContent = editedPriority;
+    const priorityValue = taskCard.querySelector(".task-priority-value");
+    priorityValue.textContent = editedPriority;
+    priorityValue.classList.remove(...priorityValue.classList);
+    priorityValue.classList.add(
+      "task-priority-value",
+      `${editedPriority.toLowerCase()}-priority`
+    );
     // taskCard.querySelector(".task-project").textContent =
     //   editedTaskInfo.project;
 
@@ -445,7 +451,7 @@ function getTaskCardInfo(taskCard, taskId) {
   const name = taskCard.querySelector(".task-name").textContent;
   const description = taskCard.querySelector(".task-description").textContent;
   const dueDate = taskCard.querySelector(".task-deadline-value").textContent;
-  const priority = taskCard.querySelector(".task-priority").textContent;
+  const priority = taskCard.querySelector(".task-priority-value").textContent;
   const project = taskCard.querySelector(".task-project").textContent;
   const id = taskId;
 
