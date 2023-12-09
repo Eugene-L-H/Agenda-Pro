@@ -169,7 +169,7 @@ export function submitProjectButton(projectClass) {
     const project = new projectClass();
 
     // Get the values from the form.
-    const id = Date.now();
+    const id = `id${Date.now()}`;
     const projectName = document.querySelector("#project-name-popup").value;
     const projectDescription = document.querySelector("#project-description")
       .value;
@@ -192,7 +192,7 @@ export function submitProjectButton(projectClass) {
     contentArea.innerHTML = "";
     blurMainToggle(); // Remove blur from the main screen.
     contentArea.insertAdjacentHTML("afterbegin", displayProject(project));
-    taskPopupFunctionality("project"); // Add task popup functionality.
+    taskPopupFunctionality("project", project); // Add task popup functionality.
     projectDisplayTasks(project, tasksArray);
 
     closePopup();

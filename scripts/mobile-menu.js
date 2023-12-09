@@ -178,6 +178,7 @@ function mobileMenuProjects() {
               "afterbegin",
               displayProject(project)
             );
+            console.log("Project: ", project);
             taskPopupFunctionality("project", project); // Add task popup functionality.
             projectDisplayTasks(project, tasksArray);
           });
