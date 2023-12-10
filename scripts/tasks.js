@@ -387,6 +387,9 @@ function checkboxFunctionality() {
         taskCard.classList.toggle("task-completed");
 
         taskCard.querySelector(".edit-icon").classList.toggle("task-completed");
+        taskCard
+          .querySelector(".task-priority-value")
+          .classList.toggle("task-completed");
 
         // Retrieve the task id.
         const taskId = event.target.getAttribute("data-id");
