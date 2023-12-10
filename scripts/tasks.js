@@ -71,31 +71,29 @@ export function taskDOMobject(task) {
       <div class="task-card-content">
         <h3 class="task-name">${task.name}</h3>
         <span class="task-description">${task.description}</span>
-        
+
         <p class="task-details">
           <span class="task-project">Project:</span> ${task.project}<br>
-          <span class="task-priority">Priority:</span> <span class="task-priority-value ${priority.toLocaleLowerCase()}-priority">${priority}</span><br>
+          <span class="task-priority">Priority:</span> <span class="task-priority-value ${priority.toLocaleLowerCase()}-priority ${
+    task.checked ? " task-completed" : ""
+  }">${priority}</span><br>
           <span class="task-deadline-label">Due-Date:</span>
           <span class="task-deadline-value">${task.dueDate}</span>
         </p>
 
       </div>
       <div class="modify-tasks">
-        <input
-          type="checkbox"
-          class="task-checkbox"
-          ${task.checked ? "checked='true'" : ""}"
-          data-id="${task.id}"
-        />
+        <input type="checkbox" class="task-checkbox" ${
+          task.checked ? "checked='true'" : ""
+        }" data-id="${task.id}" />
         <span class="edit-icon ${
-          task.checked ? "task-completed" : ""
+          task.checked ? " task-completed" : ""
         }" data-id="${task.id}">✎</span>
-        </div>
-        </div>
-        <span class="delete-icon" data-name="${task.name}" data-id="${
+      </div>
+    </div>
+    <span class="delete-icon" data-name="${task.name}" data-id="${
     task.id
   }">✖</span>
-  </div>
   `;
 
   listItem.innerHTML = taskHTML;
