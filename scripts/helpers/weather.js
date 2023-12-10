@@ -10,17 +10,11 @@ function fetchWeather() {
         const lat = position.coords.latitude;
         const lon = position.coords.longitude;
 
-        console.log(`lat: ${lat}, lon: ${lon}`);
-
         // TODO: update timezone to a dynamic timezone based on lat/lon
         const response = await fetch(
           `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&timezone=America%2FDenver&hourly=temperature_2m,weathercode&forecast_days=1`
         );
         const data = await response.json();
-        console.log(data);
-
-        // api call, with yyc coordinates, for browser debugging:
-        /* https://https://api.open-meteo.com/v1/forecast?latitude=51.0447&longitude=114.0719&timezone=America%2FDenver&hourly=temperature_2m,weathercode&forecast_days=1 */
 
         const locationResponse = await fetch(
           `https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lon}`

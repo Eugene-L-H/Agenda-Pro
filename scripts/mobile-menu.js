@@ -23,6 +23,7 @@ function mobileMenuHTML() {
   const mobileMenuHTML = `
   <div id="mobile-menu">
   <span id="mobile-dates-label" class="mobile-label">TASKS</span>
+  <button id="mobile-menu-close">X</button>
     <div class="mobile-dates">
       <button id="mobile-today" class="mobile-date-selector">Today</button>
       <button id="mobile-week" class="mobile-date-selector">This<br>Week</button>
@@ -49,20 +50,23 @@ function mobileMenuHTML() {
 export function menuFunctionality() {
   const hamburgerIcon = document.querySelector("#hamburger-icon");
   const wideScreenMenu = document.querySelector("#wide-screen-menu");
+  // const mobileMenuClose = document.querySelector("#mobile-menu-close");
 
   hamburgerIcon.addEventListener("click", () => {
-    removePopup();
-    blurMainToggle(); // Blur the main screen.
-    mobileMenuToggle();
+    toggleBlurAndPopups();
   });
 
   wideScreenMenu.addEventListener("click", () => {
-    removePopup();
-    blurMainToggle(); // Blur the main screen.
-    mobileMenuToggle();
+    toggleBlurAndPopups();
   });
 
   projectsOpen = false;
+}
+
+function toggleBlurAndPopups() {
+  removePopup();
+  blurMainToggle(); // Blur the main screen.
+  mobileMenuToggle();
 }
 
 // Toggle the mobile menu open/closed.
@@ -76,6 +80,8 @@ function mobileMenuToggle() {
     // Display the mobile menu. Add event listener for projects button.
   } else {
     body.insertAdjacentHTML("afterbegin", mobileMenuHTML());
+    // Add event listeners for the menu buttons.
+    mobileMenuCloseButton();
     mobileMenuDates();
     mobileMenuAddTask();
     mobileMenuProjects();
@@ -116,6 +122,13 @@ function mobileMenuDates() {
     displayTasks("year", true);
     mobileMenuClose();
     blurMainToggle(); // Remove blur from the main screen.
+  });
+}
+
+function mobileMenuCloseButton() {
+  const closeButton = document.querySelector("#mobile-menu-close");
+  closeButton.addEventListener("click", () => {
+    toggleBlurAndPopups();
   });
 }
 

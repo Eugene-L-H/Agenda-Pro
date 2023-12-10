@@ -162,6 +162,16 @@ body {
   border: 1px solid #000;
 }
 
+#mobile-menu-close {
+  position: absolute;
+  cursor: pointer;
+  min-width: 32px;
+  min-height: 32px;
+  font-size: 0.9rem;
+  font-weight: 900;
+  margin-left: 280px;
+}
+
 .mobile-dates {
   display: flex;
   flex-direction: row;
