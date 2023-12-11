@@ -165,8 +165,8 @@ body {
 #mobile-menu-close {
   position: absolute;
   cursor: pointer;
-  min-width: 32px;
-  min-height: 32px;
+  width: 32px;
+  height: 32px;
   font-size: 0.9rem;
   font-weight: 900;
   margin-left: 280px;
@@ -327,6 +327,12 @@ body {
 
   #mobile-menu {
     width: 290px;
+  }
+
+  #mobile-menu-close {
+    width: 28px;
+    max-height: 28px;
+    margin-left: 260px;
   }
 
   .project-card-body {
