@@ -2,7 +2,9 @@ export function populateExampleArray(type, numberOfObjects) {
   const exampleArray = [];
 
   for (let i = 0; i < numberOfObjects; i++) {
+    // Populate the array with tasks, or projects, according ot type argument.
     const object = type === "task" ? exampleTask(i) : exampleProject(i);
+    console.log("object", object);
     exampleArray.push(object);
   }
 

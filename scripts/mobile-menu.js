@@ -175,8 +175,10 @@ function mobileMenuProjects() {
         projectsArray.forEach(project => {
           // Create a list item element for each project name.
           const projectName = document.createElement("li");
-          projectName.classList.add("mobile-project");
-          projectName.textContent = project.name;
+          const button = document.createElement("button");
+          button.classList.add("mobile-project-button");
+          button.textContent = project.name;
+          projectName.appendChild(button);
 
           // Add name as list item to the projects list.
           projectList.appendChild(projectName);
