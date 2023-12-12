@@ -14,7 +14,7 @@ function exampleTask(iteration) {
 
   let dateRange = returnDateRange(iteration);
 
-  let project = Math.floor(Math.random() * 5) + 1;
+  // let project = Math.floor(Math.random() * 5) + 1;
 
   const task = {};
   task.id = `id${Date.now() + iteration}`;
@@ -23,7 +23,7 @@ function exampleTask(iteration) {
   task.description = generateLoremIpsumSentence();
   task.dueDate = randomDueDate(dateRange);
   task.priority = Math.floor(Math.random() * 3) + 1;
-  task.project = `Project ${project}`;
+  task.project = projectNameGenerator(iteration, "task");
 
   return task;
 }
@@ -31,7 +31,7 @@ function exampleTask(iteration) {
 function exampleProject(iteration) {
   const project = {};
   project.id = `id${Date.now() + iteration}`;
-  project.name = `Project ${iteration + 1}`;
+  project.name = projectNameGenerator(iteration, "project");
   project.description = generateLoremIpsumSentence();
   project.priority = Math.floor(Math.random() * 3) + 1;
   project.deadline = "None";
@@ -178,4 +178,30 @@ function generateRandomTask() {
     exampleTasks[Math.floor(Math.random() * exampleTasks.length)];
 
   return getRandomTask();
+}
+
+function projectNameGenerator(iteration, locationCall) {
+  const projectNames = [
+    "Wellness Expedition",
+    "Lifestyle Navigator",
+    "Adventure Blueprint",
+    "Life Discovery Quest",
+    "Journey of Growth"
+  ];
+
+  if (locationCall === "task") {
+    if (iteration < 3) {
+      return projectNames[0];
+    } else if (iteration >= 3 && iteration < 7) {
+      return projectNames[1];
+    } else if (iteration >= 7 && iteration < 10) {
+      return projectNames[2];
+    } else if (iteration >= 10 && iteration < 13) {
+      return projectNames[3];
+    } else if (iteration >= 13 && iteration < 16) {
+      return projectNames[4];
+    }
+  } else if (locationCall === "project") {
+    return projectNames[iteration];
+  }
 }

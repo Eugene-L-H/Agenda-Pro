@@ -571,6 +571,10 @@ ul.projects {
   margin-bottom: 4px;
 }
 
+.task-project-value {
+  font-size: 0.8rem;
+}
+
 .low-priority {
   color: green;
 }

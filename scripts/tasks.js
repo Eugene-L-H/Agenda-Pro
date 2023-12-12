@@ -73,7 +73,9 @@ export function taskDOMobject(task) {
         <span class="task-description">${task.description}</span>
 
         <p class="task-details">
-          <span class="task-project">Project:</span> ${task.project}<br>
+          <span class="task-project">Project:</span> <span class="task-project-value">${
+            task.project
+          }</span><br>
           <span class="task-priority">Priority:</span> <span class="task-priority-value ${priority.toLocaleLowerCase()}-priority ${
     task.checked ? " task-completed" : ""
   }">${priority}</span><br>
