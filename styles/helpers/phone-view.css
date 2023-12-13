@@ -159,6 +159,7 @@ body {
   height: fit-content;
   width: 314px;
   background: lightgray;
+  color: #160e03; /* Attempt at removing the blue text from ios devices. */
   border: 1px solid #000;
 }
 
@@ -211,6 +212,7 @@ body {
   align-items: center;
   justify-content: center;
   position: absolute;
+  font-size: 0.85rem;
   font-weight: 700;
   height: 60px;
   width: 60px;
@@ -272,7 +274,7 @@ body {
 }
 
 #mobile-menu-projects > li:first-child {
-  padding-top: 100px;
+  padding-top: 50px;
 }
 
 #mobile-menu-projects li {

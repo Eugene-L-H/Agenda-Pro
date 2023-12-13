@@ -12,7 +12,7 @@ import { populateExampleArray } from "./helpers/example-arrays.js";
 // Dark mode toggle.
 import { darkMode } from "./helpers/dark-mode.js";
 
-import { menuFunctionality, mobileMenuClose } from "./mobile-menu.js";
+import { menuFunctionality } from "./mobile-menu.js";
 
 // For populating content area with tasks.
 import {
@@ -61,7 +61,6 @@ export {
   populateExampleArray,
   darkMode,
   menuFunctionality,
-  mobileMenuClose,
   tasksStorageToDisplay,
   displayTasks,
   taskDateButtons,

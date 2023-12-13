@@ -50,7 +50,6 @@ function mobileMenuHTML() {
 export function menuFunctionality() {
   const hamburgerIcon = document.querySelector("#hamburger-icon");
   const wideScreenMenu = document.querySelector("#wide-screen-menu");
-  // const mobileMenuClose = document.querySelector("#mobile-menu-close");
 
   hamburgerIcon.addEventListener("click", () => {
     toggleBlurAndPopups();
@@ -64,8 +63,8 @@ export function menuFunctionality() {
 }
 
 function toggleBlurAndPopups() {
-  removePopup();
-  blurMainToggle(); // Blur the main screen.
+  removePopup(); // Remove the popup if it is open.
+  blurMainToggle();
   mobileMenuToggle();
 }
 
@@ -90,6 +89,9 @@ function mobileMenuToggle() {
 
   // Toggle the menu open/closed.
   menuOpen ? (menuOpen = false) : (menuOpen = true);
+
+  // Toggle the projects list open/closed. Set to closed by default.
+  projectsOpen = false;
 }
 
 // Event listeners for the task date-range buttons.
@@ -103,25 +105,21 @@ function mobileMenuDates() {
   todayButton.addEventListener("click", () => {
     displayTasks("today", true);
     mobileMenuClose();
-    blurMainToggle(); // Remove blur from the main screen.
   });
 
   weekButton.addEventListener("click", () => {
     displayTasks("week", true);
     mobileMenuClose();
-    blurMainToggle(); // Remove blur from the main screen.
   });
 
   monthButton.addEventListener("click", () => {
     displayTasks("month", true);
     mobileMenuClose();
-    blurMainToggle(); // Remove blur from the main screen.
   });
 
   yearButton.addEventListener("click", () => {
     displayTasks("year", true);
     mobileMenuClose();
-    blurMainToggle(); // Remove blur from the main screen.
   });
 }
 
@@ -150,7 +148,6 @@ function mobileMenuProjects() {
 
   // Check if projects present in projectsArray.
   const projectsPresent = projectsArray.length > 0 ? true : false;
-  const noProjectsMessage = "No projects found.";
 
   projectsButton.addEventListener("click", () => {
     // If the projects list is open, close it.
@@ -161,7 +158,6 @@ function mobileMenuProjects() {
 
       // Populate the projects list with project names.
     } else {
-      // Target the mobile div in the body.
       const contentArea = document.querySelector("#content-area");
 
       // If no projects present, display message.
@@ -169,7 +165,7 @@ function mobileMenuProjects() {
         projectList.classList.toggle("hidden");
         projectList.insertAdjacentHTML(
           "afterbegin",
-          `<p class="no-projects-message">${noProjectsMessage}</p>`
+          `<p class="no-projects-message">No Projects Found</p>`
         );
       } else {
         projectList.classList.toggle("hidden");
@@ -191,7 +187,6 @@ function mobileMenuProjects() {
             // Clear the mobile div, load project card, and associated tasks.
             contentArea.innerHTML = "";
             mobileMenuClose();
-            blurMainToggle(); // Remove blur from the main screen.
             contentArea.insertAdjacentHTML(
               "afterbegin",
               displayProject(project)
@@ -204,7 +199,7 @@ function mobileMenuProjects() {
       }
 
       // Change the projects button text upon clicking.
-      projectsButton.textContent = "^ ^";
+      projectsButton.textContent = "Close";
     }
 
     // Toggle the projects list open/closed.
@@ -225,6 +220,7 @@ function mobileMenuAddProject() {
 
     // Add functionality to the close popup button.
     closePopupButton();
+    blurMainToggle(); // Counter the blurMainToggle in closePopupButton.
 
     // Add functionality to the submit project button.
     submitProjectButton(Project);
@@ -233,10 +229,11 @@ function mobileMenuAddProject() {
 }
 
 // Remove mobile menu from DOM, reset flag
-export function mobileMenuClose() {
+function mobileMenuClose() {
   const mobileMenu = document.querySelector("#mobile-menu");
 
   mobileMenu.remove();
+  blurMainToggle(); // Remove blur from the main screen.
   menuOpen = false;
 }
 

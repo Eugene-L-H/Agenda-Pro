@@ -182,13 +182,14 @@ export function submitProjectButton(projectClass) {
 
     const projectPriority = document.querySelector("#project-priority").value;
     let projectDeadline = document.querySelector("#project-deadline").value;
-    if (projectDeadline === "") projectDeadline = null;
+    console.log("projectDeadline.value: ", projectDeadline);
+    if (projectDeadline === "") projectDeadline = "No deadline.";
 
     project.id = id;
     project.name = projectName;
     project.description = projectDescription;
-    project.priority = projectPriority;
-    project.deadline = document.querySelector("#project-deadline").value;
+    project.priority = Number(projectPriority);
+    project.deadline = projectDeadline;
 
     // Add the project to the projects array.
     projectsArray.push(project);
