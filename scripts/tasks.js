@@ -295,15 +295,15 @@ function editTaskPopupHTML(taskInfo) {
       </div>
       <div class="popup-body">
         <label for="task-name">Task Name:</label>
-        <input type="text" id="task-name" value="${
+        <input type="text" id="task-name" value="${sanitizeInput(
           taskInfo.name
-        }" maxlength="45" />
+        )}" maxlength="45" />
         <label for="task-description">Description:</label>
         <textarea
           rows="4"
           id="task-description"
           maxlength="100"
-        >${taskInfo.description}</textarea>
+        >${sanitizeInput(taskInfo.description)}</textarea>
         <label for="task-priority">Priority:</label>
         <select id="task-priority" def>
           <option value="1" ${priority === "low" ? "selected" : ""}>Low</option>
@@ -315,7 +315,9 @@ function editTaskPopupHTML(taskInfo) {
           }>High</option>
         </select>
         <label for="task-due-date">Due Date (Optional):</label>
-        <input type="date" id="task-due-date" value="${taskInfo.dueDate}" />
+        <input type="date" id="task-due-date" value="${sanitizeInput(
+          taskInfo.dueDate
+        )}" />
         <button id="update-task" class="new-post-button">Update Task</button>
       </div>
     </div>
@@ -343,9 +345,11 @@ function submitTaskButton(taskClass, locationCall, project) {
 
   submitButton.addEventListener("click", () => {
     const id = `id${Date.now()}`; // Generate a unique id for the task.
-    const name = document.querySelector("#task-name").value;
-    const description = document.querySelector("#task-description").value;
-    let dueDate = document.querySelector("#task-due-date").value;
+    const name = sanitizeInput(document.querySelector("#task-name").value);
+    const description = sanitizeInput(
+      document.querySelector("#task-description").value
+    );
+    let dueDate = sanitizeInput(document.querySelector("#task-due-date").value);
     if (dueDate === "") dueDate = "None"; // If no due date is entered, set it to 'None'.
 
     const priority = document.querySelector("#task-priority").value;
