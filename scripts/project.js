@@ -66,10 +66,10 @@ export function displayProject(project) {
   // Get the priority of the project.
   let priority = "Low";
   switch (project.priority) {
-    case "3":
+    case 3:
       priority = "High";
       break;
-    case "2":
+    case 2:
       priority = "Medium";
       break;
     default:

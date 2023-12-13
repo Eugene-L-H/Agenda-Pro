@@ -36,7 +36,7 @@ function exampleProject(iteration) {
   project.name = projectNameGenerator(iteration, "project");
   project.description = generateLoremIpsumSentence();
   project.priority = Math.floor(Math.random() * 3) + 1;
-  project.deadline = "None";
+  project.deadline = "No Deadline.";
 
   return project;
 }

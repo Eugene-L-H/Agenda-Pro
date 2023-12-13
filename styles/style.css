@@ -415,7 +415,6 @@ ul.projects {
 }
 
 .close-popup {
-  display: inline-block;
   text-align: center;
   border-left: 1px solid #000;
   cursor: pointer;

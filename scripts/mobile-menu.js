@@ -23,7 +23,7 @@ function mobileMenuHTML() {
   const mobileMenuHTML = `
   <div id="mobile-menu">
   <span id="mobile-dates-label" class="mobile-label">TASKS</span>
-  <button id="mobile-menu-close">X</button>
+  <span id="mobile-menu-close" class="close-popup">&times;</span>
     <div class="mobile-dates">
       <button id="mobile-today" class="mobile-date-selector">Today</button>
       <button id="mobile-week" class="mobile-date-selector">This<br>Week</button>

@@ -163,14 +163,10 @@ body {
   border: 1px solid #000;
 }
 
-#mobile-menu-close {
+#mobile-menu .close-popup {
   position: absolute;
-  cursor: pointer;
-  width: 32px;
-  height: 32px;
-  font-size: 0.9rem;
-  font-weight: 900;
-  margin-left: 280px;
+  margin-left: 276px;
+  border-bottom: 1px solid #000;
 }
 
 .mobile-dates {
@@ -191,6 +187,7 @@ body {
   border-bottom: 1px solid #777;
   padding-bottom: 2px;
   margin-top: 10px;
+  padding-bottom: 5px;
 }
 
 .mobile-label.project {
@@ -233,7 +230,7 @@ body {
   justify-content: space-around;
   height: 70px;
   width: 240px;
-  margin-top: 15px;
+  margin: 10px 0;
 }
 
 .mobile-projects-button {
@@ -257,14 +254,14 @@ body {
   position: absolute;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   align-items: center;
-  width: 79%;
+  width: 75%;
   height: 310px;
   list-style-type: disclosure-closed;
-  background: #eee;
+  background: #e4f6f8;
   padding: 0;
-  margin-top: 1px;
+  margin-top: 2px;
   overflow-y: scroll;
   border-right: 2px solid #888;
   border-bottom: 2px solid #888;
@@ -274,12 +271,13 @@ body {
 }
 
 #mobile-menu-projects > li:first-child {
-  padding-top: 50px;
+  padding-top: 20px;
 }
 
 #mobile-menu-projects li {
   margin: 0 0 20px 15px;
   padding-left: 20px;
+  margin-right: 23px;
 }
 
 .mobile-project-button {
@@ -349,10 +347,11 @@ body {
     width: 290px;
   }
 
-  #mobile-menu-close {
-    width: 28px;
-    max-height: 28px;
-    margin-left: 260px;
+  .close-popup {
+  }
+
+  #mobile-menu .close-popup {
+    margin-left: 253px;
   }
 
   .project-card-body {
