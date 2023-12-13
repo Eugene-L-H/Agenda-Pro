@@ -11,9 +11,8 @@ import {
   blurMainToggle,
   isDueInTimeFrame,
   getFormattedDate,
-  populateLocalProjectsArray,
   projectDisplayTasks,
-  projectsArray
+  sanitizeInput
 } from "./imports.js";
 
 export function tasksStorageToDisplay() {
@@ -69,18 +68,20 @@ export function taskDOMobject(task) {
     overdue ? " overdue" : ""
   }">
       <div class="task-card-content">
-        <h3 class="task-name">${task.name}</h3>
-        <span class="task-description">${task.description}</span>
+        <h3 class="task-name">${sanitizeInput(task.name)}</h3>
+        <span class="task-description">${sanitizeInput(task.description)}</span>
 
         <p class="task-details">
-          <span class="task-project">Project:</span> <span class="task-project-value">${
+          <span class="task-project">Project:</span> <span class="task-project-value">${sanitizeInput(
             task.project
-          }</span><br>
+          )}</span><br>
           <span class="task-priority">Priority:</span> <span class="task-priority-value ${priority.toLocaleLowerCase()}-priority ${
     task.checked ? " task-completed" : ""
   }">${priority}</span><br>
           <span class="task-deadline-label">Due-Date:</span>
-          <span class="task-deadline-value">${task.dueDate}</span>
+          <span class="task-deadline-value">${sanitizeInput(
+            task.dueDate
+          )}</span>
         </p>
 
       </div>
@@ -93,9 +94,9 @@ export function taskDOMobject(task) {
         }" data-id="${task.id}">✎</span>
       </div>
     </div>
-    <span class="delete-icon" data-name="${task.name}" data-id="${
-    task.id
-  }">✖</span>
+    <span class="delete-icon" data-name="${sanitizeInput(
+      task.name
+    )}" data-id="${task.id}">✖</span>
   `;
 
   listItem.innerHTML = taskHTML;

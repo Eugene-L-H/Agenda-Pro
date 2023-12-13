@@ -50,6 +50,8 @@ import {
   isThisYear
 } from "./helpers/compare-dates.js";
 
+import { sanitizeInput } from "./helpers/sanitizeInput.js";
+
 export {
   projectsArray,
   tasksArray,
@@ -79,5 +81,6 @@ export {
   sortArrayByPriority,
   isDueInTimeFrame,
   getFormattedDate,
-  isThisYear
+  isThisYear,
+  sanitizeInput
 };
