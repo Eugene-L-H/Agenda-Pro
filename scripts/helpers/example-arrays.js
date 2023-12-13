@@ -187,22 +187,12 @@ function projectNameGenerator(iteration, locationCall) {
     "Wellness Expedition",
     "Lifestyle Navigator",
     "Adventure Blueprint",
-    "Life Discovery Quest",
-    "Journey of Growth"
+    "Work/Life Balance",
+    "Personal Growth"
   ];
 
   if (locationCall === "task") {
-    if (iteration < 3) {
-      return projectNames[0];
-    } else if (iteration >= 3 && iteration < 7) {
-      return projectNames[1];
-    } else if (iteration >= 7 && iteration < 10) {
-      return projectNames[2];
-    } else if (iteration >= 10 && iteration < 13) {
-      return projectNames[3];
-    } else if (iteration >= 13 && iteration < 16) {
-      return projectNames[4];
-    }
+    return projectNames[Math.floor(Math.random() * projectNames.length)];
   } else if (locationCall === "project") {
     return projectNames[iteration];
   }
