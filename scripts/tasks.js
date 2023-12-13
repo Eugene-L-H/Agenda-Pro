@@ -344,13 +344,18 @@ function submitTaskButton(taskClass, locationCall, project) {
   const submitButton = document.querySelector("#submit-task");
 
   submitButton.addEventListener("click", () => {
-    const id = `id${Date.now()}`; // Generate a unique id for the task.
+    // Generate a unique id for the task.
+    const id = `id${Date.now()}`;
     const name = sanitizeInput(document.querySelector("#task-name").value);
+
     const description = sanitizeInput(
       document.querySelector("#task-description").value
     );
+
     let dueDate = sanitizeInput(document.querySelector("#task-due-date").value);
-    if (dueDate === "") dueDate = "None"; // If no due date is entered, set it to 'None'.
+
+    // If no due date is entered, set dueDate to 'None'.
+    if (dueDate === "") dueDate = "None";
 
     const priority = document.querySelector("#task-priority").value;
 
@@ -477,8 +482,10 @@ function getTaskCardInfo(taskCard, taskId) {
 
 function getEditedTaskInfo(taskId) {
   const updatedInfo = document.querySelector(".popup");
-  const name = updatedInfo.querySelector("#task-name").value;
-  const description = updatedInfo.querySelector("#task-description").value;
+  const name = sanitizeInput(updatedInfo.querySelector("#task-name").value);
+  const description = sanitizeInput(
+    updatedInfo.querySelector("#task-description").value
+  );
   const priority = updatedInfo.querySelector("#task-priority").value;
   const dueDate = updatedInfo.querySelector("#task-due-date").value;
   const id = taskId;
