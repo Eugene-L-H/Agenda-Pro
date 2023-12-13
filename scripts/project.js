@@ -5,7 +5,8 @@ import {
   closePopup,
   tasksArray,
   populateExampleArray,
-  blurMainToggle
+  blurMainToggle,
+  sanitizeInput
 } from "./imports.js";
 
 import {
@@ -79,14 +80,14 @@ export function displayProject(project) {
   <div class="project-card">
     <div class="project-info">
       <div class="project-card-header">
-        <h3 id="project-name" data-name="${project.name}">
+        <h3 id="project-name" data-name="${sanitizeInput(project.name)}">
           <span class="project-name-prefix">Project:&nbsp;</span>
-          ${project.name}
+          ${sanitizeInput(project.name)}
         </h3>
       </div>
       <div class="project-card-body">
         <span class="project-description">
-          ${project.description}
+          ${sanitizeInput(project.description)}
         </span>
         <div class="deadline-priority">
           <div class="project-deadline">
@@ -101,7 +102,9 @@ export function displayProject(project) {
       </div>
       <div class="modify-project">
         <button id="add-task-project" class="new-post-button">+<br>Add<br>Task</button>
-        <span class="project-delete-icon delete-icon" data-name="${project.name}" data-id="${project.id}"
+        <span class="project-delete-icon delete-icon" data-name="${sanitizeInput(
+          project.name
+        )}" data-id="${project.id}"
           data-project="project">✖</span>
       </div>
     </div>
@@ -170,9 +173,13 @@ export function submitProjectButton(projectClass) {
 
     // Get the values from the form.
     const id = `id${Date.now()}`;
-    const projectName = document.querySelector("#project-name-popup").value;
-    const projectDescription = document.querySelector("#project-description")
-      .value;
+    const projectName = sanitizeInput(
+      document.querySelector("#project-name-popup").value
+    );
+    const projectDescription = sanitizeInput(
+      document.querySelector("#project-description").value
+    );
+
     const projectPriority = document.querySelector("#project-priority").value;
     let projectDeadline = document.querySelector("#project-deadline").value;
     if (projectDeadline === "") projectDeadline = null;

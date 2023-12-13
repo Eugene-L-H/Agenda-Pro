@@ -11,9 +11,8 @@ import {
   blurMainToggle,
   isDueInTimeFrame,
   getFormattedDate,
-  populateLocalProjectsArray,
   projectDisplayTasks,
-  projectsArray
+  sanitizeInput
 } from "./imports.js";
 
 export function tasksStorageToDisplay() {
@@ -69,18 +68,20 @@ export function taskDOMobject(task) {
     overdue ? " overdue" : ""
   }">
       <div class="task-card-content">
-        <h3 class="task-name">${task.name}</h3>
-        <span class="task-description">${task.description}</span>
+        <h3 class="task-name">${sanitizeInput(task.name)}</h3>
+        <span class="task-description">${sanitizeInput(task.description)}</span>
 
         <p class="task-details">
-          <span class="task-project">Project:</span> <span class="task-project-value">${
+          <span class="task-project">Project:</span> <span class="task-project-value">${sanitizeInput(
             task.project
-          }</span><br>
+          )}</span><br>
           <span class="task-priority">Priority:</span> <span class="task-priority-value ${priority.toLocaleLowerCase()}-priority ${
     task.checked ? " task-completed" : ""
   }">${priority}</span><br>
           <span class="task-deadline-label">Due-Date:</span>
-          <span class="task-deadline-value">${task.dueDate}</span>
+          <span class="task-deadline-value">${sanitizeInput(
+            task.dueDate
+          )}</span>
         </p>
 
       </div>
@@ -93,9 +94,9 @@ export function taskDOMobject(task) {
         }" data-id="${task.id}">✎</span>
       </div>
     </div>
-    <span class="delete-icon" data-name="${task.name}" data-id="${
-    task.id
-  }">✖</span>
+    <span class="delete-icon" data-name="${sanitizeInput(
+      task.name
+    )}" data-id="${task.id}">✖</span>
   `;
 
   listItem.innerHTML = taskHTML;
@@ -294,15 +295,15 @@ function editTaskPopupHTML(taskInfo) {
       </div>
       <div class="popup-body">
         <label for="task-name">Task Name:</label>
-        <input type="text" id="task-name" value="${
+        <input type="text" id="task-name" value="${sanitizeInput(
           taskInfo.name
-        }" maxlength="45" />
+        )}" maxlength="45" />
         <label for="task-description">Description:</label>
         <textarea
           rows="4"
           id="task-description"
           maxlength="100"
-        >${taskInfo.description}</textarea>
+        >${sanitizeInput(taskInfo.description)}</textarea>
         <label for="task-priority">Priority:</label>
         <select id="task-priority" def>
           <option value="1" ${priority === "low" ? "selected" : ""}>Low</option>
@@ -314,7 +315,9 @@ function editTaskPopupHTML(taskInfo) {
           }>High</option>
         </select>
         <label for="task-due-date">Due Date (Optional):</label>
-        <input type="date" id="task-due-date" value="${taskInfo.dueDate}" />
+        <input type="date" id="task-due-date" value="${sanitizeInput(
+          taskInfo.dueDate
+        )}" />
         <button id="update-task" class="new-post-button">Update Task</button>
       </div>
     </div>
@@ -341,11 +344,18 @@ function submitTaskButton(taskClass, locationCall, project) {
   const submitButton = document.querySelector("#submit-task");
 
   submitButton.addEventListener("click", () => {
-    const id = `id${Date.now()}`; // Generate a unique id for the task.
-    const name = document.querySelector("#task-name").value;
-    const description = document.querySelector("#task-description").value;
-    let dueDate = document.querySelector("#task-due-date").value;
-    if (dueDate === "") dueDate = "None"; // If no due date is entered, set it to 'None'.
+    // Generate a unique id for the task.
+    const id = `id${Date.now()}`;
+    const name = sanitizeInput(document.querySelector("#task-name").value);
+
+    const description = sanitizeInput(
+      document.querySelector("#task-description").value
+    );
+
+    let dueDate = sanitizeInput(document.querySelector("#task-due-date").value);
+
+    // If no due date is entered, set dueDate to 'None'.
+    if (dueDate === "") dueDate = "None";
 
     const priority = document.querySelector("#task-priority").value;
 
@@ -472,8 +482,10 @@ function getTaskCardInfo(taskCard, taskId) {
 
 function getEditedTaskInfo(taskId) {
   const updatedInfo = document.querySelector(".popup");
-  const name = updatedInfo.querySelector("#task-name").value;
-  const description = updatedInfo.querySelector("#task-description").value;
+  const name = sanitizeInput(updatedInfo.querySelector("#task-name").value);
+  const description = sanitizeInput(
+    updatedInfo.querySelector("#task-description").value
+  );
   const priority = updatedInfo.querySelector("#task-priority").value;
   const dueDate = updatedInfo.querySelector("#task-due-date").value;
   const id = taskId;
