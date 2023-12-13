@@ -428,7 +428,10 @@ function updateTaskButton(taskId, tasksArray) {
     tasksArray[taskIndex].dueDate = editedTaskInfo.dueDate;
     tasksArray[taskIndex].priority = editedTaskInfo.priority;
 
-    updateTasksArray(tasksArray);
+    // Sort arrays by Date first, priority second, and update local storage.
+    let arraySortedByDate = sortArrayByDate(tasksArray);
+    let arraySortedByPriority = sortArrayByPriority(arraySortedByDate);
+    updateTasksArray(arraySortedByPriority);
 
     let editedPriority = Number(editedTaskInfo.priority);
     if (editedPriority === 1) {
