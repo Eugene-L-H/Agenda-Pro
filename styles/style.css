@@ -382,6 +382,7 @@ ul.projects {
   justify-content: flex-end;
   width: 100%;
   border-bottom: 1px solid #000;
+  margin-bottom: 20px;
 }
 
 .popup-header.add {
@@ -435,24 +436,31 @@ ul.projects {
   height: 90%;
   display: flex;
   flex-flow: column wrap;
-  justify-content: center;
   align-items: center;
 }
 
-.popup #task-name,
-.popup #task-description,
-.popup #project-name-popup,
-.popup #project-description {
-  text-align: center;
-  padding: 4px;
+.popup-body label {
+  margin-bottom: 5px;
 }
 
-.popup-body > :not(:first-child) {
-  margin-top: 12px;
+.popup-body #task-name,
+.popup-body #task-description,
+.popup-body #project-name-popup,
+.popup-body #project-description {
+  text-align: center;
+  padding: 3px;
+  margin-bottom: 12px;
 }
 
 .popup textarea {
   resize: none;
+}
+
+#project-priority,
+#project-deadline,
+#task-priority,
+#task-due-date {
+  margin-bottom: 12px;
 }
 
 /* Container that displays list of tasks*/
@@ -653,4 +661,8 @@ ul.projects {
 .blur {
   filter: blur(5px);
   pointer-events: none;
+}
+
+.hidden {
+  display: none !important;
 }

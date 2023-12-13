@@ -36,7 +36,7 @@ function mobileMenuHTML() {
       <button id="mobile-view-projects-button" class="mobile-projects-button">Projects</button>
       <button id="mobile-add-project-button" class="mobile-projects-button">+ Add&nbsp;<br>Project</button>
     </div>
-    <ul id="mobile-menu-projects">
+    <ul id="mobile-menu-projects" class="hidden">
     </ul>
   </div>
   `;
@@ -155,8 +155,8 @@ function mobileMenuProjects() {
   projectsButton.addEventListener("click", () => {
     // If the projects list is open, close it.
     if (projectsOpen) {
+      projectList.classList.toggle("hidden");
       projectList.innerHTML = "";
-
       projectsButton.textContent = "Projects";
 
       // Populate the projects list with project names.
@@ -166,11 +166,14 @@ function mobileMenuProjects() {
 
       // If no projects present, display message.
       if (!projectsPresent) {
+        projectList.classList.toggle("hidden");
         projectList.insertAdjacentHTML(
           "afterbegin",
           `<p class="no-projects-message">${noProjectsMessage}</p>`
         );
       } else {
+        projectList.classList.toggle("hidden");
+
         // If projects present, display projects list.
         projectsArray.forEach(project => {
           // Create a list item element for each project name.
