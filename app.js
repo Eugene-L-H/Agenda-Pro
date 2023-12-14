@@ -1,4 +1,3 @@
-// Global state variables, and helper functions
 import {
   darkMode,
   updateWeather,
